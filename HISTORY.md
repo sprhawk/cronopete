@@ -1,5 +1,7 @@
 # History of versions #
 
+* Version 4.5.0 (2018/08/09)
+      * Added extra initialization code
 * Version 4.4.0 (2018/05/28)
       * Added remote control for unmounting the backup disk
 * Version 4.3.0 (2018/05/24)

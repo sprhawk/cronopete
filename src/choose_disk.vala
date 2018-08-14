@@ -111,7 +111,7 @@ public class c_format : GLib.Object {
 		}
 
 		try {
-			var block      = this.udisk2.get_block_if(disk_device);
+			var block = this.udisk2.get_block_if(disk_device);
 			final_uuid = block.IdUUID;
 		} catch (GLib.IOError e) {
 			this.show_error(_("Failed to get the final UUID. Aborting the format operation."));
@@ -293,7 +293,7 @@ public class c_choose_disk : GLib.Object {
 					}
 				}
 				this.choose_w.hide();
-				var w = new c_format(this.parent_window);
+				var        w = new c_format(this.parent_window);
 				GLib.Value disk_id;
 				GLib.Value disk_size;
 				model.get_value(iter, 1, out disk_id);
@@ -345,9 +345,13 @@ public class c_choose_disk : GLib.Object {
 
 		string home_folder = Environment.get_home_dir();
 		foreach (var disk_obj in blocks.keys) {
-			var block        = blocks.get(disk_obj);
-			var fs           = filesystems.get(disk_obj);
-			var mount_points = fs.MountPoints.dup_bytestring_array();
+			var block = blocks.get(disk_obj);
+			var fs    = filesystems.get(disk_obj);
+			var mps   = fs.MountPoints;
+			if (mps == null) {
+				continue;
+			}
+			var mount_points = mps.dup_bytestring_array();
 			if (mount_points.length == 0) {
 				// show only the ones already mounted
 				continue;

@@ -26,7 +26,7 @@ using Gsl;
 using Posix;
 using AppIndicator;
 
-// project version=4.4.0
+// project version=4.5.0
 
 namespace cronopete {
 	cronopete_class callback_object;
@@ -89,6 +89,7 @@ namespace cronopete {
 			// check if this is the first time we launch cronopete
 			this.check_welcome();
 			// update the menu
+			this.menuSystem = null;
 			this.menuSystem_popup();
 			// set indicator visibility
 			this.changed_config("visible");
