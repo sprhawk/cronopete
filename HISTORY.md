@@ -1,5 +1,8 @@
 # History of versions #
 
+* Version 4.5.1 (2018/08/25)
+      * Can be compiled only with Vala 0.36 or later
+      * Updated Czech translation
 * Version 4.5.0 (2018/08/09)
       * Added extra initialization code
 * Version 4.4.0 (2018/05/28)

@@ -1,3 +1,10 @@
+cronopete (4.5.1-Debian1) sid; urgency=low
+
+  * Can be compiled only with Vala 0.36 or later
+  * Updated Czech translation
+
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Sat, 25 Aug 2018 23:55:00 +0200
+
 cronopete (4.5.0-Debian1) sid; urgency=low
 
   * Added extra initialization code
