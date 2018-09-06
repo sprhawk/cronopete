@@ -1,5 +1,7 @@
 # History of versions #
 
+* Version 4.6.0 (2018/09/07)
+      * Now doesn't fail if there are blank spaces in the disk name
 * Version 4.5.1 (2018/08/25)
       * Can be compiled only with Vala 0.36 or later
       * Updated Czech translation

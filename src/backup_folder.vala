@@ -420,7 +420,7 @@ namespace cronopete {
 			}
 
 			Pid      child_pid;
-			string[] command = { "bash", "-c", "rm -rf " + Path.build_filename(this.folder_path, to_delete) };
+			string[] command = { "rm", "-rf", Path.build_filename(this.folder_path, to_delete) };
 			string[] env     = Environ.get();
 			this.debug_command(command);
 			try {

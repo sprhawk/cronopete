@@ -340,6 +340,7 @@ namespace cronopete {
 			this.deleting_mode       = 0;
 			this.aborting            = false;
 			this.send_current_action(_("Cleaning incomplete backups"));
+			print("Cleaning incomplete backups (B)\n");
 			// delete aborted backups first
 			this.delete_backup_folders("B");
 			return true;
@@ -355,19 +356,25 @@ namespace cronopete {
 		 */
 		private void ended_deleting_old_backups() {
 			if (this.aborting) {
+				print("Aborting in old\n");
 				this.end_abort();
 				return;
+			}
+			if (this.deleting_mode == 0){
+				print("Deleting aborted backups\n");
 			}
 			switch (this.deleting_mode) {
 			case 0 :
 			// we are deleting aborted backups
 			case 1:
+				print("Freeing disk space\n");
 				// we are freeing disk space because we ran out of it
 				this.deleting_mode = -1;
 				this.do_backup_folder();
 				break;
 
 			case 2:
+				print("Backup done\n");
 				// we are deleting old backups
 				time_t elapsed = time_t() - this.start_time;
 				this.send_message(_("Backup done. Elapsed time: %d:%02d".printf((int) (elapsed / 60), (int) (elapsed % 60))));
@@ -376,6 +383,7 @@ namespace cronopete {
 				break;
 
 			case 3:
+				print("Special error!!!!! Aborting\n");
 				// there is a problem with the backup, stop deleting
 				this.send_error(_("Asked for freeing disk space when there is free space. Aborting backup"));
 				this.deleting_mode  = -1;
@@ -400,6 +408,7 @@ namespace cronopete {
 		 * because that's an aborted backup
 		 */
 		private void delete_backup_folders(string prefix) {
+			print("Deleting folders with prefix %s\n".printf(prefix));
 			var main_folder = File.new_for_path(this.drive_path);
 			// find the next folder to delete
 			string ? to_delete = null;
@@ -419,22 +428,26 @@ namespace cronopete {
 					break;
 				}
 			} catch (Error e) {
+				print("Failed to delete folders: %s\n".printf(e.message));
 				this.send_error(_("Failed to delete folders: %s").printf(e.message));
 				to_delete = null;
 			}
 
 			if (to_delete == null) {
+				print("Nothing to delete\n");
 				this.ended_deleting_old_backups();
 				return;
 			}
 
 			Pid      child_pid;
-			string[] command = { "bash", "-c", "rm -rf " + Path.build_filename(this.drive_path, to_delete) };
+			print("Deleting path %s\n".printf(Path.build_filename(this.drive_path, to_delete)));
+			string[] command = { "rm", "-rf", Path.build_filename(this.drive_path, to_delete) };
 			string[] env     = Environ.get();
 			this.debug_command(command);
 			try {
 				GLib.Process.spawn_async("/", command, env, SpawnFlags.SEARCH_PATH | SpawnFlags.DO_NOT_REAP_CHILD, null, out child_pid);
 			} catch (GLib.SpawnError error) {
+				print("Error 1 when trying to delete backup %s\n".printf(to_delete));
 				this.send_error(_("Failed to delete aborted backups: %s").printf(error.message));
 				this.ended_deleting_old_backups();
 				return;
@@ -442,6 +455,9 @@ namespace cronopete {
 			this.current_child_pid = child_pid;
 			ChildWatch.add(child_pid, (pid, status) => {
 				Process.close_pid(pid);
+				if (status != 0) {
+					print("RM returned status %d\n".printf(status));
+				}
 				this.current_child_pid = -1;
 				this.delete_backup_folders(prefix);
 			});
@@ -557,6 +573,7 @@ namespace cronopete {
 		 * When the backup is done, do a sync to ensure that the data is physically stored in the disk
 		 */
 		private void do_first_sync() {
+			print("Syncing (1)\n");
 			Pid      child_pid;
 			string[] command = { "sync" };
 			string[] env     = Environ.get();
@@ -567,6 +584,7 @@ namespace cronopete {
 			try {
 				GLib.Process.spawn_async("/", command, env, SpawnFlags.SEARCH_PATH | SpawnFlags.DO_NOT_REAP_CHILD, null, out child_pid);
 			} catch (GLib.SpawnError error) {
+				print("Error while trying to sync\n");
 				this.send_warning(_("Failed to launch sync command"));
 				this.do_second_sync();
 				return;
@@ -590,6 +608,7 @@ namespace cronopete {
 			try {
 				current_folder.set_display_name(this.current_backup);
 			} catch (GLib.Error e) {
+				print("Error when trying to rename %s\n".printf("B"+this.current_backup));
 				this.send_warning(_("Failed to rename backup folder. Aborting backup"));
 				this.current_status = backup_current_status.CLEANING;
 				this.deleting_mode  = 2;
@@ -603,6 +622,7 @@ namespace cronopete {
 			try {
 				GLib.Process.spawn_async("/", command, env, SpawnFlags.SEARCH_PATH | SpawnFlags.DO_NOT_REAP_CHILD, null, out child_pid);
 			} catch (GLib.SpawnError error) {
+				print("Failed to sync (2)\n");
 				this.send_warning(_("Failed to launch final sync command"));
 				this.current_status = backup_current_status.IDLE;
 				return;
@@ -613,6 +633,7 @@ namespace cronopete {
 				    this.end_abort();
 				    return;
 				}
+				print("Deleting old backups\n");
 				this.send_message(_("Disk synced, cleaning old backups"));
 				this.current_status = backup_current_status.CLEANING;
 				this.deleting_mode  = 2;
@@ -635,6 +656,7 @@ namespace cronopete {
 			var  backups          = this.eval_backups_to_delete(free_space, out forcing_deletion);
 
 			if (backups == null) {
+				print("No old backups\n");
 				this.send_message(_("No old backups to delete"));
 				this.ended_deleting_old_backups();
 				return;
@@ -662,6 +684,7 @@ namespace cronopete {
 					continue;
 				}
 				var backup = backup_tmp as rsync_element;
+				print("Renaming to C... old backup %s\n".printf(backup.path));
 				this.send_message(_("Deleting old backup %s").printf(backup.path));
 				File remove_folder = File.new_for_path(backup.full_path);
 				// First rename every backup that must be deleted, by preppending a 'C' letter
@@ -669,6 +692,7 @@ namespace cronopete {
 				try {
 					remove_folder.set_display_name("C" + backup.path);
 				} catch (GLib.Error e) {
+					print("Error when renaming to C... the folder %s\n".printf(backup.path));
 					this.send_warning(_("Failed to delete old backup %s: %s").printf(backup.path, e.message));
 				}
 			}

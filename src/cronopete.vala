@@ -26,7 +26,7 @@ using Gsl;
 using Posix;
 using AppIndicator;
 
-// project version=4.5.1
+// project version=4.6.0
 
 namespace cronopete {
 	cronopete_class callback_object;
