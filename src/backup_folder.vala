@@ -724,6 +724,7 @@ namespace cronopete {
 			}
 			w.hide();
 			w.destroy();
+
 			return false;
 		}
 
@@ -746,11 +747,8 @@ namespace cronopete {
 				}
 				return true;
 			}
-			if (this.folder_path == null) {
-				this.folder_path = Path.build_filename(folder, "cronopete");
-				this.is_available_changed(true);
-			}
 			this.folder_path = Path.build_filename(folder, "cronopete");
+			this.is_available_changed(true);
 			return true;
 		}
 	}
