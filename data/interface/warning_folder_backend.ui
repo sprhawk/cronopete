@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.0 -->
+<!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkDialog" id="warning_dialog">
@@ -8,6 +8,9 @@
     <property name="modal">True</property>
     <property name="default_width">512</property>
     <property name="type_hint">dialog</property>
+    <child>
+      <placeholder/>
+    </child>
     <child internal-child="vbox">
       <object class="GtkBox">
         <property name="can_focus">False</property>
@@ -50,7 +53,7 @@
                 <property name="margin_right">16</property>
                 <property name="margin_top">16</property>
                 <property name="margin_bottom">16</property>
-                <property name="label" translatable="yes">The &lt;i&gt;folder backend&lt;/i&gt; is considered valid only for advanced users. To enable it, set the &lt;i&gt;gconf&lt;/i&gt; key 'enable-folder-backend' to &lt;i&gt;true&lt;/i&gt;. If you don't know how to do this, probably you should not use this backend.</property>
+                <property name="label" translatable="yes">The &lt;i&gt;folder backend&lt;/i&gt; is considered valid only for advanced users. To enable it, set the &lt;i&gt;gconf&lt;/i&gt; key 'enable-folder-backend' to &lt;i&gt;true&lt;/i&gt; using &lt;i&gt;dconf-editor&lt;/i&gt;.</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">True</property>
                 <property name="track_visited_links">False</property>
@@ -106,8 +109,5 @@ This means that the user must put a lot of care when using this backend to ensur
     <action-widgets>
       <action-widget response="0">button1</action-widget>
     </action-widgets>
-    <child>
-      <placeholder/>
-    </child>
   </object>
 </interface>

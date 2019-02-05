@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Cronopete 0.92\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-20 18:43+0200\n"
+"POT-Creation-Date: 2019-02-05 21:36+0100\n"
 "PO-Revision-Date: 2018-22-05 17:19+0200\n"
 "Last-Translator: Steffen Taubenheim-Probst <dev@taubenheim.biz>\n"
 "Language-Team: Deutsch <dev@taubenheim.biz>\n"
@@ -29,8 +29,8 @@ msgid "Store backups in a folder"
 msgstr "Speicher der Sicherung in einen Ordner."
 
 #: src/backup_folder.vala:124 src/backup_rsync.vala:129
-
-msgid "Can't create the base folders to do backups. Aborting backup\n"
+#, fuzzy
+msgid "Can't create the base folders to do backups. Aborting backup"
 msgstr ""
 "Es kann nicht der Basisordner für die Sicherung erstellt werden. Sicherung\n"
 "wird abgebrochen.\n"
@@ -41,104 +41,99 @@ msgid "Failed to launch cp to restore: %s"
 msgstr "cp konnte nicht gestartet werdern um %s wiederherzustellen."
 
 #: src/backup_folder.vala:295 src/backup_rsync.vala:304
-
 msgid "Starting backup"
 msgstr "Sicherung starten"
 
 #: src/backup_folder.vala:333 src/backup_rsync.vala:342
-
 msgid "Cleaning incomplete backups"
 msgstr "nicht komplette Sicherungen werden bereinigt"
 
-#: src/backup_folder.vala:364 src/backup_rsync.vala:373
+#: src/backup_folder.vala:364 src/backup_rsync.vala:380
 #, c-format
 msgid "Backup done. Elapsed time: %d:%02d"
 msgstr "Backup fertig. Durchschittliche Zeit: %d:%02d"
 
-#: src/backup_folder.vala:371 src/backup_rsync.vala:380
-
-msgid "Asked for freeing disk space when there is free space. Aborting backup\n"
-msgstr "Es ist nicht genug freier Speicher vorhanden um die Sicherung zu starten.\n"
+#: src/backup_folder.vala:371 src/backup_rsync.vala:388
+#, fuzzy
+msgid "Asked for freeing disk space when there is free space. Aborting backup"
+msgstr ""
+"Es ist nicht genug freier Speicher vorhanden um die Sicherung zu starten.\n"
 "Sicherung wird abgebrochen.\n"
 
-#: src/backup_folder.vala:386 src/backup_rsync.vala:395
+#: src/backup_folder.vala:386 src/backup_rsync.vala:403
 msgid "Backup aborted"
 msgstr "Sicherung abgebrochen"
 
-#: src/backup_folder.vala:413 src/backup_rsync.vala:422
+#: src/backup_folder.vala:413 src/backup_rsync.vala:432
 #, c-format
 msgid "Failed to delete folders: %s"
 msgstr "Ordner konnten nicht gelöscht werden: %s"
 
-#: src/backup_folder.vala:429 src/backup_rsync.vala:438
+#: src/backup_folder.vala:429 src/backup_rsync.vala:451
 #, c-format
 msgid "Failed to delete aborted backups: %s"
 msgstr "abgebrochene Sicherungen konnten nicht gelöscht werden: %s"
 
-#: src/backup_folder.vala:454 src/backup_rsync.vala:463
+#: src/backup_folder.vala:454 src/backup_rsync.vala:479
 #, c-format
 msgid "Backing up folder %s"
 msgstr "Ordner sichern %s"
 
-#: src/backup_folder.vala:475 src/backup_rsync.vala:484
+#: src/backup_folder.vala:475 src/backup_rsync.vala:500
 #, c-format
 msgid "Excluding folder %s"
 msgstr "Ordner die ausgeschlossen werden %s."
 
-#: src/backup_folder.vala:484 src/backup_rsync.vala:493
+#: src/backup_folder.vala:484 src/backup_rsync.vala:509
 #, c-format
 msgid "Failed to launch rsync for '%s'. Aborting backup"
 msgstr "rsync konnte nicht gestartet werden für '%s'. Backup abgebrochen."
 
-#: src/backup_folder.vala:506 src/backup_rsync.vala:515
+#: src/backup_folder.vala:506 src/backup_rsync.vala:531
 #, c-format
 msgid "There was a problem when backing up the folder '%s'"
 msgstr "Es gab ein Problem mit der Sicherung des Ordner '%s'"
 
-#: src/backup_folder.vala:521 src/backup_rsync.vala:530
+#: src/backup_folder.vala:521 src/backup_rsync.vala:546
 #, c-format
 msgid "Backing up %s"
 msgstr "Sichern '%s'"
 
 #: src/backup_folder.vala:554 src/backup_folder.vala:555
-#: src/backup_rsync.vala:563 src/backup_rsync.vala:564
-
+#: src/backup_rsync.vala:580 src/backup_rsync.vala:581
 msgid "Syncing disk"
 msgstr "Synchronisiere Festplatte"
 
-#: src/backup_folder.vala:561 src/backup_rsync.vala:570
+#: src/backup_folder.vala:561 src/backup_rsync.vala:588
 msgid "Failed to launch sync command"
 msgstr "Starten des Sync Kommando fehlgeschlagen"
 
-#: src/backup_folder.vala:584 src/backup_rsync.vala:593
-
+#: src/backup_folder.vala:584 src/backup_rsync.vala:612
 msgid "Failed to rename backup folder. Aborting backup"
 msgstr "Sicherungsordner konnte nich umbenannt werden. Sicherung abgebrochen"
 
-#: src/backup_folder.vala:597 src/backup_rsync.vala:606
+#: src/backup_folder.vala:597 src/backup_rsync.vala:626
 msgid "Failed to launch final sync command"
 msgstr "Starten des finalen Sync Kommando fehlgeschlagen"
 
-#: src/backup_folder.vala:607 src/backup_rsync.vala:616
-
+#: src/backup_folder.vala:607 src/backup_rsync.vala:637
 msgid "Disk synced, cleaning old backups"
 msgstr "Platte synchron, lösche alte Sicherung"
 
-#: src/backup_folder.vala:623 src/backup_rsync.vala:632 src/cronopete.vala:240
-
+#: src/backup_folder.vala:623 src/backup_rsync.vala:653 src/cronopete.vala:241
 msgid "Cleaning old backups"
 msgstr "alte Sicherung werden gelöscht"
 
-#: src/backup_folder.vala:629 src/backup_rsync.vala:638
+#: src/backup_folder.vala:629 src/backup_rsync.vala:660
 msgid "No old backups to delete"
 msgstr "Keine alten Sicherungen zum löschen"
 
-#: src/backup_folder.vala:656 src/backup_rsync.vala:665
+#: src/backup_folder.vala:656 src/backup_rsync.vala:688
 #, c-format
 msgid "Deleting old backup %s"
 msgstr "Löschen alter Sicherungen %s"
 
-#: src/backup_folder.vala:663 src/backup_rsync.vala:672
+#: src/backup_folder.vala:663 src/backup_rsync.vala:696
 #, c-format
 msgid "Failed to delete old backup %s: %s"
 msgstr "Fehler bei löschen alter Sicherungen %s: %s"
@@ -159,13 +154,15 @@ msgstr "Hinzufügen"
 msgid "Store backups in an external hard disk"
 msgstr "Speichern von Sicherung auf einer externen Festplatte"
 
-#: src/backup_rsync.vala:755
+#: src/backup_rsync.vala:779
 msgid "Unmount backup disk"
 msgstr "Aushängen von Sicherungsplatte"
 
-#: src/backup_rsync.vala:791
+#: src/backup_rsync.vala:815
 msgid "Can't unmount the backup disk. Another process is using it."
-msgstr "Sicherungsplatte kann nicht ausgehängt werden. Ein anderer Prozess verwendet Sie."
+msgstr ""
+"Sicherungsplatte kann nicht ausgehängt werden. Ein anderer Prozess verwendet "
+"Sie."
 
 #: src/choose_disk.vala:66
 msgid "Failed to unmount the disk. Aborting format operation."
@@ -176,15 +173,15 @@ msgid ""
 "Failed to format the disk (maybe it is needing too much time). Please, try "
 "again."
 msgstr ""
-"Es ist ein Fehler bei der Formatierung der Festplatte aufgetretten."
-"Bitte versuchen Sie es noch einmal."
+"Es ist ein Fehler bei der Formatierung der Festplatte aufgetretten.Bitte "
+"versuchen Sie es noch einmal."
 
 #: src/choose_disk.vala:109
 msgid "Failed to mount again the disk. Aborting the format operation."
-msgstr "Die Festplatte konnte nicht eingehängt werden. Formatierung abgebrochen."
+msgstr ""
+"Die Festplatte konnte nicht eingehängt werden. Formatierung abgebrochen."
 
 #: src/choose_disk.vala:117
-
 msgid "Failed to get the final UUID. Aborting the format operation."
 msgstr "Die finale UUID konnte nicht geholt werden. Formatierung abgebrochen."
 
@@ -205,77 +202,76 @@ msgstr ""
 "\n"
 "%1$s\n"
 "\n"
-"mit der Größe von %2$s muss formatiert werden bevor diese für Sicherungen verwendet werden kann.\n"
+"mit der Größe von %2$s muss formatiert werden bevor diese für Sicherungen "
+"verwendet werden kann.\n"
 "\n"
 "Um das zu tun, drücken Sie den <i>Laufwerk formatieren</i> Knopf.\n"
 "\n"
 "<b>Alle Daten werden auf dem Laufwerk gelöscht!</b>"
 
 #. TRANSLATORS this message says that the current File System (FS) in an external disk is unknown. It is shown when listing the external disks connected to the computer
-#: src/choose_disk.vala:384
+#: src/choose_disk.vala:388
 msgid "Unknown FS"
 msgstr "Unbekanntes Dateisystem"
 
 #. TRANSLATORS Specifies that the size of an external disk is unknown
-#: src/choose_disk.vala:415
+#: src/choose_disk.vala:419
 msgid "Unknown size"
 msgstr "Unbekannte Größe"
 
 #. TRANSLATORS Specify that the disk configured for backups is not available
-#: src/cronopete.vala:217
-
+#: src/cronopete.vala:218
 msgid "Disk not available"
 msgstr "Speicher nicht verfügbar"
 
 #. TRANSLATORS The program state, used in a tooltip, when it is waiting to do the next backup
-#: src/cronopete.vala:225
+#: src/cronopete.vala:226
 msgid "Idle"
 msgstr "Warten"
 
-#: src/cronopete.vala:235
-
-msgid "Doing backup\n"
+#: src/cronopete.vala:236
+#, fuzzy
+msgid "Doing backup"
 msgstr "Sicherung starten\n"
 
 #. TRANSLATORS The program state, used in a tooltip, when it is doing a backup and there is, at least, a warning message
-#: src/cronopete.vala:249
+#: src/cronopete.vala:250
 msgid "Doing backup, have a warning"
 msgstr "Mach eine Sicherung. Du wurdest gewarnt!"
 
 #. TRANSLATORS The program state, used in a tooltip, when it is doing a backup and there is, at least, an error message
-#: src/cronopete.vala:255
+#: src/cronopete.vala:256
 msgid "Doing backup, have an error"
 msgstr "Beim Backup wurde ein Fehler festgestellt."
 
 #. TRANSLATORS The program state, used in a tooltip, when the backups are disabled and won't be done
-#: src/cronopete.vala:262
-
+#: src/cronopete.vala:263
 msgid "Backup is disabled"
 msgstr "Backup ausgeschaltet"
 
 #. TRANSLATORS Menu entry to start a new backup manually
-#: src/cronopete.vala:364
+#: src/cronopete.vala:365
 msgid "Back Up Now"
 msgstr "jetzt sichern"
 
 #. TRANSLATORS Menu entry to abort the current backup manually
-#: src/cronopete.vala:368
+#: src/cronopete.vala:369
 msgid "Stop Backing Up"
 msgstr "Sicherung anhalten"
 
 #. TRANSLATORS Menu entry to open the interface for restoring files from a backup
 #. TRANSLATORS Text for the button that restores the selected files
-#: src/cronopete.vala:373 src/restore.vala:90
+#: src/cronopete.vala:374 src/restore.vala:90
 msgid "Restore files"
 msgstr "Dateien wiederherstellen"
 
 #. TRANSLATORS Menu entry to open the configuration window
-#: src/cronopete.vala:388
+#: src/cronopete.vala:389
 msgid "Configure the backups"
 msgstr "Backupregeln einstellen"
 
 #. TRANSLATORS Show the date of the last backup
-#: src/cronopete.vala:397
+#: src/cronopete.vala:398
 #, c-format
 msgid "Latest backup: %s"
 msgstr "Letztes Backup: %s"
@@ -371,30 +367,30 @@ msgid "Folder"
 msgstr "Ordner"
 
 #. TRANSLATORS Shows a warning message with "warning" in Orange color
-#: src/menu.vala:142
+#: src/menu.vala:141
 #, c-format
 msgid "<span foreground=\"#FF7F00\">WARNING:</span> %s"
 msgstr "<span foreground=\"#FF7F00\">WARNUNG:</span> %s"
 
 #. TRANSLATORS Shows an error message with "error" in Orange color
-#: src/menu.vala:146
+#: src/menu.vala:145
 #, c-format
 msgid "<span foreground=\"#FF3F3F\">ERROR:</span> %s"
 msgstr "<span foreground=\"#FF3F3F\">FEHLER:</span> %s"
 
 #. TRANSLATORS This string shows the current status of Cronopete. It can be "Status: idle", or "Status: copying file"...
-#: src/menu.vala:188
+#: src/menu.vala:187
 #, c-format
 msgid "Status: %s"
 msgstr "Status: %s"
 
 #. TRANSLATORS This text means that the user still has not selected a hard disk where to do the backups
-#: src/menu.vala:261
+#: src/menu.vala:260
 msgid "Not defined"
 msgstr "Nicht definiert"
 
 #. TRANSLATORS This string specifies the available and total disk space in back up drive. Example: 43 GB of 160 GB
-#: src/menu.vala:289
+#: src/menu.vala:288
 #, c-format
 msgid "%lld GB of %lld GB"
 msgstr "%lld GB von %lld GB"
@@ -434,7 +430,7 @@ msgid "Done"
 msgstr "Fertig"
 
 #. TRANSLATORS Text for the button in the window that shows a message with the result of a restoring operation, for closing the window
-#: src/restore.vala:255 data/interface/warning_folder_backend.ui:22
+#: src/restore.vala:255 data/interface/warning_folder_backend.ui:25
 msgid "OK"
 msgstr "Ok"
 
@@ -444,7 +440,6 @@ msgid "Aborting restore operation"
 msgstr "Wiederhe ab gebrochen"
 
 #: data/interface/about.ui:15
-
 msgid "©2011-2018 Raster Software Vigo"
 msgstr "©2011-2018 Raster Software Vigo"
 
@@ -467,15 +462,16 @@ msgid ""
 "In 2011, arrives ana<b>CRONOPETE</b>, THE Apple's Time Machine clone for "
 "Linux."
 msgstr ""
-"1895 veröffentlichte H. G. Wells <b>Die Zeitmaschine</b>. Diesem Roman wird seit Jahren"
-"annerkannt, der erste Roman zu sein, der von einer Zeitmaschine zu handelt. \n"
+"1895 veröffentlichte H. G. Wells <b>Die Zeitmaschine</b>. Diesem Roman wird "
+"seit Jahrenannerkannt, der erste Roman zu sein, der von einer Zeitmaschine "
+"zu handelt. \n"
 "\n"
-"Aber im Jahr 1887, acht Jahre zuvor, veröffentlchte Enrique Gaspar y Rimbau <b> El"
-"anacronópete </b>, einen Roman im Zarzuela-Format, der wirklich der erste Roman"
-"ist der eine Maschine einbaut, die \"durch die Zeit reist\". \n"
+"Aber im Jahr 1887, acht Jahre zuvor, veröffentlchte Enrique Gaspar y Rimbau "
+"<b> Elanacronópete </b>, einen Roman im Zarzuela-Format, der wirklich der "
+"erste Romanist der eine Maschine einbaut, die \"durch die Zeit reist\". \n"
 "\n"
-"Im Jahr 2007 startete Apple <b>Time Machine</b>, ein Backup-Programm für MacOS X Leopard."
-"Es gibt mehrere ähnliche Programme für Linux. \n"
+"Im Jahr 2007 startete Apple <b>Time Machine</b>, ein Backup-Programm für "
+"MacOS X Leopard.Es gibt mehrere ähnliche Programme für Linux. \n"
 "\n"
 "In 2011 kommt ana<b>CRONOPETE</b>,der Linux-Klon für \"Time Machine\""
 
@@ -634,14 +630,14 @@ msgstr "Ingoriere alle"
 msgid "Restore ended succesfully"
 msgstr "Wiederherstellen wurde abgeschlossen"
 
-#: data/interface/warning_folder_backend.ui:53
+#: data/interface/warning_folder_backend.ui:56
 msgid ""
 "The <i>folder backend</i> is considered valid only for advanced users. To "
-"enable it, set the <i>gconf</i> key 'enable-folder-backend' to <i>true</i>. "
-"If you don't know how to do this, probably you should not use this backend."
+"enable it, set the <i>gconf</i> key 'enable-folder-backend' to <i>true</i> "
+"using <i>dconf-editor</i>."
 msgstr ""
 
-#: data/interface/warning_folder_backend.ui:76
+#: data/interface/warning_folder_backend.ui:79
 msgid ""
 "The <i>store backups in a folder</i> backend can be considered quite "
 "dangerous because it allows to do what are considered 'bad practices' for a "
@@ -656,7 +652,7 @@ msgid ""
 "there is no true backup of the data."
 msgstr ""
 
-#: data/interface/warning_folder_backend.ui:87
+#: data/interface/warning_folder_backend.ui:90
 msgid "Read more..."
 msgstr ""
 
@@ -705,10 +701,8 @@ msgstr ""
 #~ msgid "Device:"
 #~ msgstr "Gerät:"
 
-
 #~ msgid "%x at %R"
 #~ msgstr "Heute, um %H:%M"
-
 
 #~ msgid "Backup done"
 #~ msgstr "Sicherung abbrechen"
