@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Cronopete 0.92\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-05 21:36+0100\n"
-"PO-Revision-Date: 2019-02-05 21:36+0100\n"
+"POT-Creation-Date: 2019-02-08 00:12+0100\n"
+"PO-Revision-Date: 2019-02-08 00:14+0100\n"
 "Last-Translator: Sergio Costas <rastersoft@gmail.com>\n"
 "Language-Team: Español; Castellano <rastersoft@gmail.com>\n"
 "Language: es\n"
@@ -26,142 +26,133 @@ msgstr ""
 msgid "Ready"
 msgstr "Preparado"
 
+#. TRANSLATORS This is the name for the backend that allows to store the backups in an external disk
+#: src/backup_extdisk.vala:41
+msgid "Store backups in an external hard disk"
+msgstr "Almacenar las copias en un disco duro externo"
+
+#: src/backup_extdisk.vala:50
+msgid "Unmount backup disk"
+msgstr "Desmontar el disco de copia"
+
+#: src/backup_extdisk.vala:86
+msgid "Can't unmount the backup disk. Another process is using it."
+msgstr ""
+"No se ha podido desmontar el disco de copias. Otro proceso lo está "
+"utilizando."
+
 #. TRANSLATORS This is the name for the backend that allows to store the backups in a folder, instead of choosing a disk.
-#: src/backup_folder.vala:75
+#: src/backup_folder.vala:33
 msgid "Store backups in a folder"
 msgstr "Almacenar las copias en una carpeta"
 
-#: src/backup_folder.vala:124 src/backup_rsync.vala:129
+#. TRANSLATORS This is the text for a Cancel button, that cancels the current action of choosing a folder where to do the backups
+#: src/backup_folder.vala:70 src/options.vala:185 src/options.vala:223
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. TRANSLATORS This is the text for an Add button, that adds a selected folder as the destination where to do the backups when using the "backup to folder" backend
+#: src/backup_folder.vala:72 src/options.vala:186 src/options.vala:224
+#: data/interface/options.ui:115 data/interface/options.ui:205
+msgid "Add"
+msgstr "Añadir"
+
+#: src/backup_rsync.vala:109
 msgid "Can't create the base folders to do backups. Aborting backup"
 msgstr "No se han podido crear las carpetas base para las copias. Cancelando."
 
-#: src/backup_folder.vala:267 src/backup_rsync.vala:272
+#: src/backup_rsync.vala:252
 #, c-format
 msgid "Failed to launch cp to restore: %s"
 msgstr "No se ha podido restaurar el archivo %s"
 
-#: src/backup_folder.vala:295 src/backup_rsync.vala:304
+#: src/backup_rsync.vala:292
 msgid "Starting backup"
 msgstr "Comenzando la copia"
 
-#: src/backup_folder.vala:333 src/backup_rsync.vala:342
+#: src/backup_rsync.vala:324
 msgid "Cleaning incomplete backups"
 msgstr "Borrando copias incompletas"
 
-#: src/backup_folder.vala:364 src/backup_rsync.vala:380
+#: src/backup_rsync.vala:360
 #, c-format
 msgid "Backup done. Elapsed time: %d:%02d"
 msgstr "Copia terminada. Tiempo transcurrido: %d:%02d"
 
-#: src/backup_folder.vala:371 src/backup_rsync.vala:388
+#: src/backup_rsync.vala:371
+msgid "Failed to rename backup folder. Aborting backup"
+msgstr "No se ha podido renombrar la carpeta de una copia. Cancelando"
+
+#: src/backup_rsync.vala:392
+msgid "Backup aborted"
+msgstr "Copia cancelada"
+
+#: src/backup_rsync.vala:430
+#, c-format
+msgid "Failed to delete aborted backups: %s"
+msgstr "No se han podido borrar las copias abortadas: %s"
+
+#: src/backup_rsync.vala:446
+#, c-format
+msgid "Failed to delete folders: %s"
+msgstr "No se ha podido borrar las carpetas: %s"
+
+#: src/backup_rsync.vala:460
+#, c-format
+msgid "Backing up folder %s"
+msgstr "Copiando la carpeta %s"
+
+#: src/backup_rsync.vala:481
+#, c-format
+msgid "Excluding folder %s"
+msgstr "Excluyendo la carpeta %s"
+
+#: src/backup_rsync.vala:492
+#, c-format
+msgid "Failed to launch rsync for '%s'. Aborting backup"
+msgstr "No se ha podido lanzar rsync para '%s'. Cancelando"
+
+#: src/backup_rsync.vala:509
+#, c-format
+msgid "There was a problem when backing up the folder '%s'"
+msgstr "Hubo un problema al copiar la carpeta '%s'"
+
+#: src/backup_rsync.vala:523
+#, c-format
+msgid "Backing up %s"
+msgstr "Copiando la carpeta %s"
+
+#: src/backup_rsync.vala:567 src/backup_rsync.vala:568
+msgid "Syncing disk"
+msgstr "Sincronizando el disco"
+
+#: src/backup_rsync.vala:575
+msgid "Failed to launch sync command"
+msgstr "No se ha podido lanzar el comando sync"
+
+#: src/backup_rsync.vala:596 src/cronopete.vala:241
+msgid "Cleaning old backups"
+msgstr "Borrando copias antiguas"
+
+#: src/backup_rsync.vala:603
+msgid "No old backups to delete"
+msgstr "No hay copias antiguas que borrar"
+
+#: src/backup_rsync.vala:620
 msgid "Asked for freeing disk space when there is free space. Aborting backup"
 msgstr ""
 "Se ha pedido liberar espacio del disco cuando aún queda espacio libre. "
 "Cancelando"
 
-#: src/backup_folder.vala:386 src/backup_rsync.vala:403
-msgid "Backup aborted"
-msgstr "Copia cancelada"
-
-#: src/backup_folder.vala:413 src/backup_rsync.vala:432
-#, c-format
-msgid "Failed to delete folders: %s"
-msgstr "No se ha podido borrar las carpetas: %s"
-
-#: src/backup_folder.vala:429 src/backup_rsync.vala:451
-#, c-format
-msgid "Failed to delete aborted backups: %s"
-msgstr "No se han podido borrar las copias abortadas: %s"
-
-#: src/backup_folder.vala:454 src/backup_rsync.vala:479
-#, c-format
-msgid "Backing up folder %s"
-msgstr "Copiando la carpeta %s"
-
-#: src/backup_folder.vala:475 src/backup_rsync.vala:500
-#, c-format
-msgid "Excluding folder %s"
-msgstr "Excluyendo la carpeta %s"
-
-#: src/backup_folder.vala:484 src/backup_rsync.vala:509
-#, c-format
-msgid "Failed to launch rsync for '%s'. Aborting backup"
-msgstr "No se ha podido lanzar rsync para '%s'. Cancelando"
-
-#: src/backup_folder.vala:506 src/backup_rsync.vala:531
-#, c-format
-msgid "There was a problem when backing up the folder '%s'"
-msgstr "Hubo un problema al copiar la carpeta '%s'"
-
-#: src/backup_folder.vala:521 src/backup_rsync.vala:546
-#, c-format
-msgid "Backing up %s"
-msgstr "Copiando la carpeta %s"
-
-#: src/backup_folder.vala:554 src/backup_folder.vala:555
-#: src/backup_rsync.vala:580 src/backup_rsync.vala:581
-msgid "Syncing disk"
-msgstr "Sincronizando el disco"
-
-#: src/backup_folder.vala:561 src/backup_rsync.vala:588
-msgid "Failed to launch sync command"
-msgstr "No se ha podido lanzar el comando sync"
-
-#: src/backup_folder.vala:584 src/backup_rsync.vala:612
-msgid "Failed to rename backup folder. Aborting backup"
-msgstr "No se ha podido renombrar la carpeta de una copia. Cancelando"
-
-#: src/backup_folder.vala:597 src/backup_rsync.vala:626
-msgid "Failed to launch final sync command"
-msgstr "No se ha podido lanzar el comando sync final"
-
-#: src/backup_folder.vala:607 src/backup_rsync.vala:637
-msgid "Disk synced, cleaning old backups"
-msgstr "Disco sincronizado, borrando copias antiguas"
-
-#: src/backup_folder.vala:623 src/backup_rsync.vala:653 src/cronopete.vala:241
-msgid "Cleaning old backups"
-msgstr "Borrando copias antiguas"
-
-#: src/backup_folder.vala:629 src/backup_rsync.vala:660
-msgid "No old backups to delete"
-msgstr "No hay copias antiguas que borrar"
-
-#: src/backup_folder.vala:656 src/backup_rsync.vala:688
+#: src/backup_rsync.vala:632
 #, c-format
 msgid "Deleting old backup %s"
 msgstr "Borrando copia antigua %s"
 
-#: src/backup_folder.vala:663 src/backup_rsync.vala:696
+#: src/backup_rsync.vala:640
 #, c-format
 msgid "Failed to delete old backup %s: %s"
 msgstr "No se ha podido borrar la copia antigua %s: %s"
-
-#. TRANSLATORS This is the text for a Cancel button, that cancels the current action of choosing a folder where to do the backups
-#: src/backup_folder.vala:701 src/options.vala:185 src/options.vala:223
-msgid "Cancel"
-msgstr "Cancelar"
-
-#. TRANSLATORS This is the text for an Add button, that adds a selected folder as the destination where to do the backups when using the "backup to folder" backend
-#: src/backup_folder.vala:703 src/options.vala:186 src/options.vala:224
-#: data/interface/options.ui:115 data/interface/options.ui:205
-msgid "Add"
-msgstr "Añadir"
-
-#. TRANSLATORS This is the name for the backend that allows to store the backups in an external disk
-#: src/backup_rsync.vala:80
-msgid "Store backups in an external hard disk"
-msgstr "Almacenar las copias en un disco duro externo"
-
-#: src/backup_rsync.vala:779
-msgid "Unmount backup disk"
-msgstr "Desmontar el disco de copia"
-
-#: src/backup_rsync.vala:815
-msgid "Can't unmount the backup disk. Another process is using it."
-msgstr ""
-"No se ha podido desmontar el disco de copias. Otro proceso lo está "
-"utilizando."
 
 #: src/choose_disk.vala:66
 msgid "Failed to unmount the disk. Aborting format operation."
@@ -701,6 +692,12 @@ msgstr ""
 "\n"
 "Ahora puede configurar el disco externo a usar para las copias y qué "
 "carpetas copiar, o dejarlo para más tarde."
+
+#~ msgid "Failed to launch final sync command"
+#~ msgstr "No se ha podido lanzar el comando sync final"
+
+#~ msgid "Disk synced, cleaning old backups"
+#~ msgstr "Disco sincronizado, borrando copias antiguas"
 
 #~ msgid "Failed to find the disk!!!!!"
 #~ msgstr "¡¡¡¡¡No se ha encontrado el disco!!!!!"
