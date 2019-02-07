@@ -1,4 +1,5 @@
 src/backup_base.vala
+src/backup_extdisk.vala
 src/backup_folder.vala
 src/backup_rsync.vala
 src/choose_disk.vala

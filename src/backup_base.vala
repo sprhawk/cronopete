@@ -134,7 +134,7 @@ namespace cronopete {
 		 * in the HOME will be excluded. If FALSE, they will be backed up.
 		 * @return TRUE if the backup started fine; FALSE if there was an error
 		 */
-		public abstract bool do_backup(string[] folder_list, string[] exclude_list, bool skip_hidden_at_home);
+		public abstract async bool do_backup(string[] folder_list, string[] exclude_list, bool skip_hidden_at_home);
 
 		/**
 		 * Aborts the current backup, and ensures that the half-made backup

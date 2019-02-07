@@ -41,6 +41,7 @@ set (VALA_PACKAGES ${VALA_PACKAGES} udisks2)
 
 set (APP_SOURCES ${APP_SOURCES} ${CMAKE_CURRENT_BINARY_DIR}/Config.vala)
 set (APP_SOURCES ${APP_SOURCES} backup_base.vala)
+set (APP_SOURCES ${APP_SOURCES} backup_extdisk.vala)
 set (APP_SOURCES ${APP_SOURCES} backup_folder.vala)
 set (APP_SOURCES ${APP_SOURCES} backup_rsync.vala)
 set (APP_SOURCES ${APP_SOURCES} choose_disk.vala)

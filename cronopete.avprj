@@ -24,6 +24,7 @@ end
 *vala_check_package: pangocairo
 *vala_check_package: udisks2
 *vala_source: backup_base.vala
+*vala_source: backup_extdisk.vala
 *vala_source: backup_folder.vala
 *vala_source: backup_rsync.vala
 *vala_source: choose_disk.vala
@@ -57,6 +58,7 @@ end
 *translate: glade data/interface/warning_folder_backend.ui
 *translate: glade data/interface/welcome.ui
 *translate: vala src/backup_base.vala
+*translate: vala src/backup_extdisk.vala
 *translate: vala src/backup_folder.vala
 *translate: vala src/backup_rsync.vala
 *translate: vala src/choose_disk.vala

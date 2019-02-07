@@ -20,15 +20,11 @@ using GLib;
 using Posix;
 
 namespace cronopete {
-	public class backup_rsync : backup_base {
-		// contains all the folders that must be backed up, and the exclusions for each one
-		private Gee.List<folder_container ?> ? folders;
-		// the disk monitor object to manage the disks
-		private udisk2_cronopete udisk2;
-		// the current disk path (or null if the drive is not available), which will be /path/to/disk/cronopete/username
-		private string ? drive_path;
-		// the current disk path (or null if the drive is not available) without the user
-		private string ? base_drive_path;
+	public abstract class backup_rsync : backup_base {
+		// the full path (or null if it is not available) where the backup will be done
+		protected string ? folder_path;
+		// the current disk path  without the user (or null if the drive is not available or is a backup to a folder)
+		protected string ? base_drive_path;
 		// the last backup path if there is one, or null if there are no previous backups
 		private string ? last_backup;
 		// the current backup name
@@ -38,7 +34,7 @@ namespace cronopete {
 		// contains the type of delete we are doing, to now what do call at the end
 		private int deleting_mode;
 		// contains the last backup time
-		private time_t last_backup_time;
+		protected time_t last_backup_time;
 		// contains the current backup time
 		private time_t current_backup_time;
 		// the PID for the currently running child, to abort a backup
@@ -48,36 +44,20 @@ namespace cronopete {
 		// used to calculate how many time was needed to do the backup
 		private time_t start_time;
 
-		private bool backend_enabled;
-
-		private bool do_umount;
+		protected bool backend_enabled;
+		protected string icon_name;
+		protected string settings_id;
 
 		public backup_rsync() {
-			this.do_umount         = false;
 			this.backend_enabled   = false;
-			this.drive_path        = null;
+			this.folder_path       = null;
 			this.base_drive_path   = null;
 			this.current_child_pid = -1;
 			this.aborting          = false;
-			this.folders           = null;
 			this.last_backup       = null;
 			this.current_backup    = null;
 			this.deleting_mode     = -1;
 			this.last_backup_time  = 0;
-			this.udisk2            = new udisk2_cronopete();
-			this.udisk2.InterfacesAdded.connect_after(this.refresh_connect);
-			this.udisk2.InterfacesRemoved.connect_after(this.refresh_connect);
-			this.refresh_connect();
-		}
-
-		public override void in_use(bool backend_enabled) {
-			this.backend_enabled = backend_enabled;
-			this.refresh_connect();
-		}
-
-		public override string get_descriptor() {
-			// TRANSLATORS This is the name for the backend that allows to store the backups in an external disk
-			return (_("Store backups in an external hard disk"));
 		}
 
 		public override time_t get_last_backup() {
@@ -93,8 +73,8 @@ namespace cronopete {
 			total_space = 0;
 			free_space  = 0;
 			try {
-				if (this.drive_path != null) {
-					var file = File.new_for_path(this.drive_path);
+				if (this.folder_path != null) {
+					var file = File.new_for_path(this.folder_path);
 					var info = file.query_filesystem_info(FileAttribute.FILESYSTEM_SIZE + "," + FileAttribute.FILESYSTEM_FREE, null);
 					total_space = info.get_attribute_uint64(FileAttribute.FILESYSTEM_SIZE);
 					free_space  = info.get_attribute_uint64(FileAttribute.FILESYSTEM_FREE);
@@ -111,7 +91,7 @@ namespace cronopete {
 			newest      = 0;
 			total_space = 0;
 			free_space  = 0;
-			if (this.drive_path != null) {
+			if (this.folder_path != null) {
 				this.get_backup_list(out oldest, out newest);
 				this.get_free_space(out total_space, out free_space);
 				return true;
@@ -121,7 +101,7 @@ namespace cronopete {
 		}
 
 		private bool create_base_folder() {
-			var main_folder = File.new_for_path(this.drive_path);
+			var main_folder = File.new_for_path(this.folder_path);
 			if (false == main_folder.query_exists()) {
 				try {
 					main_folder.make_directory_with_parents();
@@ -138,14 +118,14 @@ namespace cronopete {
 		public override Gee.List<backup_element> ? get_backup_list(out time_t oldest, out time_t newest) {
 			oldest = 0;
 			newest = 0;
-			if (this.drive_path == null) {
+			if (this.folder_path == null) {
 				return null;
 			}
 			Gee.List<backup_element> folder_list = new Gee.ArrayList<backup_element>();
 			if (!this.create_base_folder()) {
 				return null;
 			}
-			var main_folder = File.new_for_path(this.drive_path);
+			var main_folder = File.new_for_path(this.folder_path);
 			try {
 				GLib.Regex regexBackups   = new GLib.Regex("^" + this.regex_backup);
 				var        folder_content = main_folder.enumerate_children(FileAttribute.STANDARD_NAME, 0, null);
@@ -187,7 +167,7 @@ namespace cronopete {
 							newest = backup_time;
 							this.last_backup_time = newest;
 						}
-						folder_list.add(new rsync_element(backup_time, this.drive_path, file_info));
+						folder_list.add(new rsync_element(backup_time, this.folder_path, file_info));
 					}
 				}
 			} catch (Error e) {
@@ -198,7 +178,7 @@ namespace cronopete {
 		}
 
 		public override bool storage_is_available() {
-			return (this.drive_path != null);
+			return (this.folder_path != null);
 		}
 
 		public override void abort_backup() {
@@ -284,18 +264,26 @@ namespace cronopete {
 			return false;
 		}
 
-		public override bool do_backup(string[] folder_list, string[] exclude_list, bool skip_hidden_at_home) {
+		public async override bool do_backup(string[] folder_list, string[] exclude_list, bool skip_hidden_at_home) {
 			if (this.current_status != backup_current_status.IDLE) {
 				return false;
 			}
 
-			if (this.drive_path == null) {
+			if (this.folder_path == null) {
 				return false;
+			}
+
+			var folders = new Gee.ArrayList<folder_container ?>();
+			foreach (var folder in folder_list) {
+				var container = folder_container(folder, exclude_list, skip_hidden_at_home);
+				if (container.valid) {
+					folders.add(container);
+				}
 			}
 
 			this.start_time = time_t();
 			// only each user can read and write in their backup folder
-			Posix.chmod(this.drive_path, 0x01C0);
+			Posix.chmod(this.folder_path, 0x01C0);
 			if (this.base_drive_path != null) {
 				// everybody can read and write in the CRONOPETE folder
 				Posix.chmod(this.base_drive_path, 0x01FF);
@@ -305,13 +293,7 @@ namespace cronopete {
 			if (!this.create_base_folder()) {
 				return false;
 			}
-			this.folders = new Gee.ArrayList<folder_container ?>();
-			foreach (var folder in folder_list) {
-				var container = folder_container(folder, exclude_list, skip_hidden_at_home);
-				if (container.valid) {
-					this.folders.add(container);
-				}
-			}
+
 			time_t oldest;
 			time_t newest;
 			var    backups = this.get_backup_list(out oldest, out newest);
@@ -342,8 +324,55 @@ namespace cronopete {
 			this.send_current_action(_("Cleaning incomplete backups"));
 			print("Cleaning incomplete backups (B)\n");
 			// delete aborted backups first
-			this.delete_backup_folders("B");
+			yield this.delete_backup_folders("B");
+
+			print("Cleaned\n");
+			if (this.aborting) {
+				this.end_abort();
+				return false;
+			}
+			print("Backing up folders\n");
+			foreach (var folder in folders) {
+				yield this.do_backup_folder(folder);
+
+				if (this.aborting) {
+					this.end_abort();
+					return false;
+				}
+			}
+			yield this.do_sync();
+
+			if (this.rename_current_backup()) {
+				yield this.delete_backup_folders("B");
+
+				return false;
+			}
+			yield this.do_sync();
+
+			if (this.aborting) {
+				this.end_abort();
+				return false;
+			}
+			this.current_status = backup_current_status.CLEANING;
+			yield this.delete_old_backups(false);
+
+			time_t elapsed = time_t() - this.start_time;
+			this.send_message(_("Backup done. Elapsed time: %d:%02d".printf((int) (elapsed / 60), (int) (elapsed % 60))));
+			this.current_status = backup_current_status.IDLE;
 			return true;
+		}
+
+		private bool rename_current_backup() {
+			var current_folder = File.new_for_path(Path.build_filename(this.folder_path, "B" + this.current_backup));
+			try {
+				current_folder.set_display_name(this.current_backup);
+			} catch (GLib.Error e) {
+				print("Error when trying to rename %s\n".printf("B" + this.current_backup));
+				this.send_warning(_("Failed to rename backup folder. Aborting backup"));
+				this.current_status = backup_current_status.CLEANING;
+				return true;
+			}
+			return false;
 		}
 
 		private string date_to_folder_name(time_t t) {
@@ -352,50 +381,10 @@ namespace cronopete {
 		}
 
 		/**
-		 * Manages the next command to run after deleting an old backup
-		 */
-		private void ended_deleting_old_backups() {
-			if (this.aborting) {
-				print("Aborting in old\n");
-				this.end_abort();
-				return;
-			}
-			if (this.deleting_mode == 0){
-				print("Deleting aborted backups\n");
-			}
-			switch (this.deleting_mode) {
-			case 0 :
-			// we are deleting aborted backups
-			case 1:
-				print("Freeing disk space\n");
-				// we are freeing disk space because we ran out of it
-				this.deleting_mode = -1;
-				this.do_backup_folder();
-				break;
-
-			case 2:
-				print("Backup done\n");
-				// we are deleting old backups
-				time_t elapsed = time_t() - this.start_time;
-				this.send_message(_("Backup done. Elapsed time: %d:%02d".printf((int) (elapsed / 60), (int) (elapsed % 60))));
-				this.deleting_mode  = -1;
-				this.current_status = backup_current_status.IDLE;
-				break;
-
-			case 3:
-				print("Special error!!!!! Aborting\n");
-				// there is a problem with the backup, stop deleting
-				this.send_error(_("Asked for freeing disk space when there is free space. Aborting backup"));
-				this.deleting_mode  = -1;
-				this.current_status = backup_current_status.IDLE;
-				break;
-			}
-		}
-
-		/**
 		 * Sets everything as needed after an abort
 		 */
 		private void end_abort() {
+			print("Aborted\n");
 			this.current_child_pid = -1;
 			this.aborting          = false;
 			this.deleting_mode     = -1;
@@ -406,76 +395,68 @@ namespace cronopete {
 		/**
 		 * This method deletes any backup with a name that starts with 'B' or 'C'
 		 * because that's an aborted backup
+		 *
+		 * @param prefix A single letter which can be 'B' or 'C', specifying which group of backups should be removed
+		 * @return True if there was an error; False if not
 		 */
-		private void delete_backup_folders(string prefix) {
+		private async bool delete_backup_folders(string prefix) {
 			print("Deleting folders with prefix %s\n".printf(prefix));
-			var main_folder = File.new_for_path(this.drive_path);
+			var main_folder = File.new_for_path(this.folder_path);
 			// find the next folder to delete
-			string ? to_delete = null;
 			try {
 				var folder_regexp  = new GLib.Regex("^" + prefix + this.regex_backup);
-				var folder_content = main_folder.enumerate_children(FileAttribute.STANDARD_NAME, 0, null);
+				var folder_content = yield main_folder.enumerate_children_async(FileAttribute.STANDARD_NAME, GLib.FileQueryInfoFlags.NONE, GLib.Priority.DEFAULT, null);
 
 				FileInfo file_info;
 				while ((file_info = folder_content.next_file(null)) != null) {
+					if (this.aborting) {
+						return true; // abort
+					}
 					// If the directory starts with 'prefix', it's a temporary directory from an
 					// unfinished backup, or one being removed, so don't append it
 					var dirname = file_info.get_name();
 					if (!folder_regexp.match(dirname)) {
 						continue;
 					}
-					to_delete = dirname;
-					break;
+					Pid child_pid;
+					print("Deleting path %s\n".printf(Path.build_filename(this.folder_path, dirname)));
+					string[] command = { "rm", "-rf", Path.build_filename(this.folder_path, dirname) };
+					string[] env     = Environ.get();
+					this.debug_command(command);
+					try {
+						GLib.Process.spawn_async("/", command, env, SpawnFlags.SEARCH_PATH | SpawnFlags.DO_NOT_REAP_CHILD, null, out child_pid);
+					} catch (GLib.SpawnError error) {
+						print("Error 1 when trying to delete backup %s\n".printf(dirname));
+						this.send_error(_("Failed to delete aborted backups: %s").printf(error.message));
+						return true;
+					}
+					this.current_child_pid = child_pid;
+					ChildWatch.add(child_pid, (pid, status) => {
+						Process.close_pid(pid);
+						if (status != 0) {
+						    print("RM returned status %d\n".printf(status));
+						}
+						this.current_child_pid = -1;
+						this.delete_backup_folders.callback ();
+					});
+					yield;
 				}
 			} catch (Error e) {
 				print("Failed to delete folders: %s\n".printf(e.message));
 				this.send_error(_("Failed to delete folders: %s").printf(e.message));
-				to_delete = null;
+				return true;
 			}
-
-			if (to_delete == null) {
-				print("Nothing to delete\n");
-				this.ended_deleting_old_backups();
-				return;
-			}
-
-			Pid      child_pid;
-			print("Deleting path %s\n".printf(Path.build_filename(this.drive_path, to_delete)));
-			string[] command = { "rm", "-rf", Path.build_filename(this.drive_path, to_delete) };
-			string[] env     = Environ.get();
-			this.debug_command(command);
-			try {
-				GLib.Process.spawn_async("/", command, env, SpawnFlags.SEARCH_PATH | SpawnFlags.DO_NOT_REAP_CHILD, null, out child_pid);
-			} catch (GLib.SpawnError error) {
-				print("Error 1 when trying to delete backup %s\n".printf(to_delete));
-				this.send_error(_("Failed to delete aborted backups: %s").printf(error.message));
-				this.ended_deleting_old_backups();
-				return;
-			}
-			this.current_child_pid = child_pid;
-			ChildWatch.add(child_pid, (pid, status) => {
-				Process.close_pid(pid);
-				if (status != 0) {
-					print("RM returned status %d\n".printf(status));
-				}
-				this.current_child_pid = -1;
-				this.delete_backup_folders(prefix);
-			});
+			return false;
 		}
 
 		/**
 		 * This method backs up one folder
 		 */
-		private void do_backup_folder() {
+		private async void do_backup_folder(folder_container folder) {
 			Pid child_pid;
 			int standard_output;
 			int standard_error;
 
-			if (this.folders.size == 0) {
-				this.do_first_sync();
-				return;
-			}
-			var folder = this.folders.get(0);
 			this.send_message(_("Backing up folder %s").printf(folder.folder));
 
 			/* The backup is done to a temporary folder called like the final one, but preppended with a 'B' letter
@@ -483,7 +464,7 @@ namespace cronopete {
 			 * be easily identified as an incomplete backup and won't be used
 			 */
 
-			string out_folder   = Path.build_filename(this.drive_path, "B" + this.current_backup, folder.folder);
+			string out_folder   = Path.build_filename(this.folder_path, "B" + this.current_backup, folder.folder);
 			var    out_folder_f = File.new_for_path(out_folder);
 			try {
 				out_folder_f.make_directory_with_parents();
@@ -503,77 +484,83 @@ namespace cronopete {
 			command += out_folder;
 			string[] env = Environ.get();
 			this.debug_command(command);
-			try {
-				GLib.Process.spawn_async_with_pipes("/", command, env, SpawnFlags.SEARCH_PATH | SpawnFlags.DO_NOT_REAP_CHILD, null, out child_pid, null, out standard_output, out standard_error);
-			} catch (GLib.SpawnError error) {
-				this.send_error(_("Failed to launch rsync for '%s'. Aborting backup").printf(folder.folder));
-				this.current_status = backup_current_status.IDLE;
-				return;
-			}
-			this.current_child_pid = child_pid;
-			if (cronopete_settings.get_boolean("reduce-priority-rsync")) {
-				Posix.setpriority(Posix.PRIO_PROCESS, child_pid, 19);
-			}
-			ChildWatch.add(child_pid, (pid, status) => {
-				Process.close_pid(pid);
-				this.current_child_pid = -1;
-				if (this.aborting) {
-				    this.end_abort();
-				    return;
+			bool try_backup = true;
+			while (try_backup) {
+				try {
+					GLib.Process.spawn_async_with_pipes("/", command, env, SpawnFlags.SEARCH_PATH | SpawnFlags.DO_NOT_REAP_CHILD, null, out child_pid, null, out standard_output, out standard_error);
+				} catch (GLib.SpawnError error) {
+					this.send_error(_("Failed to launch rsync for '%s'. Aborting backup").printf(folder.folder));
+					this.current_status = backup_current_status.IDLE;
+					return;
 				}
-				if (status != 0) {
-				    if (status == 11) {
-				        // if there is no free disk space, delete the oldest backup and try again
-				        this.deleting_mode = 1;
-				        this.delete_old_backups(true);
-				        return;
+				this.current_child_pid = child_pid;
+				if (cronopete_settings.get_boolean("reduce-priority-rsync")) {
+					Posix.setpriority(Posix.PRIO_PROCESS, child_pid, 19);
+				}
+				ChildWatch.add(child_pid, (pid, status) => {
+					Process.close_pid(pid);
+					this.current_child_pid = -1;
+					try_backup             = false;
+					if ((!this.aborting) && (status != 0)) {
+					    if (status == 11) {
+					        // free disk space and try again if there is free space now
+					        try_backup = true;
+						} else {
+					        this.send_warning(_("There was a problem when backing up the folder '%s'").printf(folder.folder));
+						}
 					}
-				    this.send_warning(_("There was a problem when backing up the folder '%s'").printf(folder.folder));
+					this.do_backup_folder.callback ();
+				});
+				IOChannel output = new IOChannel.unix_new(standard_output);
+				output.add_watch(IOCondition.IN | IOCondition.HUP, (channel, condition) => {
+					if (condition == IOCondition.HUP) {
+					    return false;
+					}
+					try {
+					    string line;
+					    channel.read_line(out line, null, null);
+					    var line2 = line.strip();
+					    this.send_current_action(_("Backing up %s").printf(Path.build_filename(folder.folder, line2)));
+					} catch (IOChannelError e) {
+					    return false;
+					} catch (ConvertError e) {
+					    return false;
+					}
+					return true;
+				});
+				IOChannel output_error = new IOChannel.unix_new(standard_error);
+				output_error.add_watch(IOCondition.IN | IOCondition.HUP, (channel, condition) => {
+					if (condition == IOCondition.HUP) {
+					    return false;
+					}
+					try {
+					    string line;
+					    channel.read_line(out line, null, null);
+					    this.send_warning(line.strip());
+					} catch (IOChannelError e) {
+					    return false;
+					} catch (ConvertError e) {
+					    return false;
+					}
+					return true;
+				});
+				yield;
+				// if we have to retry, first free disk space
+				if (try_backup) {
+					if (yield this.delete_old_backups(true)) {
+						// if there is an error, abort
+						try_backup    = false;
+						this.aborting = true;
+					}
 				}
-				// next folder
-				this.folders.remove_at(0);
-				this.do_backup_folder();
-			});
-			IOChannel output = new IOChannel.unix_new(standard_output);
-			output.add_watch(IOCondition.IN | IOCondition.HUP, (channel, condition) => {
-				if (condition == IOCondition.HUP) {
-				    return false;
-				}
-				try {
-				    string line;
-				    channel.read_line(out line, null, null);
-				    var line2 = line.strip();
-				    this.send_current_action(_("Backing up %s").printf(Path.build_filename(folder.folder, line2)));
-				} catch (IOChannelError e) {
-				    return false;
-				} catch (ConvertError e) {
-				    return false;
-				}
-				return true;
-			});
-			IOChannel output_error = new IOChannel.unix_new(standard_error);
-			output_error.add_watch(IOCondition.IN | IOCondition.HUP, (channel, condition) => {
-				if (condition == IOCondition.HUP) {
-				    return false;
-				}
-				try {
-				    string line;
-				    channel.read_line(out line, null, null);
-				    this.send_warning(line.strip());
-				} catch (IOChannelError e) {
-				    return false;
-				} catch (ConvertError e) {
-				    return false;
-				}
-				return true;
-			});
+			}
 		}
 
 		/**
 		 * When the backup is done, do a sync to ensure that the data is physically stored in the disk
 		 */
-		private void do_first_sync() {
-			print("Syncing (1)\n");
+		private async void do_sync() {
+			print("Syncing\n");
 			Pid      child_pid;
 			string[] command = { "sync" };
 			string[] env     = Environ.get();
@@ -586,59 +573,13 @@ namespace cronopete {
 			} catch (GLib.SpawnError error) {
 				print("Error while trying to sync\n");
 				this.send_warning(_("Failed to launch sync command"));
-				this.do_second_sync();
 				return;
 			}
 			ChildWatch.add(child_pid, (pid, status) => {
 				Process.close_pid(pid);
-				if (this.aborting) {
-				    this.end_abort();
-				    return;
-				}
-				this.do_second_sync();
+				this.do_sync.callback ();
 			});
-		}
-
-		/**
-		 * After the data has been physically stored, rename the directory
-		 * And when the directory has been renamed to its final name, sync again and finish the backup
-		 */
-		private void do_second_sync() {
-			var current_folder = File.new_for_path(Path.build_filename(this.drive_path, "B" + this.current_backup));
-			try {
-				current_folder.set_display_name(this.current_backup);
-			} catch (GLib.Error e) {
-				print("Error when trying to rename %s\n".printf("B"+this.current_backup));
-				this.send_warning(_("Failed to rename backup folder. Aborting backup"));
-				this.current_status = backup_current_status.CLEANING;
-				this.deleting_mode  = 2;
-				this.delete_old_backups(false);
-				return;
-			}
-			Pid      child_pid;
-			string[] command = { "sync" };
-			string[] env     = Environ.get();
-			this.debug_command(command);
-			try {
-				GLib.Process.spawn_async("/", command, env, SpawnFlags.SEARCH_PATH | SpawnFlags.DO_NOT_REAP_CHILD, null, out child_pid);
-			} catch (GLib.SpawnError error) {
-				print("Failed to sync (2)\n");
-				this.send_warning(_("Failed to launch final sync command"));
-				this.current_status = backup_current_status.IDLE;
-				return;
-			}
-			ChildWatch.add(child_pid, (pid, status) => {
-				Process.close_pid(pid);
-				if (this.aborting) {
-				    this.end_abort();
-				    return;
-				}
-				print("Deleting old backups\n");
-				this.send_message(_("Disk synced, cleaning old backups"));
-				this.current_status = backup_current_status.CLEANING;
-				this.deleting_mode  = 2;
-				this.delete_old_backups(false);
-			});
+			yield;
 		}
 
 		/**
@@ -648,8 +589,10 @@ namespace cronopete {
 		 *
 		 * @param free_space If true, if no backup is deleted, the last backup will be deleted
 		 * to make space for the current backup
+		 *
+		 * @return false if everything went fine; true if it there is free disk space but still wants to force free
 		 */
-		public void delete_old_backups(bool free_space) {
+		public async bool delete_old_backups(bool free_space) {
 			this.send_current_action(_("Cleaning old backups"));
 
 			bool forcing_deletion = false;
@@ -658,8 +601,7 @@ namespace cronopete {
 			if (backups == null) {
 				print("No old backups\n");
 				this.send_message(_("No old backups to delete"));
-				this.ended_deleting_old_backups();
-				return;
+				return false;
 			}
 
 			if (forcing_deletion) {
@@ -671,11 +613,13 @@ namespace cronopete {
 				uint64 disk_free_space;
 				this.get_free_space(out disk_total_space, out disk_free_space);
 				// if the free space is more than the 10% of the total space, don't delete
-				// because
+				// because there is already enough free space
 				if (disk_free_space > (disk_total_space * 0.1)) {
-					this.deleting_mode = 3;
-					this.ended_deleting_old_backups();
-					return;
+					print("Special error!!!!! Aborting\n");
+					// there is a problem with the backup, stop deleting
+					this.send_error(_("Asked for freeing disk space when there is free space. Aborting backup"));
+					this.aborting = true;
+					return true;
 				}
 			}
 
@@ -697,7 +641,9 @@ namespace cronopete {
 				}
 			}
 			// and now we delete those folders
-			this.delete_backup_folders("C");
+			yield this.delete_backup_folders("C");
+
+			return false;
 		}
 
 		private void debug_command(string[] command_list) {
@@ -706,130 +652,6 @@ namespace cronopete {
 				debug_msg += c + " ";
 			}
 			this.send_debug(debug_msg);
-		}
-
-		private void refresh_connect() {
-			Gee.Map<ObjectPath, Drive_if>      drives      = new Gee.HashMap<ObjectPath, Drive_if>();
-			Gee.Map<ObjectPath, Block_if>      blocks      = new Gee.HashMap<ObjectPath, Block_if>();
-			Gee.Map<ObjectPath, Filesystem_if> filesystems = new Gee.HashMap<ObjectPath, Filesystem_if>();
-
-			bool get_drives_error = false;
-			try {
-				this.udisk2.get_drives(out drives, out blocks, out filesystems);
-			} catch (GLib.IOError e) {
-				get_drives_error = true;
-			} catch (GLib.DBusError e) {
-				get_drives_error = true;
-			}
-
-			if (get_drives_error == false) {
-				var drive_uuid = cronopete_settings.get_string("backup-uid");
-				this.base_drive_path = null;
-				foreach (var partition_id in blocks.keys) {
-					var block = blocks.get(partition_id);
-					var fs    = filesystems.get(partition_id);
-					if ((drive_uuid != "") && (drive_uuid == block.IdUUID)) {
-						var mnt = fs.MountPoints.dup_bytestring_array();
-						if (mnt.length == 0) {
-							this.last_backup_time = 0;
-							// the drive is not mounted!!!!!!
-							if (this.drive_path != null) {
-								this.drive_path = null;
-								this.is_available_changed(false);
-							}
-							if (this.backend_enabled && cronopete_settings.get_boolean("enabled") && (this.do_umount == false)) {
-								// if backups are enabled and the user didn't force an umount, remount it
-								var opts = new GLib.HashTable<string, Variant>(str_hash, str_equal);
-								fs.Mount.begin(opts, (obj, res) => {
-									string mount_point;
-									try {
-									    fs.Mount.end(res, out mount_point);
-									} catch (GLib.DBusError e) {
-									} catch (GLib.IOError e) {
-									}
-								});
-							}
-						} else {
-							if (this.drive_path == null) {
-								this.do_umount        = false;
-								this.last_backup_time = 0;
-								this.drive_path       = Path.build_filename(mnt[0], "cronopete", Environment.get_user_name());
-								this.base_drive_path  = Path.build_filename(mnt[0], "cronopete");
-								// only each user can read and write in their backup folder
-								Posix.chmod(this.drive_path, 0x01C0);
-								// everybody can read and write in the CRONOPETE folder
-								Posix.chmod(this.base_drive_path, 0x01FF);
-								this.is_available_changed(true);
-							}
-						}
-						return;
-					}
-				}
-			}
-			// the backup disk isn't connected
-			this.last_backup_time = 0;
-			this.do_umount        = false;
-			if (this.drive_path != null) {
-				this.drive_path = null;
-				this.is_available_changed(false);
-			}
-		}
-
-		public override string ? can_umount_destination() {
-			return _("Unmount backup disk");
-		}
-
-		public override void umount_destination() {
-			Gee.Map<ObjectPath, Drive_if>      drives      = new Gee.HashMap<ObjectPath, Drive_if>();
-			Gee.Map<ObjectPath, Block_if>      blocks      = new Gee.HashMap<ObjectPath, Block_if>();
-			Gee.Map<ObjectPath, Filesystem_if> filesystems = new Gee.HashMap<ObjectPath, Filesystem_if>();
-
-			try {
-				this.udisk2.get_drives(out drives, out blocks, out filesystems);
-			} catch (GLib.IOError e) {
-				return;
-			} catch (GLib.DBusError e) {
-				return;
-			}
-
-			var drive_uuid = cronopete_settings.get_string("backup-uid");
-			this.base_drive_path = null;
-			foreach (var partition_id in blocks.keys) {
-				var block = blocks.get(partition_id);
-				var fs    = filesystems.get(partition_id);
-				if ((drive_uuid != "") && (drive_uuid == block.IdUUID)) {
-					var mnt = fs.MountPoints.dup_bytestring_array();
-					if (mnt.length != 0) {
-						this.do_umount = true;
-						var opts = new GLib.HashTable<string, Variant>(str_hash, str_equal);
-						fs.Unmount.begin(opts, (obj, res) => {
-							bool had_error = false;
-							try {
-							    fs.Unmount.end(res);
-							} catch (GLib.IOError e) {
-							    had_error = true;
-							} catch (GLib.DBusError e) {
-							    had_error = true;
-							}
-							if (had_error) {
-								show_error_window(_("Can't unmount the backup disk. Another process is using it."), null);
-							}
-						});
-					}
-					return;
-				}
-			}
-		}
-
-		public override bool configure_backup_device(Gtk.Window main_window) {
-			var choose_window = new c_choose_disk(main_window);
-			var disk_uuid     = choose_window.run(this.cronopete_settings);
-			if (disk_uuid != null) {
-				this.drive_path = null;
-				this.cronopete_settings.set_string("backup-uid", disk_uuid);
-				this.refresh_connect();
-			}
-			return false;
 		}
 	}
 

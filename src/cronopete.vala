@@ -69,7 +69,7 @@ namespace cronopete {
 			this.cronopete_settings = new GLib.Settings("org.rastersoft.cronopete");
 			this.backend_list       = {};
 			// currently there is only the RSYNC backend
-			this.backend_list   += new backup_rsync();
+			this.backend_list   += new backup_extdisk();
 			this.backend_list   += new backup_folder();
 			this.current_backend = this.cronopete_settings.get_int("current-backend");
 			if (this.current_backend >= this.backend_list.length) {
@@ -163,9 +163,9 @@ namespace cronopete {
 		public void backup_now() {
 			if (this.can_do_backup()) {
 				this.main_menu.erase_text_log();
-				this.backend.do_backup(this.cronopete_settings.get_strv("backup-folders"),
-				                       this.cronopete_settings.get_strv("exclude-folders"),
-				                       this.cronopete_settings.get_boolean("skip-hiden-at-home"));
+				this.backend.do_backup.begin(this.cronopete_settings.get_strv("backup-folders"),
+				                             this.cronopete_settings.get_strv("exclude-folders"),
+				                             this.cronopete_settings.get_boolean("skip-hiden-at-home"));
 			}
 		}
 
