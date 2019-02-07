@@ -84,8 +84,8 @@ namespace cronopete {
 		}
 
 		public override bool get_backup_data(out string ? id, out time_t oldest, out time_t newest, out uint64 total_space, out uint64 free_space, out string ? icon) {
-			id     = cronopete_settings.get_string("backup-uid");
-			icon   = "drive-harddisk";
+			id     = cronopete_settings.get_string(this.settings_id);
+			icon   = this.icon_name;
 			oldest = 0;
 			this.last_backup_time = 0;
 			newest      = 0;
