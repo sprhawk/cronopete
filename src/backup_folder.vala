@@ -121,22 +121,4 @@ namespace cronopete {
 			return true;
 		}
 	}
-
-	public class folder_element : backup_element {
-		/**
-		 * Extending the "backup_element" class, to simplify managing the backups
-		 * by keeping the folder where it is stored.
-		 */
-
-		private FileInfo file_info;
-		public string path;
-		public string full_path;
-
-		public folder_element(time_t t, string path, FileInfo f) {
-			this.set_common_data(t);
-			this.file_info = f;
-			this.path      = f.get_name();
-			this.full_path = Path.build_filename(path, this.path);
-		}
-	}
 }

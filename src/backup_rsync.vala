@@ -344,7 +344,6 @@ namespace cronopete {
 
 			if (this.rename_current_backup()) {
 				yield this.delete_backup_folders("B");
-
 				return false;
 			}
 			yield this.do_sync();
