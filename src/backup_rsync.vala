@@ -107,7 +107,6 @@ namespace cronopete {
 					main_folder.make_directory_with_parents();
 				} catch (Error e) {
 					this.send_error(_("Can't create the base folders to do backups. Aborting backup"));
-					this.current_status = backup_current_status.IDLE;
 					// Error: can't create the base directory
 					return false;
 				}
@@ -291,6 +290,7 @@ namespace cronopete {
 
 			this.send_message(_("Starting backup"));
 			if (!this.create_base_folder()) {
+				this.current_status = backup_current_status.IDLE;
 				return false;
 			}
 
