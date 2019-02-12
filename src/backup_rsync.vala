@@ -436,7 +436,7 @@ namespace cronopete {
 						    print("RM returned status %d\n".printf(status));
 						}
 						this.current_child_pid = -1;
-						this.delete_backup_folders.callback ();
+						this.delete_backup_folders.callback();
 					});
 					yield;
 				}
