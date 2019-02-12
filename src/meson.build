@@ -7,7 +7,10 @@ cfg_cronopete.set('PREFIX', get_option('prefix'))
 cfg_cronopete.set('VERSION', '4.6.0')
 cfg_cronopete.set('TESTSRCDIR', meson.source_root())
 
-cfgfile_3 = configure_file(input: 'Config.vala.base',output: 'Config.vala',configuration: cfg_cronopete)
+cfgfile_3 = configure_file(
+	input: 'Config.vala.base',
+	output: 'Config.vala',
+	configuration: cfg_cronopete)
 
 cronopete_deps = [gtk_3_0_dep]
 if ( not NO_APPINDICATOR )
@@ -48,5 +51,10 @@ if NO_APPINDICATOR
 endif
 cronopete_link_args = ['-rdynamic']
 
-executable('cronopete',cronopete_sources,dependencies: cronopete_deps,vala_args: cronopete_vala_args,c_args: cronopete_c_args,link_args: cronopete_link_args,install: true)
+executable('cronopete',cronopete_sources,
+    dependencies: cronopete_deps,
+    vala_args: cronopete_vala_args,
+    c_args: cronopete_c_args,
+    link_args: cronopete_link_args,
+    install: true)
 
