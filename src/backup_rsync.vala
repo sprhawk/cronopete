@@ -407,6 +407,8 @@ namespace cronopete {
 				var folder_content = yield main_folder.enumerate_children_async(FileAttribute.STANDARD_NAME, GLib.FileQueryInfoFlags.NONE, GLib.Priority.DEFAULT, null);
 
 				FileInfo file_info;
+				string[] command;
+				string ? error_message;
 				while ((file_info = folder_content.next_file(null)) != null) {
 					if (this.aborting) {
 						return true; // abort
@@ -417,28 +419,41 @@ namespace cronopete {
 					if (!folder_regexp.match(dirname)) {
 						continue;
 					}
-					Pid child_pid;
 					print("Deleting path %s\n".printf(Path.build_filename(this.folder_path, dirname)));
-					string[] command = { "rm", "-rf", Path.build_filename(this.folder_path, dirname) };
-					string[] env     = Environ.get();
-					this.debug_command(command);
-					try {
-						GLib.Process.spawn_async("/", command, env, SpawnFlags.SEARCH_PATH | SpawnFlags.DO_NOT_REAP_CHILD, null, out child_pid);
-					} catch (GLib.SpawnError error) {
+					command = { "rm", "-rf", Path.build_filename(this.folder_path, dirname) };
+					var retval = yield this.launch_command(command, out error_message);
+					if (error_message != null) {
 						print("Error 1 when trying to delete backup %s\n".printf(dirname));
-						this.send_error(_("Failed to delete aborted backups: %s").printf(error.message));
+						this.send_error(_("Failed to delete aborted backups: %s").printf(error_message));
 						return true;
 					}
-					this.current_child_pid = child_pid;
-					ChildWatch.add(child_pid, (pid, status) => {
-						Process.close_pid(pid);
-						if (status != 0) {
-						    print("RM returned status %d\n".printf(status));
-						}
-						this.current_child_pid = -1;
-						this.delete_backup_folders.callback();
-					});
-					yield;
+					if (retval == 0) {
+						continue;
+					}
+					print("Changing permissions inside path %s\n".printf(Path.build_filename(this.folder_path, dirname)));
+					command = { "chmod", "-R", "700", Path.build_filename(this.folder_path, dirname) };
+					// rm failed, so it is probable that there are files or folders with no write permission
+					retval = yield this.launch_command(command, out error_message);
+					if (error_message != null) {
+						print("Error 2 when trying to delete backup %s\n".printf(dirname));
+						this.send_error(_("Failed to delete aborted backups: %s").printf(error_message));
+						continue;
+					}
+					if (retval != 0) {
+						continue;
+					}
+					print("Deleting path (again) %s\n".printf(Path.build_filename(this.folder_path, dirname)));
+					command = { "rm", "-rf", Path.build_filename(this.folder_path, dirname) };
+					retval = yield this.launch_command(command, out error_message);
+					if (error_message != null) {
+						print("Error 3 when trying to delete backup %s\n".printf(dirname));
+						this.send_error(_("Failed to delete aborted backups: %s").printf(error_message));
+						return true;
+					}
+					if (retval == 0) {
+						continue;
+					}
+				    print("RM returned status %d\n".printf(retval));
 				}
 			} catch (Error e) {
 				print("Failed to delete folders: %s\n".printf(e.message));
@@ -560,25 +575,39 @@ namespace cronopete {
 		 */
 		private async void do_sync() {
 			print("Syncing\n");
-			Pid      child_pid;
 			string[] command = { "sync" };
-			string[] env     = Environ.get();
 			this.send_message(_("Syncing disk"));
 			this.send_current_action(_("Syncing disk"));
-			this.debug_command(command);
 			this.current_status = backup_current_status.SYNCING;
+			string ? error_message;
+			yield this.launch_command(command, out error_message);
+			if (error_message != null) {
+				this.send_warning(_("Failed to launch sync command: %s").printf(error_message));
+			}
+		}
+
+		private async int launch_command(string[] command, out string ? error_message) {
+			Pid      child_pid;
+			string[] env     = Environ.get();
+			this.debug_command(command);
+			error_message = null;
+			int retval = -1;
 			try {
 				GLib.Process.spawn_async("/", command, env, SpawnFlags.SEARCH_PATH | SpawnFlags.DO_NOT_REAP_CHILD, null, out child_pid);
 			} catch (GLib.SpawnError error) {
-				print("Error while trying to sync\n");
-				this.send_warning(_("Failed to launch sync command"));
-				return;
+				print("Error launching command: %s\n".printf(error.message));
+				error_message = error.message;
+				return -1;
 			}
+			this.current_child_pid = child_pid;
 			ChildWatch.add(child_pid, (pid, status) => {
 				Process.close_pid(pid);
-				this.do_sync.callback ();
+				this.current_child_pid = -1;
+				retval = status;
+				this.launch_command.callback();
 			});
 			yield;
+			return retval;
 		}
 
 		/**
