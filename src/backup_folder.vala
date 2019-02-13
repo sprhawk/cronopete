@@ -116,7 +116,17 @@ namespace cronopete {
 				}
 				return true;
 			}
-			this.folder_path = Path.build_filename(folder, "cronopete");
+
+
+			var folder_path = Path.build_filename(folder, "cronopete");
+			if (!this.create_base_folder(folder_path)) {
+				if (this.folder_path != null) {
+					this.folder_path = null;
+					this.is_available_changed(false);
+				}
+				return true;
+			}
+			this.folder_path = folder_path;
 			this.is_available_changed(true);
 			return true;
 		}

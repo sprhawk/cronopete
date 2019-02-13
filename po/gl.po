@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Cronopete 0.92\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-08 00:12+0100\n"
+"POT-Creation-Date: 2019-02-13 23:43+0100\n"
 "PO-Revision-Date: 2018-05-20 18:46+0200\n"
 "Last-Translator: Sergio Costas <rastersoft@gmail.com>\n"
 "Language-Team: Español; Castellano <rastersoft@gmail.com>\n"
@@ -58,17 +58,18 @@ msgid "Add"
 msgstr "Engadir"
 
 #: src/backup_rsync.vala:109
-msgid "Can't create the base folders to do backups. Aborting backup"
+#, fuzzy, c-format
+msgid "Can't create the base folders for backups '%s'."
 msgstr ""
 "Non foi posíbel crear os cartafoles base para as copias. Interrompendo a "
 "copia."
 
-#: src/backup_rsync.vala:252
+#: src/backup_rsync.vala:251
 #, c-format
 msgid "Failed to launch cp to restore: %s"
 msgstr "Non foi posíbel restaurar o ficheiro %s"
 
-#: src/backup_rsync.vala:292
+#: src/backup_rsync.vala:291
 msgid "Starting backup"
 msgstr "Comezando a copia"
 
@@ -76,82 +77,84 @@ msgstr "Comezando a copia"
 msgid "Cleaning incomplete backups"
 msgstr "Limpando copias incompletas"
 
-#: src/backup_rsync.vala:360
+#: src/backup_rsync.vala:359
 #, c-format
 msgid "Backup done. Elapsed time: %d:%02d"
 msgstr "Copia rematada. Tempo transcorrido: %d:%02d"
 
-#: src/backup_rsync.vala:371
+#: src/backup_rsync.vala:370
 msgid "Failed to rename backup folder. Aborting backup"
 msgstr "Non foi posíbel renomear o cartafol dunha copia. Interrompendo."
 
-#: src/backup_rsync.vala:392
+#: src/backup_rsync.vala:391
 msgid "Backup aborted"
 msgstr "Copia cancelada"
 
-#: src/backup_rsync.vala:430
+#: src/backup_rsync.vala:427 src/backup_rsync.vala:439
+#: src/backup_rsync.vala:450
 #, c-format
 msgid "Failed to delete aborted backups: %s"
 msgstr "Non foi posíbel eliminar as copias interrompidas: %s"
 
-#: src/backup_rsync.vala:446
+#: src/backup_rsync.vala:460
 #, c-format
 msgid "Failed to delete folders: %s"
 msgstr "Non foi posíbel eliminar os cartafoles: %s"
 
-#: src/backup_rsync.vala:460
+#: src/backup_rsync.vala:474
 #, c-format
 msgid "Backing up folder %s"
 msgstr "Copiando o cartafol %s"
 
-#: src/backup_rsync.vala:481
+#: src/backup_rsync.vala:495
 #, c-format
 msgid "Excluding folder %s"
 msgstr "Excluíndo o cartafol %s."
 
-#: src/backup_rsync.vala:492
+#: src/backup_rsync.vala:506
 #, c-format
 msgid "Failed to launch rsync for '%s'. Aborting backup"
 msgstr "Non foi posíbel iniciar rsync para «%s» Interrompendo a copia."
 
-#: src/backup_rsync.vala:509
+#: src/backup_rsync.vala:523
 #, c-format
 msgid "There was a problem when backing up the folder '%s'"
 msgstr "Houbo un problema ao copiar o cartafol «%s»"
 
-#: src/backup_rsync.vala:523
+#: src/backup_rsync.vala:537
 #, c-format
 msgid "Backing up %s"
 msgstr "Copiando o cartafol %s"
 
-#: src/backup_rsync.vala:567 src/backup_rsync.vala:568
+#: src/backup_rsync.vala:579 src/backup_rsync.vala:580
 msgid "Syncing disk"
 msgstr "Sincronizando o disco"
 
-#: src/backup_rsync.vala:575
-msgid "Failed to launch sync command"
+#: src/backup_rsync.vala:585
+#, fuzzy, c-format
+msgid "Failed to launch sync command: %s"
 msgstr "Non foi posíbel iniciar a orde de sincronización"
 
-#: src/backup_rsync.vala:596 src/cronopete.vala:241
+#: src/backup_rsync.vala:624 src/cronopete.vala:241
 msgid "Cleaning old backups"
 msgstr "Limpando copias antigas"
 
-#: src/backup_rsync.vala:603
+#: src/backup_rsync.vala:631
 msgid "No old backups to delete"
 msgstr "Non hai copias antigas que borrar"
 
-#: src/backup_rsync.vala:620
+#: src/backup_rsync.vala:648
 msgid "Asked for freeing disk space when there is free space. Aborting backup"
 msgstr ""
 "Solicitouse liberar espazo do disco cando aínda queda espazo libre."
 "Interrompendo a copia."
 
-#: src/backup_rsync.vala:632
+#: src/backup_rsync.vala:660
 #, c-format
 msgid "Deleting old backup %s"
 msgstr "Eliminando a copia antiga %s"
 
-#: src/backup_rsync.vala:640
+#: src/backup_rsync.vala:668
 #, c-format
 msgid "Failed to delete old backup %s: %s"
 msgstr "Non foi posíbel eliminar a copia antiga %s: %s"

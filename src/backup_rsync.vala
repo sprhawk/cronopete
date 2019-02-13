@@ -100,13 +100,13 @@ namespace cronopete {
 			}
 		}
 
-		private bool create_base_folder() {
-			var main_folder = File.new_for_path(this.folder_path);
+		protected bool create_base_folder(string folder_path) {
+			var main_folder = File.new_for_path(folder_path);
 			if (false == main_folder.query_exists()) {
 				try {
 					main_folder.make_directory_with_parents();
 				} catch (Error e) {
-					this.send_error(_("Can't create the base folders to do backups. Aborting backup"));
+					this.send_error(_("Can't create the base folders for backups '%s'.").printf(folder_path));
 					// Error: can't create the base directory
 					return false;
 				}
@@ -121,7 +121,7 @@ namespace cronopete {
 				return null;
 			}
 			Gee.List<backup_element> folder_list = new Gee.ArrayList<backup_element>();
-			if (!this.create_base_folder()) {
+			if (!this.create_base_folder(this.folder_path)) {
 				return null;
 			}
 			var main_folder = File.new_for_path(this.folder_path);
@@ -289,7 +289,7 @@ namespace cronopete {
 			}
 
 			this.send_message(_("Starting backup"));
-			if (!this.create_base_folder()) {
+			if (!this.create_base_folder(this.folder_path)) {
 				this.current_status = backup_current_status.IDLE;
 				return false;
 			}

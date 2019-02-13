@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Cronopete\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-08 00:12+0100\n"
+"POT-Creation-Date: 2019-02-13 23:43+0100\n"
 "PO-Revision-Date: 2018-08-13 13:49+0200\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech\n"
@@ -56,17 +56,18 @@ msgid "Add"
 msgstr "Přidat"
 
 #: src/backup_rsync.vala:109
-msgid "Can't create the base folders to do backups. Aborting backup"
+#, fuzzy, c-format
+msgid "Can't create the base folders for backups '%s'."
 msgstr ""
 "Nedaří se vytvořit základní složky pro provádění zálohování. Zálohování se "
 "přerušuje"
 
-#: src/backup_rsync.vala:252
+#: src/backup_rsync.vala:251
 #, c-format
 msgid "Failed to launch cp to restore: %s"
 msgstr "Nepodařilo se spustit cp pro obnovení: %s"
 
-#: src/backup_rsync.vala:292
+#: src/backup_rsync.vala:291
 msgid "Starting backup"
 msgstr "Spouští se zálohování"
 
@@ -74,82 +75,84 @@ msgstr "Spouští se zálohování"
 msgid "Cleaning incomplete backups"
 msgstr "Čištění od neúplných záloh"
 
-#: src/backup_rsync.vala:360
+#: src/backup_rsync.vala:359
 #, c-format
 msgid "Backup done. Elapsed time: %d:%02d"
 msgstr "Záloha dokončena. Trvalo: %d:%02d"
 
-#: src/backup_rsync.vala:371
+#: src/backup_rsync.vala:370
 msgid "Failed to rename backup folder. Aborting backup"
 msgstr "Nepodařilo přejmenovat složku záloh. Zálohování se přerušuje"
 
-#: src/backup_rsync.vala:392
+#: src/backup_rsync.vala:391
 msgid "Backup aborted"
 msgstr "Zálohování přerušeno"
 
-#: src/backup_rsync.vala:430
+#: src/backup_rsync.vala:427 src/backup_rsync.vala:439
+#: src/backup_rsync.vala:450
 #, c-format
 msgid "Failed to delete aborted backups: %s"
 msgstr "Nepodařilo se smazat přerušené zálohy: %s"
 
-#: src/backup_rsync.vala:446
+#: src/backup_rsync.vala:460
 #, c-format
 msgid "Failed to delete folders: %s"
 msgstr "Nepodařilo se smazat složky: %s"
 
-#: src/backup_rsync.vala:460
+#: src/backup_rsync.vala:474
 #, c-format
 msgid "Backing up folder %s"
 msgstr "Zálohování složky %s"
 
-#: src/backup_rsync.vala:481
+#: src/backup_rsync.vala:495
 #, c-format
 msgid "Excluding folder %s"
 msgstr "Vynechání složky %s"
 
-#: src/backup_rsync.vala:492
+#: src/backup_rsync.vala:506
 #, c-format
 msgid "Failed to launch rsync for '%s'. Aborting backup"
 msgstr "Nepodařilo se spustit rsync pro „%s“. Zálohování se přerušuje"
 
-#: src/backup_rsync.vala:509
+#: src/backup_rsync.vala:523
 #, c-format
 msgid "There was a problem when backing up the folder '%s'"
 msgstr "Došlo k problému při zálohování složky „%s“"
 
-#: src/backup_rsync.vala:523
+#: src/backup_rsync.vala:537
 #, c-format
 msgid "Backing up %s"
 msgstr "Zálohování %s"
 
-#: src/backup_rsync.vala:567 src/backup_rsync.vala:568
+#: src/backup_rsync.vala:579 src/backup_rsync.vala:580
 msgid "Syncing disk"
 msgstr "Synchronizace disku"
 
-#: src/backup_rsync.vala:575
-msgid "Failed to launch sync command"
+#: src/backup_rsync.vala:585
+#, fuzzy, c-format
+msgid "Failed to launch sync command: %s"
 msgstr "Nepodařilo se spustit příkaz sync"
 
-#: src/backup_rsync.vala:596 src/cronopete.vala:241
+#: src/backup_rsync.vala:624 src/cronopete.vala:241
 msgid "Cleaning old backups"
 msgstr "Čištění od starých záloh"
 
-#: src/backup_rsync.vala:603
+#: src/backup_rsync.vala:631
 msgid "No old backups to delete"
 msgstr "Žádné staré zálohy ke smazání"
 
-#: src/backup_rsync.vala:620
+#: src/backup_rsync.vala:648
 msgid "Asked for freeing disk space when there is free space. Aborting backup"
 msgstr ""
 "Požádáno o uvolnění diskového prostoru, navzdory tomu, že volný prostor je k "
 "dispozici. Zálohování se přerušuje"
 
-#: src/backup_rsync.vala:632
+#: src/backup_rsync.vala:660
 #, c-format
 msgid "Deleting old backup %s"
 msgstr "Mazání staré zálohy %s"
 
-#: src/backup_rsync.vala:640
+#: src/backup_rsync.vala:668
 #, c-format
 msgid "Failed to delete old backup %s: %s"
 msgstr "Nepodařilo se smazat starou zálohu %s: %s"

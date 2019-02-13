@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-08 00:12+0100\n"
+"POT-Creation-Date: 2019-02-13 23:43+0100\n"
 "PO-Revision-Date: 2018-05-20 18:49+0200\n"
 "Last-Translator: Maïeul Rouquette <maieul@maieul.net>\n"
 "Language-Team: français <>\n"
@@ -57,17 +57,18 @@ msgid "Add"
 msgstr "Ajouter"
 
 #: src/backup_rsync.vala:109
-msgid "Can't create the base folders to do backups. Aborting backup"
+#, fuzzy, c-format
+msgid "Can't create the base folders for backups '%s'."
 msgstr ""
 "Impossible de créer les dossiers de base pour effectuer cette sauvegarde. "
 "Interruption de la sauvegarde."
 
-#: src/backup_rsync.vala:252
+#: src/backup_rsync.vala:251
 #, c-format
 msgid "Failed to launch cp to restore: %s"
 msgstr "Impossible d'exécuter cp pour restaurer le fichier %s"
 
-#: src/backup_rsync.vala:292
+#: src/backup_rsync.vala:291
 msgid "Starting backup"
 msgstr "Démarrage de la sauvegarde"
 
@@ -75,84 +76,86 @@ msgstr "Démarrage de la sauvegarde"
 msgid "Cleaning incomplete backups"
 msgstr "Suppression des sauvegardes incomplètes"
 
-#: src/backup_rsync.vala:360
+#: src/backup_rsync.vala:359
 #, c-format
 msgid "Backup done. Elapsed time: %d:%02d"
 msgstr "Sauvegarde effectuée. Temps écoulé : %d:%02d"
 
-#: src/backup_rsync.vala:371
+#: src/backup_rsync.vala:370
 msgid "Failed to rename backup folder. Aborting backup"
 msgstr ""
 "Impossible de renommer le dossier de sauvegarde. Interruption de la "
 "sauvegarde."
 
-#: src/backup_rsync.vala:392
+#: src/backup_rsync.vala:391
 msgid "Backup aborted"
 msgstr "Sauvegarde abandonnée"
 
-#: src/backup_rsync.vala:430
+#: src/backup_rsync.vala:427 src/backup_rsync.vala:439
+#: src/backup_rsync.vala:450
 #, c-format
 msgid "Failed to delete aborted backups: %s"
 msgstr "Impossible de supprimer les sauvegardes échouées : %s."
 
-#: src/backup_rsync.vala:446
+#: src/backup_rsync.vala:460
 #, c-format
 msgid "Failed to delete folders: %s"
 msgstr "Impossible de restaurer le fichier %s"
 
-#: src/backup_rsync.vala:460
+#: src/backup_rsync.vala:474
 #, c-format
 msgid "Backing up folder %s"
 msgstr "Sauvegarde du dossier %s"
 
-#: src/backup_rsync.vala:481
+#: src/backup_rsync.vala:495
 #, c-format
 msgid "Excluding folder %s"
 msgstr "Exclusion du dossier %s."
 
-#: src/backup_rsync.vala:492
+#: src/backup_rsync.vala:506
 #, c-format
 msgid "Failed to launch rsync for '%s'. Aborting backup"
 msgstr "Impossible d'exécuter rsync pour \"%s\". Sauvegarde abandonnée."
 
-#: src/backup_rsync.vala:509
+#: src/backup_rsync.vala:523
 #, c-format
 msgid "There was a problem when backing up the folder '%s'"
 msgstr "Problème en sauvegardant le dossier '%s'"
 
-#: src/backup_rsync.vala:523
+#: src/backup_rsync.vala:537
 #, c-format
 msgid "Backing up %s"
 msgstr "Sauvegarde du dossier %s"
 
-#: src/backup_rsync.vala:567 src/backup_rsync.vala:568
+#: src/backup_rsync.vala:579 src/backup_rsync.vala:580
 msgid "Syncing disk"
 msgstr "Synchronisation du disque"
 
-#: src/backup_rsync.vala:575
-msgid "Failed to launch sync command"
+#: src/backup_rsync.vala:585
+#, fuzzy, c-format
+msgid "Failed to launch sync command: %s"
 msgstr "Échec de l'exécution de la commande sync"
 
-#: src/backup_rsync.vala:596 src/cronopete.vala:241
+#: src/backup_rsync.vala:624 src/cronopete.vala:241
 msgid "Cleaning old backups"
 msgstr "Suppression des anciennes sauvegardes"
 
-#: src/backup_rsync.vala:603
+#: src/backup_rsync.vala:631
 msgid "No old backups to delete"
 msgstr "Pas d'ancienne sauvegarde à supprimer"
 
-#: src/backup_rsync.vala:620
+#: src/backup_rsync.vala:648
 msgid "Asked for freeing disk space when there is free space. Aborting backup"
 msgstr ""
 "Impossible de libérer de l’espace disque pour démarrer une sauvegarde. "
 "Interruption de la sauvegarde."
 
-#: src/backup_rsync.vala:632
+#: src/backup_rsync.vala:660
 #, c-format
 msgid "Deleting old backup %s"
 msgstr "Suppression d’anciennes sauvegardes %s"
 
-#: src/backup_rsync.vala:640
+#: src/backup_rsync.vala:668
 #, c-format
 msgid "Failed to delete old backup %s: %s"
 msgstr "Échec de la suppression de l'ancienne sauvegarde %s: %s"

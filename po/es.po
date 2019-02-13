@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Cronopete 0.92\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-08 00:12+0100\n"
-"PO-Revision-Date: 2019-02-08 00:14+0100\n"
+"POT-Creation-Date: 2019-02-13 23:43+0100\n"
+"PO-Revision-Date: 2019-02-13 23:44+0100\n"
 "Last-Translator: Sergio Costas <rastersoft@gmail.com>\n"
 "Language-Team: Español; Castellano <rastersoft@gmail.com>\n"
 "Language: es\n"
@@ -58,15 +58,16 @@ msgid "Add"
 msgstr "Añadir"
 
 #: src/backup_rsync.vala:109
-msgid "Can't create the base folders to do backups. Aborting backup"
-msgstr "No se han podido crear las carpetas base para las copias. Cancelando."
+#, c-format
+msgid "Can't create the base folders for backups '%s'."
+msgstr "No se han podido crear las carpetas base para las copias '%s'."
 
-#: src/backup_rsync.vala:252
+#: src/backup_rsync.vala:251
 #, c-format
 msgid "Failed to launch cp to restore: %s"
 msgstr "No se ha podido restaurar el archivo %s"
 
-#: src/backup_rsync.vala:292
+#: src/backup_rsync.vala:291
 msgid "Starting backup"
 msgstr "Comenzando la copia"
 
@@ -74,82 +75,84 @@ msgstr "Comenzando la copia"
 msgid "Cleaning incomplete backups"
 msgstr "Borrando copias incompletas"
 
-#: src/backup_rsync.vala:360
+#: src/backup_rsync.vala:359
 #, c-format
 msgid "Backup done. Elapsed time: %d:%02d"
 msgstr "Copia terminada. Tiempo transcurrido: %d:%02d"
 
-#: src/backup_rsync.vala:371
+#: src/backup_rsync.vala:370
 msgid "Failed to rename backup folder. Aborting backup"
 msgstr "No se ha podido renombrar la carpeta de una copia. Cancelando"
 
-#: src/backup_rsync.vala:392
+#: src/backup_rsync.vala:391
 msgid "Backup aborted"
 msgstr "Copia cancelada"
 
-#: src/backup_rsync.vala:430
+#: src/backup_rsync.vala:427 src/backup_rsync.vala:439
+#: src/backup_rsync.vala:450
 #, c-format
 msgid "Failed to delete aborted backups: %s"
 msgstr "No se han podido borrar las copias abortadas: %s"
 
-#: src/backup_rsync.vala:446
+#: src/backup_rsync.vala:460
 #, c-format
 msgid "Failed to delete folders: %s"
 msgstr "No se ha podido borrar las carpetas: %s"
 
-#: src/backup_rsync.vala:460
+#: src/backup_rsync.vala:474
 #, c-format
 msgid "Backing up folder %s"
 msgstr "Copiando la carpeta %s"
 
-#: src/backup_rsync.vala:481
+#: src/backup_rsync.vala:495
 #, c-format
 msgid "Excluding folder %s"
 msgstr "Excluyendo la carpeta %s"
 
-#: src/backup_rsync.vala:492
+#: src/backup_rsync.vala:506
 #, c-format
 msgid "Failed to launch rsync for '%s'. Aborting backup"
 msgstr "No se ha podido lanzar rsync para '%s'. Cancelando"
 
-#: src/backup_rsync.vala:509
+#: src/backup_rsync.vala:523
 #, c-format
 msgid "There was a problem when backing up the folder '%s'"
 msgstr "Hubo un problema al copiar la carpeta '%s'"
 
-#: src/backup_rsync.vala:523
+#: src/backup_rsync.vala:537
 #, c-format
 msgid "Backing up %s"
 msgstr "Copiando la carpeta %s"
 
-#: src/backup_rsync.vala:567 src/backup_rsync.vala:568
+#: src/backup_rsync.vala:579 src/backup_rsync.vala:580
 msgid "Syncing disk"
 msgstr "Sincronizando el disco"
 
-#: src/backup_rsync.vala:575
-msgid "Failed to launch sync command"
-msgstr "No se ha podido lanzar el comando sync"
+#: src/backup_rsync.vala:585
+#, c-format
+msgid "Failed to launch sync command: %s"
+msgstr "No se ha podido lanzar el comando sync: %s"
 
-#: src/backup_rsync.vala:596 src/cronopete.vala:241
+#: src/backup_rsync.vala:624 src/cronopete.vala:241
 msgid "Cleaning old backups"
 msgstr "Borrando copias antiguas"
 
-#: src/backup_rsync.vala:603
+#: src/backup_rsync.vala:631
 msgid "No old backups to delete"
 msgstr "No hay copias antiguas que borrar"
 
-#: src/backup_rsync.vala:620
+#: src/backup_rsync.vala:648
 msgid "Asked for freeing disk space when there is free space. Aborting backup"
 msgstr ""
 "Se ha pedido liberar espacio del disco cuando aún queda espacio libre. "
 "Cancelando"
 
-#: src/backup_rsync.vala:632
+#: src/backup_rsync.vala:660
 #, c-format
 msgid "Deleting old backup %s"
 msgstr "Borrando copia antigua %s"
 
-#: src/backup_rsync.vala:640
+#: src/backup_rsync.vala:668
 #, c-format
 msgid "Failed to delete old backup %s: %s"
 msgstr "No se ha podido borrar la copia antigua %s: %s"
