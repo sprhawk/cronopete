@@ -125,6 +125,7 @@ namespace  cronopete {
 			var val = v.get_int();
 			if (val != old) {
 				this.cronopete_settings.set_int("current-backend", val);
+				this.erase_text_log();
 			}
 		}
 
