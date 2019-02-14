@@ -1,5 +1,10 @@
 # History of versions #
 
+* Version 4.7.0 (2019/02/15)
+      * Now doesn't keep stuck trying to delete an old backup which contains one or more files/folders without writting permissions
+      * Also now doesn't fill the log with errors when that happens
+      * Now detects when the destination folder is read-only and doesn't fail
+      * Refactored code to make use of asynchronous functions
 * Version 4.6.0 (2018/09/07)
       * Now doesn't fail if there are blank spaces in the disk name
 * Version 4.5.1 (2018/08/25)
