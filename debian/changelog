@@ -1,3 +1,12 @@
+cronopete (4.7.0-Debian1) sid; urgency=low
+
+  * Now doesn't keep stuck trying to delete an old backup which contains one or more files/folders without writting permissions
+  * Also now doesn't fill the log with errors when that happens
+  * Now detects when the destination folder is read-only and doesn't fail
+  * Refactored code to make use of asynchronous functions
+
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fry, 15 Feb 2019 23:55:00 +0200
+
 cronopete (4.6.0-Debian1) sid; urgency=low
 
   * Now doesn't fail if there are blank spaces in the disk name
