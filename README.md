@@ -6,9 +6,9 @@ Cronopete is a backup utility for Linux, modeled after Apple's Time Machine. It 
 
 ## BUILDING CRONOPETE
 
-To build Cronopete, you need to install CMAKE or Ninja, Vala-0.30 or later, and Gtk 3.10 or later.
+To build Cronopete, you need to install CMake or Meson/Ninja, Vala-0.30 or later, and Gtk 3.10 or later.
 
-Now, type
+For CMake building, type
 
     mkdir BUILD
     cd BUILD
@@ -16,7 +16,17 @@ Now, type
     make
     sudo make install
 
-This will compile Cronopete.
+and for Meson/Ninja, type
+
+    mkdir MESON
+    cd MESON
+    meson
+    ninja
+    sudo ninja install
+
+This will compile Cronopete and install it systemwide.
+
+There are several dependencies for building it. For Debian/Ubuntu, you can check the file **debian/control**, and install all the packages specified in the lines *Depends* and *Build-Depends*. For Redhat/Fedora, check **rpmbuild/SPECS/cronopete.spec** and install the packages specified in the lines with *Requires* and *BuildRequires*. For Arch Linus, check **pkgbuild** and the packages in *depends* and *makedepends*.
 
 ## DBUS INTERFACE
 
@@ -28,7 +38,7 @@ Cronopete offers a DBus interface to allow a remote control. It is at the sessio
 * ShowPreferences() : shows the preferences window
 * RestoreFiles() : shows the restore interface
 * RestoreFilesFromFolder(string folder) : shows the restore interface, setting it to show the specified folder. The folder can be passed as an URI (file:///...). This is useful for integration with file managers.
-* UnmountBackupDisk : tries to unmount the backup disk. If it is not possible (because it is not mounted, or there is a backup in progress) it will return an error
+* UnmountBackupDisk() : tries to unmount the backup disk. If it is not possible (because it is not mounted, or there is a backup in progress) it will return an error
 * SetStatus(boolean) : enables or disables the backup process
 
 ## CONTACTING THE AUTHOR
