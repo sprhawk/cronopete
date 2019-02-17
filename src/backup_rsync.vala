@@ -344,6 +344,7 @@ namespace cronopete {
 
 			if (this.rename_current_backup()) {
 				yield this.delete_backup_folders("B");
+				print("Failed to rename the current backup\n");
 				return false;
 			}
 			yield this.do_sync();
@@ -362,6 +363,7 @@ namespace cronopete {
 		}
 
 		private bool rename_current_backup() {
+			print("Renaming backup\n");
 			var current_folder = File.new_for_path(Path.build_filename(this.folder_path, "B" + this.current_backup));
 			try {
 				current_folder.set_display_name(this.current_backup);
