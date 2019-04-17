@@ -25,8 +25,9 @@ using Cairo;
 using Gsl;
 using Posix;
 using AppIndicator;
+using Notify;
 
-// project version=4.7.0
+// project version=4.8.0
 
 namespace cronopete {
 	cronopete_class callback_object;
@@ -51,6 +52,7 @@ namespace cronopete {
 		private Gtk.MenuItem menuUnmount;
 		private Gtk.SeparatorMenuItem unmountSeparatorBar;
 		private Gtk.MenuItem menuEnter;
+		private Notify.Notification notification;
 
 		private int iconpos;
 		private uint animation_timer;
@@ -61,6 +63,7 @@ namespace cronopete {
 		public signal void changed_backend(backup_base backend);
 
 		public cronopete_class() {
+			this.notification = null;
 			this.restore_window_visible = false;
 			this.iconpos         = 0;
 			this.animation_timer = 0;
@@ -268,6 +271,23 @@ namespace cronopete {
 			this.appindicator.set_icon_full(icon_name, description);
 			if (backup_status == backup_current_status.IDLE) {
 				this.animation_timer = 0;
+				if ((this.current_status == BackupStatus.WARNING) || (this.current_status == BackupStatus.ERROR)) {
+					if (this.notification != null) {
+						try {
+							this.notification.close();
+						} catch (GLib.Error e) {
+						}
+					}
+					this.notification = new Notify.Notification(_("Backup incorrect"), _("There was a problem when doing the last backup. Please, check the log."), "dialog-error");
+					notification.add_action("action-name", _("View log"), (notification, action) => {
+						this.show_log();
+					});
+					try {
+						notification.show();
+					} catch (GLib.Error e) {
+						print("Can't open a notification\n");
+					}
+				}
 				return false;
 			} else {
 				return true;
@@ -344,7 +364,11 @@ namespace cronopete {
 		}
 
 		public void show_configuration() {
-			this.main_menu.show_main();
+			this.main_menu.show_main(false);
+		}
+
+		public void show_log() {
+			this.main_menu.show_main(true);
 		}
 
 		/**
@@ -513,6 +537,7 @@ namespace cronopete {
 			// If the child dies, launch cronopete again, to ensure that the backup always work
 			fork_pid = Posix.fork();
 			if (fork_pid == 0) {
+				Notify.init("Cronopete");
 				Intl.bindtextdomain(Constants.GETTEXT_PACKAGE, GLib.Path.build_filename(Constants.DATADIR, "locale"));
 				Intl.textdomain("cronopete");
 				Intl.bind_textdomain_codeset("cronopete", "UTF-8");

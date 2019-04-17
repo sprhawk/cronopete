@@ -4,7 +4,7 @@ cfg_cronopete.set('PKGDATADIR', join_paths(get_option('prefix'),get_option('data
 cfg_cronopete.set('GETTEXT_PACKAGE', 'cronopete')
 cfg_cronopete.set('RELEASE_NAME', 'cronopete')
 cfg_cronopete.set('PREFIX', get_option('prefix'))
-cfg_cronopete.set('VERSION', '4.7.0')
+cfg_cronopete.set('VERSION', '4.8.0')
 cfg_cronopete.set('TESTSRCDIR', meson.source_root())
 
 cfgfile_3 = configure_file(
@@ -24,6 +24,7 @@ cronopete_deps += [gio_2_0_dep]
 cronopete_deps += [glib_2_0_dep]
 cronopete_deps += [gobject_2_0_dep]
 cronopete_deps += [gsl_dep]
+cronopete_deps += [libnotify_dep]
 cronopete_deps += [pango_dep]
 cronopete_deps += [pangocairo_dep]
 cronopete_deps += [udisks2_dep]

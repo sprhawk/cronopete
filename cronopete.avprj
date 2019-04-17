@@ -5,7 +5,7 @@ po_comment_tag: TRANSLATOR
 vala_version: 0.34
 
 vala_binary: src/cronopete
-*version: 4.7.0
+*version: 4.8.0
 compile_options: --target-glib 2.32
 *vala_package: posix
 vala_check_package: gtk+-3.0
@@ -20,6 +20,7 @@ end
 *vala_check_package: glib-2.0
 *vala_check_package: gobject-2.0
 *vala_check_package: gsl
+*vala_check_package: libnotify
 *vala_check_package: pango
 *vala_check_package: pangocairo
 *vala_check_package: udisks2

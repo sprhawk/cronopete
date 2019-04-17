@@ -231,10 +231,14 @@ namespace  cronopete {
 			}
 		}
 
-		public void show_main() {
+		public void show_main(bool show_log) {
 			this.main_w.show_all();
 			this.main_w.present();
-			this.tabs.set_current_page(0);
+			if (show_log) {
+				this.tabs.set_current_page(1);
+			} else {
+				this.tabs.set_current_page(0);
+			}
 			this.refresh_backup_data();
 			this.log.set_text(this.messages.str);
 			this.cronopete_settings.set_boolean("show-welcome", false);
