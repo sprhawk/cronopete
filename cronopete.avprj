@@ -1,8 +1,8 @@
 ### AutoVala Project ###
-autovala_version: 28
+autovala_version: 30
 project_name: cronopete
 po_comment_tag: TRANSLATOR
-vala_version: 0.36
+vala_version: 0.34
 
 vala_binary: src/cronopete
 *version: 4.7.0
@@ -166,4 +166,7 @@ end
 *pixmap: data/pixmaps/arrows.png
 
 binary_dependency: /usr/bin/rsync
+
+*build_external_program: gtk-update-icon-cache gtk-update-icon-cache.3.0
+*build_external_program: glib-compile-schemas
 

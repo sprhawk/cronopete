@@ -344,6 +344,7 @@ namespace cronopete {
 
 			if (this.rename_current_backup()) {
 				yield this.delete_backup_folders("B");
+
 				print("Failed to rename the current backup\n");
 				return false;
 			}
@@ -424,6 +425,7 @@ namespace cronopete {
 					print("Deleting path %s\n".printf(Path.build_filename(this.folder_path, dirname)));
 					command = { "rm", "-rf", Path.build_filename(this.folder_path, dirname) };
 					var retval = yield this.launch_command(command, out error_message);
+
 					if (error_message != null) {
 						print("Error 1 when trying to delete backup %s\n".printf(dirname));
 						this.send_error(_("Failed to delete aborted backups: %s").printf(error_message));
@@ -436,6 +438,7 @@ namespace cronopete {
 					command = { "chmod", "-R", "700", Path.build_filename(this.folder_path, dirname) };
 					// rm failed, so it is probable that there are files or folders with no write permission
 					retval = yield this.launch_command(command, out error_message);
+
 					if (error_message != null) {
 						print("Error 2 when trying to delete backup %s\n".printf(dirname));
 						this.send_error(_("Failed to delete aborted backups: %s").printf(error_message));
@@ -446,7 +449,8 @@ namespace cronopete {
 					}
 					print("Deleting path (again) %s\n".printf(Path.build_filename(this.folder_path, dirname)));
 					command = { "rm", "-rf", Path.build_filename(this.folder_path, dirname) };
-					retval = yield this.launch_command(command, out error_message);
+					retval  = yield this.launch_command(command, out error_message);
+
 					if (error_message != null) {
 						print("Error 3 when trying to delete backup %s\n".printf(dirname));
 						this.send_error(_("Failed to delete aborted backups: %s").printf(error_message));
@@ -455,7 +459,7 @@ namespace cronopete {
 					if (retval == 0) {
 						continue;
 					}
-				    print("RM returned status %d\n".printf(retval));
+					print("RM returned status %d\n".printf(retval));
 				}
 			} catch (Error e) {
 				print("Failed to delete folders: %s\n".printf(e.message));
@@ -518,6 +522,7 @@ namespace cronopete {
 					this.current_child_pid = -1;
 					try_backup             = false;
 					if ((!this.aborting) && (status != 0)) {
+					    print("Exit status in rsync: %d\n".printf(status));
 					    if (status == 11) {
 					        // free disk space and try again if there is free space now
 					        try_backup = true;
@@ -583,6 +588,7 @@ namespace cronopete {
 			this.current_status = backup_current_status.SYNCING;
 			string ? error_message;
 			yield this.launch_command(command, out error_message);
+
 			if (error_message != null) {
 				this.send_warning(_("Failed to launch sync command: %s").printf(error_message));
 			}
@@ -590,7 +596,7 @@ namespace cronopete {
 
 		private async int launch_command(string[] command, out string ? error_message) {
 			Pid      child_pid;
-			string[] env     = Environ.get();
+			string[] env = Environ.get();
 			this.debug_command(command);
 			error_message = null;
 			int retval = -1;
@@ -606,7 +612,7 @@ namespace cronopete {
 				Process.close_pid(pid);
 				this.current_child_pid = -1;
 				retval = status;
-				this.launch_command.callback();
+				this.launch_command.callback ();
 			});
 			yield;
 			return retval;
@@ -681,6 +687,7 @@ namespace cronopete {
 			foreach (var c in command_list) {
 				debug_msg += c + " ";
 			}
+			print(debug_msg + "\n");
 			this.send_debug(debug_msg);
 		}
 	}
