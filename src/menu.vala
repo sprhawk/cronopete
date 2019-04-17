@@ -240,10 +240,12 @@ namespace  cronopete {
 				this.tabs.set_current_page(0);
 			}
 			this.refresh_backup_data();
-			this.log.set_text(this.messages.str);
+			this.log.set_text("");
+			TextIter iter;
+			this.log.get_end_iter(out iter);
+			this.log.insert_markup(ref iter, this.messages.str, this.messages.str.length);
 			this.cronopete_settings.set_boolean("show-welcome", false);
 
-			TextIter iter;
 			this.log.get_end_iter(out iter);
 			this.mark = this.log.create_mark("end", iter, false);
 			this.log_view.scroll_to_mark(this.mark, 0.05, true, 0.0, 1.0);
