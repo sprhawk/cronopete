@@ -1,9 +1,10 @@
 # History of versions #
 
-* NoVersion 4.8.0 (2019/04/20)
+* Version 4.8.0 (2019/04/20)
       * Now shows an alert if there is a problem during backup
       * Now the warning and error messages are shown in color as expected
-      * Changed minimum vala version to 0.34
+      * Updated to Autovala 1.14 (doesn't require python for being compiled with meson)
+      * Speeded up the rotating arrow
 * Version 4.7.0 (2019/02/15)
       * Now doesn't keep stuck trying to delete an old backup which contains one or more files/folders without writting permissions
       * Also now doesn't fill the log with errors when that happens
