@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Cronopete 0.92\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-13 23:43+0100\n"
+"POT-Creation-Date: 2019-04-21 12:59+0200\n"
 "PO-Revision-Date: 2018-05-20 18:46+0200\n"
 "Last-Translator: Sergio Costas <rastersoft@gmail.com>\n"
 "Language-Team: Español; Castellano <rastersoft@gmail.com>\n"
@@ -77,84 +77,84 @@ msgstr "Comezando a copia"
 msgid "Cleaning incomplete backups"
 msgstr "Limpando copias incompletas"
 
-#: src/backup_rsync.vala:359
+#: src/backup_rsync.vala:361
 #, c-format
 msgid "Backup done. Elapsed time: %d:%02d"
 msgstr "Copia rematada. Tempo transcorrido: %d:%02d"
 
-#: src/backup_rsync.vala:370
+#: src/backup_rsync.vala:373
 msgid "Failed to rename backup folder. Aborting backup"
 msgstr "Non foi posíbel renomear o cartafol dunha copia. Interrompendo."
 
-#: src/backup_rsync.vala:391
+#: src/backup_rsync.vala:394
 msgid "Backup aborted"
 msgstr "Copia cancelada"
 
-#: src/backup_rsync.vala:427 src/backup_rsync.vala:439
-#: src/backup_rsync.vala:450
+#: src/backup_rsync.vala:431 src/backup_rsync.vala:444
+#: src/backup_rsync.vala:456
 #, c-format
 msgid "Failed to delete aborted backups: %s"
 msgstr "Non foi posíbel eliminar as copias interrompidas: %s"
 
-#: src/backup_rsync.vala:460
+#: src/backup_rsync.vala:466
 #, c-format
 msgid "Failed to delete folders: %s"
 msgstr "Non foi posíbel eliminar os cartafoles: %s"
 
-#: src/backup_rsync.vala:474
+#: src/backup_rsync.vala:480
 #, c-format
 msgid "Backing up folder %s"
 msgstr "Copiando o cartafol %s"
 
-#: src/backup_rsync.vala:495
+#: src/backup_rsync.vala:501
 #, c-format
 msgid "Excluding folder %s"
 msgstr "Excluíndo o cartafol %s."
 
-#: src/backup_rsync.vala:506
+#: src/backup_rsync.vala:512
 #, c-format
 msgid "Failed to launch rsync for '%s'. Aborting backup"
 msgstr "Non foi posíbel iniciar rsync para «%s» Interrompendo a copia."
 
-#: src/backup_rsync.vala:523
+#: src/backup_rsync.vala:530
 #, c-format
 msgid "There was a problem when backing up the folder '%s'"
 msgstr "Houbo un problema ao copiar o cartafol «%s»"
 
-#: src/backup_rsync.vala:537
+#: src/backup_rsync.vala:544
 #, c-format
 msgid "Backing up %s"
 msgstr "Copiando o cartafol %s"
 
-#: src/backup_rsync.vala:579 src/backup_rsync.vala:580
+#: src/backup_rsync.vala:586 src/backup_rsync.vala:587
 msgid "Syncing disk"
 msgstr "Sincronizando o disco"
 
-#: src/backup_rsync.vala:585
+#: src/backup_rsync.vala:593
 #, fuzzy, c-format
 msgid "Failed to launch sync command: %s"
 msgstr "Non foi posíbel iniciar a orde de sincronización"
 
-#: src/backup_rsync.vala:624 src/cronopete.vala:241
+#: src/backup_rsync.vala:632 src/cronopete.vala:247
 msgid "Cleaning old backups"
 msgstr "Limpando copias antigas"
 
-#: src/backup_rsync.vala:631
+#: src/backup_rsync.vala:639
 msgid "No old backups to delete"
 msgstr "Non hai copias antigas que borrar"
 
-#: src/backup_rsync.vala:648
+#: src/backup_rsync.vala:656
 msgid "Asked for freeing disk space when there is free space. Aborting backup"
 msgstr ""
 "Solicitouse liberar espazo do disco cando aínda queda espazo libre."
 "Interrompendo a copia."
 
-#: src/backup_rsync.vala:660
+#: src/backup_rsync.vala:668
 #, c-format
 msgid "Deleting old backup %s"
 msgstr "Eliminando a copia antiga %s"
 
-#: src/backup_rsync.vala:668
+#: src/backup_rsync.vala:676
 #, c-format
 msgid "Failed to delete old backup %s: %s"
 msgstr "Non foi posíbel eliminar a copia antiga %s: %s"
@@ -216,57 +216,72 @@ msgid "Unknown size"
 msgstr "Tamaño descoñecido"
 
 #. TRANSLATORS Specify that the disk configured for backups is not available
-#: src/cronopete.vala:218
+#: src/cronopete.vala:224
 msgid "Disk not available"
 msgstr "O disco non está dispoñíbel "
 
 #. TRANSLATORS The program state, used in a tooltip, when it is waiting to do the next backup
-#: src/cronopete.vala:226
+#: src/cronopete.vala:232
 msgid "Idle"
 msgstr "En repouso"
 
-#: src/cronopete.vala:236
+#: src/cronopete.vala:242
 msgid "Doing backup"
 msgstr "Copiando"
 
 #. TRANSLATORS The program state, used in a tooltip, when it is doing a backup and there is, at least, a warning message
-#: src/cronopete.vala:250
+#: src/cronopete.vala:256
 msgid "Doing backup, have a warning"
 msgstr "Copiando, hai un aviso"
 
 #. TRANSLATORS The program state, used in a tooltip, when it is doing a backup and there is, at least, an error message
-#: src/cronopete.vala:256
+#: src/cronopete.vala:262
 msgid "Doing backup, have an error"
 msgstr "Copiando, hai un erro"
 
 #. TRANSLATORS The program state, used in a tooltip, when the backups are disabled and won't be done
-#: src/cronopete.vala:263
+#: src/cronopete.vala:269
 msgid "Backup is disabled"
 msgstr "Copias desactivadas"
 
+#: src/cronopete.vala:286
+#, fuzzy
+msgid "Backup incorrect"
+msgstr "Copia cancelada"
+
+#: src/cronopete.vala:286
+#, fuzzy
+msgid "There was a problem when doing the last backup. Please, check the log."
+msgstr "Houbo un problema ao copiar o cartafol «%s»"
+
+#: src/cronopete.vala:287
+#, fuzzy
+msgid "View log"
+msgstr "Ver como lista"
+
 #. TRANSLATORS Menu entry to start a new backup manually
-#: src/cronopete.vala:365
+#: src/cronopete.vala:397
 msgid "Back Up Now"
 msgstr "Copiar agora"
 
 #. TRANSLATORS Menu entry to abort the current backup manually
-#: src/cronopete.vala:369
+#: src/cronopete.vala:401
 msgid "Stop Backing Up"
 msgstr "Deter a copia"
 
 #. TRANSLATORS Menu entry to open the interface for restoring files from a backup
 #. TRANSLATORS Text for the button that restores the selected files
-#: src/cronopete.vala:374 src/restore.vala:90
+#: src/cronopete.vala:406 src/restore.vala:90
 msgid "Restore files"
 msgstr "Restaurar ficheiros"
 
 #. TRANSLATORS Menu entry to open the configuration window
-#: src/cronopete.vala:389
+#: src/cronopete.vala:421
 msgid "Configure the backups"
 msgstr "Configurar a copia de seguranza"
 
 #. TRANSLATORS Show the date of the last backup
-#: src/cronopete.vala:398
+#: src/cronopete.vala:430
 #, c-format
 msgid "Latest backup: %s"
 msgstr "Última copia: %s"
@@ -362,30 +377,30 @@ msgid "Folder"
 msgstr "Cartafol"
 
 #. TRANSLATORS Shows a warning message with "warning" in Orange color
-#: src/menu.vala:141
+#: src/menu.vala:142
 #, c-format
 msgid "<span foreground=\"#FF7F00\">WARNING:</span> %s"
 msgstr "<span foreground=\"#FF7F00\">AVISO:</span> %s"
 
 #. TRANSLATORS Shows an error message with "error" in Orange color
-#: src/menu.vala:145
+#: src/menu.vala:146
 #, c-format
 msgid "<span foreground=\"#FF3F3F\">ERROR:</span> %s"
 msgstr "<span foreground=\"#FF3F3F\">ERRO:</span> %s"
 
 #. TRANSLATORS This string shows the current status of Cronopete. It can be "Status: idle", or "Status: copying file"...
-#: src/menu.vala:187
+#: src/menu.vala:188
 #, c-format
 msgid "Status: %s"
 msgstr "Estado: %s"
 
 #. TRANSLATORS This text means that the user still has not selected a hard disk where to do the backups
-#: src/menu.vala:260
+#: src/menu.vala:267
 msgid "Not defined"
 msgstr "Non definida"
 
 #. TRANSLATORS This string specifies the available and total disk space in back up drive. Example: 43 GB of 160 GB
-#: src/menu.vala:288
+#: src/menu.vala:295
 #, c-format
 msgid "%lld GB of %lld GB"
 msgstr "%lld GB de %lld GB"
@@ -525,41 +540,41 @@ msgid "ana"
 msgstr "ana"
 
 #. Don't translate this. Is part of the name in the main window.
-#: data/interface/main.ui:67
+#: data/interface/main.ui:68
 msgid "cronopete"
 msgstr "cronopete"
 
-#: data/interface/main.ui:290
+#: data/interface/main.ui:291
 msgid "Latest backup:"
 msgstr "Última copia:"
 
-#: data/interface/main.ui:303
+#: data/interface/main.ui:304
 msgid "Oldest backup:"
 msgstr "Primeira copia:"
 
 #. Refers to the free disk space available in the backup's hard disk
-#: data/interface/main.ui:316
+#: data/interface/main.ui:317
 msgctxt "Refers to the free disk space available in the backup's hard disk"
 msgid "Available:"
 msgstr "Dispoñíbel:"
 
-#: data/interface/main.ui:329
+#: data/interface/main.ui:330
 msgid "Destination:"
 msgstr "Destino:"
 
-#: data/interface/main.ui:342
+#: data/interface/main.ui:343
 msgid "Next backup:"
 msgstr "Próxima copia:"
 
-#: data/interface/main.ui:397
+#: data/interface/main.ui:398
 msgid "Change destination..."
 msgstr "Cambiar o destino..."
 
-#: data/interface/main.ui:412 data/interface/options.ui:17
+#: data/interface/main.ui:413 data/interface/options.ui:17
 msgid "Options"
 msgstr "Opcións"
 
-#: data/interface/main.ui:437
+#: data/interface/main.ui:438
 msgid ""
 "Cronopete keeps:\n"
 "\n"
@@ -573,19 +588,19 @@ msgstr ""
 " * Unha copia diaria para o último mes\n"
 " * Copias semanais ata que se encha o disco"
 
-#: data/interface/main.ui:456
+#: data/interface/main.ui:457
 msgid "Show Cronopete in menu bar"
 msgstr "Amosar Cronopete na barra"
 
-#: data/interface/main.ui:473
+#: data/interface/main.ui:474
 msgid "About"
 msgstr "Sobre"
 
-#: data/interface/main.ui:506
+#: data/interface/main.ui:507
 msgid "Configuration"
 msgstr "Configuración"
 
-#: data/interface/main.ui:535
+#: data/interface/main.ui:536
 msgid "Log"
 msgstr "Rexistro"
 
