@@ -43,6 +43,7 @@ namespace cronopete {
 		private GLib.Settings cronopete_settings;
 		private c_main_menu main_menu;
 		private BackupStatus current_status;
+		private bool aborted;
 
 		private Indicator appindicator;
 		private Gtk.Menu menuSystem;
@@ -63,6 +64,7 @@ namespace cronopete {
 		public signal void changed_backend(backup_base backend);
 
 		public cronopete_class() {
+			this.aborted = false;
 			this.notification = null;
 			this.restore_window_visible = false;
 			this.iconpos         = 0;
@@ -165,6 +167,7 @@ namespace cronopete {
 
 		public void backup_now() {
 			if (this.can_do_backup()) {
+				this.aborted = false;
 				this.main_menu.erase_text_log();
 				this.backend.do_backup.begin(this.cronopete_settings.get_strv("backup-folders"),
 				                             this.cronopete_settings.get_strv("exclude-folders"),
@@ -277,15 +280,20 @@ namespace cronopete {
 							this.notification.close();
 						} catch (GLib.Error e) {
 						}
+						this.notification = null;
 					}
-					this.notification = new Notify.Notification(_("Backup incorrect"), _("There was a problem when doing the last backup. Please, check the log."), "dialog-error");
-					notification.add_action("action-name", _("View log"), (notification, action) => {
-						this.show_log();
-					});
-					try {
-						notification.show();
-					} catch (GLib.Error e) {
-						print("Can't open a notification\n");
+					if (!this.aborted) {
+						this.notification = new Notify.Notification(_("Backup incorrect"), _("There was a problem when doing the last backup. Please, check the log."), "dialog-error");
+						notification.add_action("action-name", _("View log"), (notification, action) => {
+							this.show_log();
+						});
+						this.notification.set_timeout(Notify.EXPIRES_NEVER);
+						this.notification.set_urgency(Notify.Urgency.CRITICAL);
+						try {
+							notification.show();
+						} catch (GLib.Error e) {
+							print("Can't open a notification\n");
+						}
 					}
 				}
 				return false;
@@ -307,7 +315,7 @@ namespace cronopete {
 			if (status != backup_current_status.IDLE) {
 				if (this.animation_timer == 0) {
 					this.current_status  = BackupStatus.ALLFINE;
-					this.animation_timer = GLib.Timeout.add(500, this.repaint_tray_icon);
+					this.animation_timer = GLib.Timeout.add(250, this.repaint_tray_icon);
 				}
 			} else {
 				if (this.current_status == BackupStatus.ALLFINE) {
@@ -465,6 +473,7 @@ namespace cronopete {
 		public void stop_backup() {
 			if (this.backend.current_status != backup_current_status.IDLE) {
 				this.backend.abort_backup();
+				this.aborted = true;
 			}
 		}
 
