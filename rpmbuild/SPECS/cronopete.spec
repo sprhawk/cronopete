@@ -15,6 +15,7 @@ BuildRequires: gdk-pixbuf2-devel
 BuildRequires: libgee-devel
 BuildRequires: glib2-devel
 BuildRequires: gsl-devel
+BuildRequires: libnotify-devel
 BuildRequires: pango-devel
 BuildRequires: libudisks2-devel
 BuildRequires: cmake
@@ -22,6 +23,8 @@ BuildRequires: gettext
 BuildRequires: pkgconf-pkg-config
 BuildRequires: make
 BuildRequires: intltool
+BuildRequires: gtk-update-icon-cache
+BuildRequires: glib2
 
 Requires: gtk3
 Requires: pango
@@ -35,6 +38,7 @@ Requires: libdbusmenu
 Requires: libgee
 Requires: gsl
 Requires: glibc-devel
+Requires: libnotify
 Requires: libudisks2
 Requires: rsync
 
