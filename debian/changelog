@@ -1,3 +1,11 @@
+cronopete (4.8.0-Debian1) sid; urgency=low
+
+  * Now shows an alert if there is a problem during backup
+  * Now the warning and error messages are shown in color as expected
+  * Changed minimum vala version to 0.34
+
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Sat, 20 Apr 2019 23:55:00 +0200
+
 cronopete (4.7.0-Debian1) sid; urgency=low
 
   * Now doesn't keep stuck trying to delete an old backup which contains one or more files/folders without writting permissions
