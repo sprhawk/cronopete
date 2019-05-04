@@ -373,7 +373,7 @@ namespace cronopete {
 				current_folder.set_display_name(this.current_backup);
 			} catch (GLib.Error e) {
 				print("Error when trying to rename %s\n".printf("B" + this.current_backup));
-				this.send_warning(_("Failed to rename backup folder. Aborting backup"));
+				this.send_warning(_("Failed to rename backup folder. Aborting backup"), true);
 				this.current_status = backup_current_status.CLEANING;
 				return true;
 			}
@@ -506,9 +506,9 @@ namespace cronopete {
 			command += folder.folder;
 			command += out_folder;
 			string[] env = Environ.get();
-			this.debug_command(command);
 			bool try_backup = true;
 			while (try_backup) {
+				this.debug_command(command);
 				try {
 					GLib.Process.spawn_async_with_pipes("/", command, env, SpawnFlags.SEARCH_PATH | SpawnFlags.DO_NOT_REAP_CHILD, null, out child_pid, null, out standard_output, out standard_error);
 				} catch (GLib.SpawnError error) {
@@ -526,14 +526,14 @@ namespace cronopete {
 					try_backup             = false;
 					if ((!this.aborting) && (status != 0)) {
 					    print("Exit status in rsync: %d\n".printf(status));
-					    if (status == 11) {
+					    if ((status == 0x0B) || (status == 0x0B00)) {
 					        // free disk space and try again if there is free space now
 					        try_backup = true;
 						} else {
-					        this.send_warning(_("There was a problem when backing up the folder '%s'").printf(folder.folder));
+					        this.send_warning(_("There was a problem when backing up the folder '%s'").printf(folder.folder), true);
 						}
 					}
-					this.do_backup_folder.callback ();
+					this.do_backup_folder.callback();
 				});
 				IOChannel output = new IOChannel.unix_new(standard_output);
 				output.add_watch(IOCondition.IN | IOCondition.HUP, (channel, condition) => {
@@ -559,8 +559,9 @@ namespace cronopete {
 					}
 					try {
 					    string line;
-					    channel.read_line(out line, null, null);
-					    this.send_warning(line.strip());
+						channel.read_line(out line, null, null);
+						print("Sending warning %s\n".printf(line.strip()));
+					    this.send_warning(line.strip(), false);
 					} catch (IOChannelError e) {
 					    return false;
 					} catch (ConvertError e) {
@@ -569,6 +570,7 @@ namespace cronopete {
 					return true;
 				});
 				yield;
+				print("Rsync done\n");
 				// if we have to retry, first free disk space
 				if (try_backup) {
 					if (yield this.delete_old_backups(true)) {
@@ -593,7 +595,7 @@ namespace cronopete {
 			yield this.launch_command(command, out error_message);
 
 			if (error_message != null) {
-				this.send_warning(_("Failed to launch sync command: %s").printf(error_message));
+				this.send_warning(_("Failed to launch sync command: %s").printf(error_message), true);
 			}
 		}
 
@@ -676,7 +678,7 @@ namespace cronopete {
 					remove_folder.set_display_name("C" + backup.path);
 				} catch (GLib.Error e) {
 					print("Error when renaming to C... the folder %s\n".printf(backup.path));
-					this.send_warning(_("Failed to delete old backup %s: %s").printf(backup.path, e.message));
+					this.send_warning(_("Failed to delete old backup %s: %s").printf(backup.path, e.message), true);
 				}
 			}
 			// and now we delete those folders

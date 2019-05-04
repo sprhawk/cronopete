@@ -58,8 +58,9 @@ namespace cronopete {
 		 * This signal is emitted every time a warning message must be sent to
 		 * the parent.
 		 * @param warning_msg The warning message to show
+		 * @param show_alert If true, the notification arrow will change its color
 		 */
-		public signal void send_warning(string warning_msg);
+		public signal void send_warning(string warning_msg, bool show_alert);
 
 		/**
 		 * This signal is emitted every time an error message must be sent to

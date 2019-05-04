@@ -137,7 +137,7 @@ namespace  cronopete {
 			}
 			this.backend   = new_backend;
 			this.handlers  = {};
-			this.handlers += this.backend.send_warning.connect((msg) => {
+			this.handlers += this.backend.send_warning.connect((msg, show_alert) => {
 				// TRANSLATORS Shows a warning message with "warning" in Orange color
 				this.insert_text_log(_("<span foreground=\"#FF7F00\">WARNING:</span> %s").printf(msg));
 			});

@@ -324,8 +324,8 @@ namespace cronopete {
 			}
 		}
 
-		private void received_warning(string msg) {
-			if (this.current_status != BackupStatus.STOPPED) {
+		private void received_warning(string msg, bool show_alert) {
+			if ((this.current_status != BackupStatus.STOPPED) && show_alert) {
 				this.current_status = BackupStatus.WARNING;
 			}
 		}
