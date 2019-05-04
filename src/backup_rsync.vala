@@ -341,10 +341,13 @@ namespace cronopete {
 				}
 			}
 			yield this.do_sync();
+			if (this.aborting) {
+				this.end_abort();
+				return false;
+			}
 
 			if (this.rename_current_backup()) {
 				yield this.delete_backup_folders("B");
-
 				print("Failed to rename the current backup\n");
 				return false;
 			}
