@@ -3,23 +3,22 @@
 # This file is distributed under the same license as the Cronopete package.
 # Miguel Anxo Bouzada <mbouzada@gmail.com>, 2011, 2012, 2013, 2016.
 # raster <raster@rastersoft.com>, 2012.
-# Miguel A. Bouzada <mbouzada@gmail.com>, 2018.
+# Miguel A. Bouzada <mbouzada@gmail.com>, 2018, 2019.
 # Sergio Costas <rastersoft@gmail.com>, 2011, 2012, 2017, 2018.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: Cronopete 0.92\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-21 12:59+0200\n"
-"PO-Revision-Date: 2018-05-20 18:46+0200\n"
-"Last-Translator: Sergio Costas <rastersoft@gmail.com>\n"
-"Language-Team: Español; Castellano <rastersoft@gmail.com>\n"
-"Language: gl\n"
+"PO-Revision-Date: 2019-04-22 12:25+0200\n"
+"Last-Translator: Miguel A. Bouzada <mbouzada@gmail.com>\n"
+"Language-Team: Proxecto Trasno <proxecto@trasno.net>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"X-Generator: Virtaal 0.7.1\n"
 
 #. TRANSLATOR this message is shown in the configuration window to specify that cronopete is in idle state, not doing a backup
 #: src/backup_base.vala:102
@@ -58,11 +57,9 @@ msgid "Add"
 msgstr "Engadir"
 
 #: src/backup_rsync.vala:109
-#, fuzzy, c-format
+#, c-format, c-format
 msgid "Can't create the base folders for backups '%s'."
-msgstr ""
-"Non foi posíbel crear os cartafoles base para as copias. Interrompendo a "
-"copia."
+msgstr "Non foi posíbel crear os cartafoles base para as copias «%s»."
 
 #: src/backup_rsync.vala:251
 #, c-format
@@ -131,9 +128,9 @@ msgid "Syncing disk"
 msgstr "Sincronizando o disco"
 
 #: src/backup_rsync.vala:593
-#, fuzzy, c-format
+#, c-format, c-format
 msgid "Failed to launch sync command: %s"
-msgstr "Non foi posíbel iniciar a orde de sincronización"
+msgstr "Non foi posíbel iniciar a orde de sincronización: %s"
 
 #: src/backup_rsync.vala:632 src/cronopete.vala:247
 msgid "Cleaning old backups"
@@ -146,8 +143,8 @@ msgstr "Non hai copias antigas que borrar"
 #: src/backup_rsync.vala:656
 msgid "Asked for freeing disk space when there is free space. Aborting backup"
 msgstr ""
-"Solicitouse liberar espazo do disco cando aínda queda espazo libre."
-"Interrompendo a copia."
+"Solicitouse liberar espazo do disco cando aínda queda espazo "
+"libre.Interrompendo a copia."
 
 #: src/backup_rsync.vala:668
 #, c-format
@@ -245,19 +242,16 @@ msgid "Backup is disabled"
 msgstr "Copias desactivadas"
 
 #: src/cronopete.vala:286
-#, fuzzy
 msgid "Backup incorrect"
-msgstr "Copia cancelada"
+msgstr "Copia incorrecta"
 
 #: src/cronopete.vala:286
-#, fuzzy
 msgid "There was a problem when doing the last backup. Please, check the log."
-msgstr "Houbo un problema ao copiar o cartafol «%s»"
+msgstr "Produciuse un problema ao realizar a copia, comprobe o rexistro."
 
 #: src/cronopete.vala:287
-#, fuzzy
 msgid "View log"
-msgstr "Ver como lista"
+msgstr "Ver o rexistro"
 
 #. TRANSLATORS Menu entry to start a new backup manually
 #: src/cronopete.vala:397
@@ -641,7 +635,6 @@ msgid "Restore ended succesfully"
 msgstr "Restauración rematada"
 
 #: data/interface/warning_folder_backend.ui:56
-#, fuzzy
 msgid ""
 "The <i>folder backend</i> is considered valid only for advanced users. To "
 "enable it, set the <i>gconf</i> key 'enable-folder-backend' to <i>true</i> "
@@ -649,8 +642,7 @@ msgid ""
 msgstr ""
 "A <i>infraestrutura de cartafoles</i> só debe ser usado por usuarios "
 "avanzados. Para activalo, poña o valor <i>true</i> na clave «enable-folder-"
-"backend» de <i>gconf</i>. Se non sabe como facelo, probabelmente non debería "
-"usar esta infraestrutura."
+"backend» de <i>gconf</i> empregando o <i>dconf-editor</i>."
 
 #: data/interface/warning_folder_backend.ui:79
 msgid ""
