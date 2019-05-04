@@ -361,7 +361,7 @@ namespace cronopete {
 			yield this.delete_old_backups(false);
 
 			time_t elapsed = time_t() - this.start_time;
-			this.send_message(_("Backup done. Elapsed time: %d:%02d".printf((int) (elapsed / 60), (int) (elapsed % 60))));
+			this.send_message(_("Backup done. Elapsed time: %d:%02d").printf((int) (elapsed / 60), (int) (elapsed % 60)));
 			this.current_status = backup_current_status.IDLE;
 			return true;
 		}
