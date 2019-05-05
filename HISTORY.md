@@ -1,5 +1,10 @@
 # History of versions #
 
+* Version 4.9.0 (2019/05/05)
+      * Fixed full disk detection: now, if the disk gets full, it will delete old backups
+      * Ensures that, at least, will backup the personal folder if leaved unconfigured
+      * Fixed some translations
+      * Updated .desktop files texts
 * Version 4.8.0 (2019/04/20)
       * Now shows an alert if there is a problem during backup
       * Now the warning and error messages are shown in color as expected

@@ -1,8 +1,18 @@
+cronopete (4.9.0-Debian1) sid; urgency=low
+
+  * Fixed full disk detection: now, if the disk gets full, it will delete old backups
+  * Ensures that, at least, will backup the personal folder if leaved unconfigured
+  * Fixed some translations
+  * Updated .desktop files texts
+
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Sun, 05 May 2019 23:55:00 +0200
+
 cronopete (4.8.0-Debian1) sid; urgency=low
 
   * Now shows an alert if there is a problem during backup
   * Now the warning and error messages are shown in color as expected
-  * Changed minimum vala version to 0.34
+  * Updated to Autovala 1.14 (doesn't require python for being compiled with meson)
+  * Speeded up the rotating arrow
 
  -- Sergio Costas Rodriguez <raster@rastersoft.com>  Sat, 20 Apr 2019 23:55:00 +0200
 
