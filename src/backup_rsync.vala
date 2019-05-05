@@ -526,7 +526,7 @@ namespace cronopete {
 					try_backup             = false;
 					if ((!this.aborting) && (status != 0)) {
 					    print("Exit status in rsync: %d\n".printf(status));
-					    if ((status == 0x0B) || (status == 0x0B00)) {
+					    if (status == 0x0B00) {
 					        // free disk space and try again if there is free space now
 					        try_backup = true;
 						} else {
