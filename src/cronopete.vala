@@ -169,9 +169,16 @@ namespace cronopete {
 			if (this.can_do_backup()) {
 				this.aborted = false;
 				this.main_menu.erase_text_log();
-				this.backend.do_backup.begin(this.cronopete_settings.get_strv("backup-folders"),
+				bool skip_hiden = this.cronopete_settings.get_boolean("skip-hiden-at-home");
+				string[] folder_list = this.cronopete_settings.get_strv("backup-folders");
+				if (folder_list.length == 0) {
+					folder_list  = {};
+					folder_list += GLib.Environment.get_home_dir();
+					skip_hiden = true;
+				}
+				this.backend.do_backup.begin(folder_list,
 				                             this.cronopete_settings.get_strv("exclude-folders"),
-				                             this.cronopete_settings.get_boolean("skip-hiden-at-home"));
+				                             skip_hiden);
 			}
 		}
 
