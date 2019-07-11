@@ -71,7 +71,7 @@ namespace cronopete {
 					x = x + "/";
 				}
 				if (x == this.folder) {
-					valid = false;
+					this.valid = false;
 					break;
 				}
 				if (x.has_prefix(this.folder)) {
