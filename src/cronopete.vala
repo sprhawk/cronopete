@@ -176,8 +176,42 @@ namespace cronopete {
 					folder_list += GLib.Environment.get_home_dir();
 					skip_hiden = true;
 				}
+				var to_exclude = this.cronopete_settings.get_value("exclude-folders").dup_strv();
+
+				// Exclude some local folders that don't contain user data, but temporary files, pipes for DBus...
+				string[] dont_backup_folders = {".gvfs", ".dbus", ".var/app/*/cache"};
+				dont_backup_folders += GLib.Environment.get_user_cache_dir();
+				dont_backup_folders += GLib.Environment.get_tmp_dir();
+				Posix.Glob myglob = Posix.Glob();
+				foreach (var base_folder in dont_backup_folders) {
+					string folder;
+					if (!base_folder.has_prefix("/")) {
+						folder = GLib.Path.build_filename(GLib.Environment.get_home_dir(), base_folder);
+					} else {
+						folder = base_folder;
+					}
+					myglob.glob(folder);
+					foreach(var f in myglob.pathv) {
+						if (!f.has_suffix("/")) {
+							f += "/";
+						}
+						var found = false;
+						foreach(var exclude_folder in to_exclude) {
+							if (!exclude_folder.has_suffix("/")) {
+								exclude_folder += "/";
+							}
+							if (exclude_folder == f) {
+								found = true;
+								break;
+							}
+						}
+						if (!found) {
+							to_exclude += f;
+						}
+					}
+				}
 				this.backend.do_backup.begin(folder_list,
-				                             this.cronopete_settings.get_strv("exclude-folders"),
+				                             to_exclude,
 				                             skip_hiden);
 			}
 		}
