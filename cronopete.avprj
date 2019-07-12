@@ -5,7 +5,7 @@ po_comment_tag: TRANSLATOR
 vala_version: 0.36
 
 vala_binary: src/cronopete
-*version: 4.9.0
+*version: 4.10.0
 compile_options: --target-glib 2.32
 *vala_package: posix
 vala_check_package: gtk+-3.0
@@ -43,6 +43,7 @@ end
 *po: po
 
 *translate: glade data/interface/about.ui
+*translate: glade data/interface/ask_quit.ui
 *translate: glade data/interface/chooser.ui
 *translate: glade data/interface/config_exported.ui
 *translate: glade data/interface/folder_selector.ui
@@ -92,6 +93,7 @@ end
 *scheme: data/org.rastersoft.cronopete.gschema.xml
 
 *glade: data/interface/about.ui
+*glade: data/interface/ask_quit.ui
 *glade: data/interface/chooser.ui
 *glade: data/interface/config_exported.ui
 *glade: data/interface/folder_selector.ui

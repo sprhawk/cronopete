@@ -13,6 +13,7 @@ src/restore.vala
 src/restore_canvas.vala
 src/udisk2_cronopete.vala
 data/interface/about.ui
+data/interface/ask_quit.ui
 data/interface/chooser.ui
 data/interface/config_exported.ui
 data/interface/folder_selector.ui

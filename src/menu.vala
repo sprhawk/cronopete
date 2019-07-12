@@ -169,7 +169,21 @@ namespace  cronopete {
 
 		[CCode(instance_pos = -1)]
 		public void quit_clicked(Gtk.Button source) {
-			Posix.exit(48);
+			this.builder = new Builder();
+			try {
+				this.builder.add_from_file(Path.build_filename(Constants.PKGDATADIR, "ask_quit.ui"));
+			} catch (GLib.Error e) {
+				print("Can't create the configuration window. Aborting.\n");
+				Posix.exit(48);
+			}
+			var w = (Gtk.Dialog)this.builder.get_object("ask_quit_window");
+			w.show_all();
+			var retval = w.run();
+			w.hide();
+			w.destroy();
+			if (retval == Gtk.ResponseType.ACCEPT) {
+				Posix.exit(48);
+			}
 		}
 
 		public void backend_available_changed(bool is_available) {
