@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: cronopete 4.8.0\n"
+"Project-Id-Version: cronopete 4.10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-21 12:59+0200\n"
+"POT-Creation-Date: 2019-07-13 01:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. TRANSLATOR this message is shown in the configuration window to specify that cronopete is in idle state, not doing a backup
-#: src/backup_base.vala:102
+#: src/backup_base.vala:103
 msgid "Ready"
 msgstr ""
 
@@ -27,7 +27,7 @@ msgstr ""
 msgid "Store backups in an external hard disk"
 msgstr ""
 
-#: src/backup_extdisk.vala:50
+#: src/backup_extdisk.vala:50 data/interface/main.ui:13
 msgid "Unmount backup disk"
 msgstr ""
 
@@ -69,82 +69,82 @@ msgstr ""
 msgid "Cleaning incomplete backups"
 msgstr ""
 
-#: src/backup_rsync.vala:361
+#: src/backup_rsync.vala:364
 #, c-format
 msgid "Backup done. Elapsed time: %d:%02d"
 msgstr ""
 
-#: src/backup_rsync.vala:373
+#: src/backup_rsync.vala:376
 msgid "Failed to rename backup folder. Aborting backup"
 msgstr ""
 
-#: src/backup_rsync.vala:394
+#: src/backup_rsync.vala:397
 msgid "Backup aborted"
 msgstr ""
 
-#: src/backup_rsync.vala:431 src/backup_rsync.vala:444
-#: src/backup_rsync.vala:456
+#: src/backup_rsync.vala:434 src/backup_rsync.vala:447
+#: src/backup_rsync.vala:459
 #, c-format
 msgid "Failed to delete aborted backups: %s"
 msgstr ""
 
-#: src/backup_rsync.vala:466
+#: src/backup_rsync.vala:469
 #, c-format
 msgid "Failed to delete folders: %s"
 msgstr ""
 
-#: src/backup_rsync.vala:480
+#: src/backup_rsync.vala:483
 #, c-format
 msgid "Backing up folder %s"
 msgstr ""
 
-#: src/backup_rsync.vala:501
+#: src/backup_rsync.vala:504
 #, c-format
 msgid "Excluding folder %s"
 msgstr ""
 
-#: src/backup_rsync.vala:512
+#: src/backup_rsync.vala:515
 #, c-format
 msgid "Failed to launch rsync for '%s'. Aborting backup"
 msgstr ""
 
-#: src/backup_rsync.vala:530
+#: src/backup_rsync.vala:533
 #, c-format
 msgid "There was a problem when backing up the folder '%s'"
 msgstr ""
 
-#: src/backup_rsync.vala:544
+#: src/backup_rsync.vala:547
 #, c-format
 msgid "Backing up %s"
 msgstr ""
 
-#: src/backup_rsync.vala:586 src/backup_rsync.vala:587
+#: src/backup_rsync.vala:591 src/backup_rsync.vala:592
 msgid "Syncing disk"
 msgstr ""
 
-#: src/backup_rsync.vala:593
+#: src/backup_rsync.vala:598
 #, c-format
 msgid "Failed to launch sync command: %s"
 msgstr ""
 
-#: src/backup_rsync.vala:632 src/cronopete.vala:247
+#: src/backup_rsync.vala:637 src/cronopete.vala:288
 msgid "Cleaning old backups"
 msgstr ""
 
-#: src/backup_rsync.vala:639
+#: src/backup_rsync.vala:644
 msgid "No old backups to delete"
 msgstr ""
 
-#: src/backup_rsync.vala:656
+#: src/backup_rsync.vala:661
 msgid "Asked for freeing disk space when there is free space. Aborting backup"
 msgstr ""
 
-#: src/backup_rsync.vala:668
+#: src/backup_rsync.vala:673
 #, c-format
 msgid "Deleting old backup %s"
 msgstr ""
 
-#: src/backup_rsync.vala:676
+#: src/backup_rsync.vala:681
 #, c-format
 msgid "Failed to delete old backup %s: %s"
 msgstr ""
@@ -192,69 +192,69 @@ msgid "Unknown size"
 msgstr ""
 
 #. TRANSLATORS Specify that the disk configured for backups is not available
-#: src/cronopete.vala:224
+#: src/cronopete.vala:265
 msgid "Disk not available"
 msgstr ""
 
 #. TRANSLATORS The program state, used in a tooltip, when it is waiting to do the next backup
-#: src/cronopete.vala:232
+#: src/cronopete.vala:273
 msgid "Idle"
 msgstr ""
 
-#: src/cronopete.vala:242
+#: src/cronopete.vala:283
 msgid "Doing backup"
 msgstr ""
 
 #. TRANSLATORS The program state, used in a tooltip, when it is doing a backup and there is, at least, a warning message
-#: src/cronopete.vala:256
+#: src/cronopete.vala:297
 msgid "Doing backup, have a warning"
 msgstr ""
 
 #. TRANSLATORS The program state, used in a tooltip, when it is doing a backup and there is, at least, an error message
-#: src/cronopete.vala:262
+#: src/cronopete.vala:303
 msgid "Doing backup, have an error"
 msgstr ""
 
 #. TRANSLATORS The program state, used in a tooltip, when the backups are disabled and won't be done
-#: src/cronopete.vala:269
+#: src/cronopete.vala:310
 msgid "Backup is disabled"
 msgstr ""
 
-#: src/cronopete.vala:286
+#: src/cronopete.vala:327
 msgid "Backup incorrect"
 msgstr ""
 
-#: src/cronopete.vala:286
+#: src/cronopete.vala:327
 msgid "There was a problem when doing the last backup. Please, check the log."
 msgstr ""
 
-#: src/cronopete.vala:287
+#: src/cronopete.vala:328
 msgid "View log"
 msgstr ""
 
 #. TRANSLATORS Menu entry to start a new backup manually
-#: src/cronopete.vala:397
+#: src/cronopete.vala:438
 msgid "Back Up Now"
 msgstr ""
 
 #. TRANSLATORS Menu entry to abort the current backup manually
-#: src/cronopete.vala:401
+#: src/cronopete.vala:442
 msgid "Stop Backing Up"
 msgstr ""
 
 #. TRANSLATORS Menu entry to open the interface for restoring files from a backup
 #. TRANSLATORS Text for the button that restores the selected files
-#: src/cronopete.vala:406 src/restore.vala:90
+#: src/cronopete.vala:447 src/restore.vala:90
 msgid "Restore files"
 msgstr ""
 
 #. TRANSLATORS Menu entry to open the configuration window
-#: src/cronopete.vala:421
+#: src/cronopete.vala:462
 msgid "Configure the backups"
 msgstr ""
 
 #. TRANSLATORS Show the date of the last backup
-#: src/cronopete.vala:430
+#: src/cronopete.vala:471 src/menu.vala:287
 #, c-format
 msgid "Latest backup: %s"
 msgstr ""
@@ -362,20 +362,35 @@ msgid "<span foreground=\"#FF3F3F\">ERROR:</span> %s"
 msgstr ""
 
 #. TRANSLATORS This string shows the current status of Cronopete. It can be "Status: idle", or "Status: copying file"...
-#: src/menu.vala:188
+#: src/menu.vala:203
 #, c-format
 msgid "Status: %s"
 msgstr ""
 
 #. TRANSLATORS This text means that the user still has not selected a hard disk where to do the backups
-#: src/menu.vala:267
-msgid "Not defined"
+#: src/menu.vala:282
+msgid "Destination: Not defined"
+msgstr ""
+
+#: src/menu.vala:284
+#, c-format
+msgid "Destination: %s"
+msgstr ""
+
+#: src/menu.vala:286
+#, c-format
+msgid "Oldest backup: %s"
+msgstr ""
+
+#: src/menu.vala:294 src/menu.vala:296
+#, c-format
+msgid "Next backup: %s"
 msgstr ""
 
 #. TRANSLATORS This string specifies the available and total disk space in back up drive. Example: 43 GB of 160 GB
-#: src/menu.vala:295
+#: src/menu.vala:310
 #, c-format
-msgid "%lld GB of %lld GB"
+msgid "Available: %lld GB of %lld GB"
 msgstr ""
 
 #: src/options.vala:57
@@ -450,6 +465,10 @@ msgstr ""
 msgid "Why <i>ana<b>CRONOPETE</b></i>?"
 msgstr ""
 
+#: data/interface/ask_quit.ui:64
+msgid "Quit Cronopete?"
+msgstr ""
+
 #: data/interface/chooser.ui:70
 msgid "Available USB disks:"
 msgstr ""
@@ -486,51 +505,43 @@ msgstr ""
 msgid "Formating disk. Please, wait."
 msgstr ""
 
-#: data/interface/main.ui:8
+#: data/interface/main.ui:12
+msgid ""
+"Unmounts the disk where the backups are stored, allowing to disconnect it "
+"from the computer."
+msgstr ""
+
+#: data/interface/main.ui:28
+msgid "Close Cronopete."
+msgstr ""
+
+#: data/interface/main.ui:29
+msgid "Quit"
+msgstr ""
+
+#: data/interface/main.ui:38 data/interface/main.ui:49
 msgid "anaCRONOPETE"
 msgstr ""
 
 #. Don't translate this. Is part of the name in the main window
-#: data/interface/main.ui:54
+#: data/interface/main.ui:107
 msgid "ana"
 msgstr ""
 
 #. Don't translate this. Is part of the name in the main window.
-#: data/interface/main.ui:68
+#: data/interface/main.ui:121
 msgid "cronopete"
 msgstr ""
 
-#: data/interface/main.ui:291
-msgid "Latest backup:"
-msgstr ""
-
-#: data/interface/main.ui:304
-msgid "Oldest backup:"
-msgstr ""
-
-#. Refers to the free disk space available in the backup's hard disk
-#: data/interface/main.ui:317
-msgctxt "Refers to the free disk space available in the backup's hard disk"
-msgid "Available:"
-msgstr ""
-
-#: data/interface/main.ui:330
-msgid "Destination:"
-msgstr ""
-
-#: data/interface/main.ui:343
-msgid "Next backup:"
-msgstr ""
-
-#: data/interface/main.ui:398
+#: data/interface/main.ui:345
 msgid "Change destination..."
 msgstr ""
 
-#: data/interface/main.ui:413 data/interface/options.ui:17
+#: data/interface/main.ui:360 data/interface/options.ui:17
 msgid "Options"
 msgstr ""
 
-#: data/interface/main.ui:438
+#: data/interface/main.ui:385
 msgid ""
 "Cronopete keeps:\n"
 "\n"
@@ -539,19 +550,19 @@ msgid ""
 " * Weekly backups until your hard disk is full"
 msgstr ""
 
-#: data/interface/main.ui:457
+#: data/interface/main.ui:404
 msgid "Show Cronopete in menu bar"
 msgstr ""
 
-#: data/interface/main.ui:474
+#: data/interface/main.ui:421
 msgid "About"
 msgstr ""
 
-#: data/interface/main.ui:507
+#: data/interface/main.ui:454
 msgid "Configuration"
 msgstr ""
 
-#: data/interface/main.ui:536
+#: data/interface/main.ui:483
 msgid "Log"
 msgstr ""
 

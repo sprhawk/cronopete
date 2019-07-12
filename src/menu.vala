@@ -279,21 +279,21 @@ namespace  cronopete {
 			this.backend.get_backup_data(out volume_id, out oldest, out newest, out total_space, out free_space, out icon);
 			if (volume_id == null) {
 				// TRANSLATORS This text means that the user still has not selected a hard disk where to do the backups
-				this.label_disk_id.set_text(_("Not defined"));
+				this.label_disk_id.set_text(_("Destination: Not defined"));
 			} else {
-				this.label_disk_id.set_text(volume_id);
+				this.label_disk_id.set_text(_("Destination: %s").printf(volume_id));
 			}
-			this.label_oldest.set_text(cronopete.date_to_string(oldest));
-			this.label_newest.set_text(cronopete.date_to_string(newest));
+			this.label_oldest.set_text(_("Oldest backup: %s").printf(cronopete.date_to_string(oldest)));
+			this.label_newest.set_text(_("Latest backup: %s").printf(cronopete.date_to_string(newest)));
 			time_t next = newest + this.cronopete_settings.get_uint("backup-period");
 			time_t now  = time_t();
 			if (next < now) {
 				next = now + 60 * this.cronopete_p.first_delay;
 			}
 			if (this.backend.storage_is_available()) {
-				this.label_next.set_text(cronopete.date_to_string(next));
+				this.label_next.set_text(_("Next backup: %s").printf(cronopete.date_to_string(next)));
 			} else {
-				this.label_next.set_text("---");
+				this.label_next.set_text(_("Next backup: %s").printf("---"));
 			}
 			if (this.backend.current_status == backup_current_status.IDLE) {
 				this.backend_list.sensitive       = true;
@@ -307,7 +307,7 @@ namespace  cronopete {
 			this.disk_icon.set_from_icon_name(icon, IconSize.DIALOG);
 
 			// TRANSLATORS This string specifies the available and total disk space in back up drive. Example: 43 GB of 160 GB
-			this.label_space.set_text(_("%lld GB of %lld GB").printf((uint64) (free_space + 900000000) / 1000000000, (uint64) (total_space + 900000000) / 1000000000));
+			this.label_space.set_text(_("Available: %lld GB of %lld GB").printf((uint64) (free_space + 900000000) / 1000000000, (uint64) (total_space + 900000000) / 1000000000));
 			// Adding 900000000 and dividing by 1000000000 allows to round up to the nearest size instead of the lowest one
 
 			var can_unmount = this.backend.can_umount_destination();
