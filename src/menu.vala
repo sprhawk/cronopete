@@ -162,13 +162,14 @@ namespace  cronopete {
 
 		[CCode(instance_pos = -1)]
 		public void unmount_clicked(Gtk.Button source) {
-			print("Desmonto\n");
 			if (this.backend != null) {
 				this.backend.umount_destination();
-			}else {
-				print("Es null\n");
 			}
-			print("Hecho\n");
+		}
+
+		[CCode(instance_pos = -1)]
+		public void quit_clicked(Gtk.Button source) {
+			Posix.exit(48);
 		}
 
 		public void backend_available_changed(bool is_available) {

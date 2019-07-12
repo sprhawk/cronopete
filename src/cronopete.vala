@@ -27,7 +27,7 @@ using Posix;
 using AppIndicator;
 using Notify;
 
-// project version=4.9.0
+// project version=4.10.0
 
 namespace cronopete {
 	cronopete_class callback_object;
@@ -602,7 +602,7 @@ namespace cronopete {
 				return 0;
 			}
 			Posix.waitpid(fork_pid, out status, 0);
-			if (status == 48) {
+			if (status == 0x3000) {
 				// This is the status for an abort
 				break;
 			}

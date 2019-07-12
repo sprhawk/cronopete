@@ -1,5 +1,7 @@
 # History of versions #
 
+* NoVersion 4.10.0 ()
+      * Don't backup .cache, .dbus, .gvfs or .var/app/*/cache folders
 * Version 4.9.0 (2019/05/05)
       * Fixed full disk detection: now, if the disk gets full, it will delete old backups
       * Ensures that, at least, will backup the personal folder if leaved unconfigured
