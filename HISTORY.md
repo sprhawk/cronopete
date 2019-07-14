@@ -1,6 +1,6 @@
 # History of versions #
 
-* NoVersion 4.10.0 ()
+* Version 4.10.0 (2019/07/14)
       * Don't backup .cache, .dbus, .gvfs or .var/app/*/cache folders
       * Allows to quit cronopete
       * Adjusted some texts in the UI
