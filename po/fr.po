@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-13 01:39+0200\n"
+"POT-Creation-Date: 2019-07-14 02:23+0200\n"
 "PO-Revision-Date: 2018-05-20 18:49+0200\n"
 "Last-Translator: Maïeul Rouquette <maieul@maieul.net>\n"
 "Language-Team: français <>\n"
@@ -570,24 +570,30 @@ msgid "anaCRONOPETE"
 msgstr "anaCRONOPETE"
 
 #. Don't translate this. Is part of the name in the main window
-#: data/interface/main.ui:107
+#: data/interface/main.ui:104
 msgid "ana"
 msgstr "ana"
 
 #. Don't translate this. Is part of the name in the main window.
-#: data/interface/main.ui:121
+#: data/interface/main.ui:118
 msgid "cronopete"
 msgstr "cronopete"
 
-#: data/interface/main.ui:345
-msgid "Change destination..."
+#: data/interface/main.ui:146
+#, fuzzy
+msgid "Enable backups"
+msgstr "Dernière sauvegarde : %s"
+
+#: data/interface/main.ui:333
+#, fuzzy
+msgid "Change backup destination..."
 msgstr "Changer de destination…"
 
-#: data/interface/main.ui:360 data/interface/options.ui:17
-msgid "Options"
-msgstr "Options"
+#: data/interface/main.ui:348 data/interface/options.ui:95
+msgid "Folders to backup"
+msgstr "Dossiers à sauvegarder"
 
-#: data/interface/main.ui:385
+#: data/interface/main.ui:373
 msgid ""
 "Cronopete keeps:\n"
 "\n"
@@ -601,25 +607,25 @@ msgstr ""
 "* journalières du dernier mois\n"
 "* hebdomadaires jusqu’à ce que votre disque dur est plein"
 
-#: data/interface/main.ui:404
+#: data/interface/main.ui:392
 msgid "Show Cronopete in menu bar"
 msgstr "Afficher Cronopete dans la barre de menu"
 
-#: data/interface/main.ui:421
+#: data/interface/main.ui:409
 msgid "About"
 msgstr "À propos"
 
-#: data/interface/main.ui:454
+#: data/interface/main.ui:442
 msgid "Configuration"
 msgstr "Configuration"
 
-#: data/interface/main.ui:483
+#: data/interface/main.ui:471
 msgid "Log"
 msgstr "Logiciel"
 
-#: data/interface/options.ui:95
-msgid "Folders to backup"
-msgstr "Dossiers à sauvegarder"
+#: data/interface/options.ui:17
+msgid "Options"
+msgstr "Options"
 
 #: data/interface/options.ui:129 data/interface/options.ui:219
 msgid "Remove"

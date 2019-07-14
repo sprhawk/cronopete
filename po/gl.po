@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Cronopete 0.92\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-13 01:39+0200\n"
+"POT-Creation-Date: 2019-07-14 02:23+0200\n"
 "PO-Revision-Date: 2019-04-22 12:25+0200\n"
 "Last-Translator: Miguel A. Bouzada <mbouzada@gmail.com>\n"
 "Language-Team: Proxecto Trasno <proxecto@trasno.net>\n"
@@ -565,24 +565,30 @@ msgid "anaCRONOPETE"
 msgstr "anaCRONOPETE"
 
 #. Don't translate this. Is part of the name in the main window
-#: data/interface/main.ui:107
+#: data/interface/main.ui:104
 msgid "ana"
 msgstr "ana"
 
 #. Don't translate this. Is part of the name in the main window.
-#: data/interface/main.ui:121
+#: data/interface/main.ui:118
 msgid "cronopete"
 msgstr "cronopete"
 
-#: data/interface/main.ui:345
-msgid "Change destination..."
+#: data/interface/main.ui:146
+#, fuzzy
+msgid "Enable backups"
+msgstr "Última copia: %s"
+
+#: data/interface/main.ui:333
+#, fuzzy
+msgid "Change backup destination..."
 msgstr "Cambiar o destino..."
 
-#: data/interface/main.ui:360 data/interface/options.ui:17
-msgid "Options"
-msgstr "Opcións"
+#: data/interface/main.ui:348 data/interface/options.ui:95
+msgid "Folders to backup"
+msgstr "Cartafoles a copiar"
 
-#: data/interface/main.ui:385
+#: data/interface/main.ui:373
 msgid ""
 "Cronopete keeps:\n"
 "\n"
@@ -596,25 +602,25 @@ msgstr ""
 " * Unha copia diaria para o último mes\n"
 " * Copias semanais ata que se encha o disco"
 
-#: data/interface/main.ui:404
+#: data/interface/main.ui:392
 msgid "Show Cronopete in menu bar"
 msgstr "Amosar Cronopete na barra"
 
-#: data/interface/main.ui:421
+#: data/interface/main.ui:409
 msgid "About"
 msgstr "Sobre"
 
-#: data/interface/main.ui:454
+#: data/interface/main.ui:442
 msgid "Configuration"
 msgstr "Configuración"
 
-#: data/interface/main.ui:483
+#: data/interface/main.ui:471
 msgid "Log"
 msgstr "Rexistro"
 
-#: data/interface/options.ui:95
-msgid "Folders to backup"
-msgstr "Cartafoles a copiar"
+#: data/interface/options.ui:17
+msgid "Options"
+msgstr "Opcións"
 
 #: data/interface/options.ui:129 data/interface/options.ui:219
 msgid "Remove"

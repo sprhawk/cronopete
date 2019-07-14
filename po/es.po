@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Cronopete 0.92\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-13 01:39+0200\n"
-"PO-Revision-Date: 2019-07-13 01:41+0200\n"
+"POT-Creation-Date: 2019-07-14 02:23+0200\n"
+"PO-Revision-Date: 2019-07-14 02:24+0200\n"
 "Last-Translator: Sergio Costas <rastersoft@gmail.com>\n"
 "Language-Team: Español; Castellano <rastersoft@gmail.com>\n"
 "Language: es\n"
@@ -569,24 +569,28 @@ msgid "anaCRONOPETE"
 msgstr "anaCRONOPETE"
 
 #. Don't translate this. Is part of the name in the main window
-#: data/interface/main.ui:107
+#: data/interface/main.ui:104
 msgid "ana"
 msgstr "ana"
 
 #. Don't translate this. Is part of the name in the main window.
-#: data/interface/main.ui:121
+#: data/interface/main.ui:118
 msgid "cronopete"
 msgstr "cronopete"
 
-#: data/interface/main.ui:345
-msgid "Change destination..."
-msgstr "Cambiar el destino..."
+#: data/interface/main.ui:146
+msgid "Enable backups"
+msgstr "Activar copias"
 
-#: data/interface/main.ui:360 data/interface/options.ui:17
-msgid "Options"
-msgstr "Opciones"
+#: data/interface/main.ui:333
+msgid "Change backup destination..."
+msgstr "Cambiar el destino para copias..."
 
-#: data/interface/main.ui:385
+#: data/interface/main.ui:348 data/interface/options.ui:95
+msgid "Folders to backup"
+msgstr "Carpetas a copiar"
+
+#: data/interface/main.ui:373
 msgid ""
 "Cronopete keeps:\n"
 "\n"
@@ -600,25 +604,25 @@ msgstr ""
 " * Una copia diaria para el último mes\n"
 " * Copias semanales hasta que se llene el disco"
 
-#: data/interface/main.ui:404
+#: data/interface/main.ui:392
 msgid "Show Cronopete in menu bar"
 msgstr "Mostrar Cronopete en la barra"
 
-#: data/interface/main.ui:421
+#: data/interface/main.ui:409
 msgid "About"
 msgstr "Acerca de"
 
-#: data/interface/main.ui:454
+#: data/interface/main.ui:442
 msgid "Configuration"
 msgstr "Configuración"
 
-#: data/interface/main.ui:483
+#: data/interface/main.ui:471
 msgid "Log"
 msgstr "Registro"
 
-#: data/interface/options.ui:95
-msgid "Folders to backup"
-msgstr "Carpetas a copiar"
+#: data/interface/options.ui:17
+msgid "Options"
+msgstr "Opciones"
 
 #: data/interface/options.ui:129 data/interface/options.ui:219
 msgid "Remove"

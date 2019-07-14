@@ -56,13 +56,10 @@
             <property name="receives_default">True</property>
             <property name="popup">menu1</property>
             <property name="align_widget">menu1</property>
+            <property name="direction">none</property>
             <property name="use_popover">False</property>
             <child>
-              <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="stock">gtk-justify-fill</property>
-              </object>
+              <placeholder/>
             </child>
           </object>
         </child>
@@ -145,10 +142,12 @@
                       <object class="GtkLabel" id="label10">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Enable backups</property>
                       </object>
                       <packing>
-                        <property name="expand">True</property>
+                        <property name="expand">False</property>
                         <property name="fill">True</property>
+                        <property name="padding">8</property>
                         <property name="position">0</property>
                       </packing>
                     </child>
@@ -160,11 +159,12 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
+                        <property name="padding">8</property>
                         <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="label12">
+                      <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                       </object>
@@ -342,7 +342,7 @@
                     <property name="homogeneous">True</property>
                     <child>
                       <object class="GtkButton" id="change_destination">
-                        <property name="label" translatable="yes">Change destination...</property>
+                        <property name="label" translatable="yes">Change backup destination...</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -357,7 +357,7 @@
                     </child>
                     <child>
                       <object class="GtkButton" id="set_options">
-                        <property name="label" translatable="yes">Options</property>
+                        <property name="label" translatable="yes">Folders to backup</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>

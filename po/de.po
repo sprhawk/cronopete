@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Cronopete 0.92\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-13 01:39+0200\n"
+"POT-Creation-Date: 2019-07-14 02:23+0200\n"
 "PO-Revision-Date: 2018-22-05 17:19+0200\n"
 "Last-Translator: Steffen Taubenheim-Probst <dev@taubenheim.biz>\n"
 "Language-Team: Deutsch <dev@taubenheim.biz>\n"
@@ -569,24 +569,30 @@ msgid "anaCRONOPETE"
 msgstr "anaCRONOPETE"
 
 #. Don't translate this. Is part of the name in the main window
-#: data/interface/main.ui:107
+#: data/interface/main.ui:104
 msgid "ana"
 msgstr "ana"
 
 #. Don't translate this. Is part of the name in the main window.
-#: data/interface/main.ui:121
+#: data/interface/main.ui:118
 msgid "cronopete"
 msgstr "cronopete"
 
-#: data/interface/main.ui:345
-msgid "Change destination..."
+#: data/interface/main.ui:146
+#, fuzzy
+msgid "Enable backups"
+msgstr "Letztes Backup: %s"
+
+#: data/interface/main.ui:333
+#, fuzzy
+msgid "Change backup destination..."
 msgstr "Wechsel die Festplatte..."
 
-#: data/interface/main.ui:360 data/interface/options.ui:17
-msgid "Options"
-msgstr "Optionen"
+#: data/interface/main.ui:348 data/interface/options.ui:95
+msgid "Folders to backup"
+msgstr "Ordner die gesichert werden"
 
-#: data/interface/main.ui:385
+#: data/interface/main.ui:373
 msgid ""
 "Cronopete keeps:\n"
 "\n"
@@ -600,25 +606,25 @@ msgstr ""
 " * tägliche Sicherungen für den letzten Monat\n"
 " * wöchtenliche Sicherungen bis deine Festplatte voll ist"
 
-#: data/interface/main.ui:404
+#: data/interface/main.ui:392
 msgid "Show Cronopete in menu bar"
 msgstr "Zeige Cronopete in der Menu-Bar"
 
-#: data/interface/main.ui:421
+#: data/interface/main.ui:409
 msgid "About"
 msgstr "Über"
 
-#: data/interface/main.ui:454
+#: data/interface/main.ui:442
 msgid "Configuration"
 msgstr "Konfiguration"
 
-#: data/interface/main.ui:483
+#: data/interface/main.ui:471
 msgid "Log"
 msgstr "Log"
 
-#: data/interface/options.ui:95
-msgid "Folders to backup"
-msgstr "Ordner die gesichert werden"
+#: data/interface/options.ui:17
+msgid "Options"
+msgstr "Optionen"
 
 #: data/interface/options.ui:129 data/interface/options.ui:219
 msgid "Remove"
