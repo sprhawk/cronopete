@@ -341,6 +341,7 @@ namespace cronopete {
 				}
 			}
 			yield this.do_sync();
+
 			if (this.aborting) {
 				this.end_abort();
 				return false;
@@ -348,6 +349,7 @@ namespace cronopete {
 
 			if (this.rename_current_backup()) {
 				yield this.delete_backup_folders("B");
+
 				print("Failed to rename the current backup\n");
 				return false;
 			}
@@ -505,8 +507,8 @@ namespace cronopete {
 			}
 			command += folder.folder;
 			command += out_folder;
-			string[] env = Environ.get();
-			bool try_backup = true;
+			string[] env        = Environ.get();
+			bool     try_backup = true;
 			while (try_backup) {
 				this.debug_command(command);
 				try {
@@ -559,8 +561,8 @@ namespace cronopete {
 					}
 					try {
 					    string line;
-						channel.read_line(out line, null, null);
-						print("Sending warning %s\n".printf(line.strip()));
+					    channel.read_line(out line, null, null);
+					    print("Sending warning %s\n".printf(line.strip()));
 					    this.send_warning(line.strip(), false);
 					} catch (IOChannelError e) {
 					    return false;
@@ -617,7 +619,7 @@ namespace cronopete {
 				Process.close_pid(pid);
 				this.current_child_pid = -1;
 				retval = status;
-				this.launch_command.callback ();
+				this.launch_command.callback();
 			});
 			yield;
 			return retval;
@@ -639,29 +641,22 @@ namespace cronopete {
 			bool forcing_deletion = false;
 			var  backups          = this.eval_backups_to_delete(free_space, out forcing_deletion);
 
+			if (((backups == null) || (backups.size < 2)) && free_space) {
+				/* we need to free space, but there are only one (or zero!!!) backups, which means that the disk
+				 * is too small to backup all the data configured. We must avoid deleting that lonely backup, because
+				 * if we delete all backups to make space for the current one, and the current one also fails for whatever
+				 * reason, we loose everything. So a big error message must be sent to the user
+				 */
+				print("Not enough disk space to hold, at least two backups. Aborting.\n");
+				this.send_error(_("The destination disk is too small to hold at least a complete backup while doing another. You must change your destination disk with a bigger one. Aborting."));
+				this.aborting = true;
+				return true;
+			}
+
 			if (backups == null) {
 				print("No old backups\n");
 				this.send_message(_("No old backups to delete"));
 				return false;
-			}
-
-			if (forcing_deletion) {
-				/* If we are deleting the last backup because we need free space,
-				 * ensure that there is no free space, just to avoid deleting everything
-				 * if there is a bug
-				 */
-				uint64 disk_total_space;
-				uint64 disk_free_space;
-				this.get_free_space(out disk_total_space, out disk_free_space);
-				// if the free space is more than the 10% of the total space, don't delete
-				// because there is already enough free space
-				if (disk_free_space > (disk_total_space * 0.1)) {
-					print("Special error!!!!! Aborting\n");
-					// there is a problem with the backup, stop deleting
-					this.send_error(_("Asked for freeing disk space when there is free space. Aborting backup"));
-					this.aborting = true;
-					return true;
-				}
 			}
 
 			foreach (var backup_tmp in backups) {
