@@ -33,7 +33,7 @@ namespace  cronopete {
 		private Gtk.Label text_status;
 		private Gtk.Button change_destination;
 		private Gtk.Button set_options;
-		private Gtk.Button unmount_button;
+		private Gtk.MenuItem unmount_button;
 		private Gtk.Image disk_icon;
 		private Gtk.ToggleButton show_in_bar_ch;
 		private Gtk.TextMark mark;
@@ -81,7 +81,7 @@ namespace  cronopete {
 			this.disk_icon             = (Gtk.Image) this.builder.get_object("image_disk");
 			this.change_destination    = (Gtk.Button) this.builder.get_object("change_destination");
 			this.set_options           = (Gtk.Button) this.builder.get_object("set_options");
-			this.unmount_button        = (Gtk.Button) this.builder.get_object("unmount_backup_drive");
+			this.unmount_button        = (Gtk.MenuItem) this.builder.get_object("unmount_backup_drive");
 			this.backend_list          = (Gtk.ComboBox) this.builder.get_object("backend_list");
 			this.backend_list_store    = new Gtk.ListStore(2, typeof(string), typeof(int));
 			this.show_in_bar_ch        = (Gtk.ToggleButton) this.builder.get_object("show_in_bar");

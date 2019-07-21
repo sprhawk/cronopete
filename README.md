@@ -6,7 +6,7 @@ Cronopete is a backup utility for Linux, modeled after Apple's Time Machine. It 
 
 By default, cronopete does a backup each hour, adding to the new backup only the files that have changed since the last one. This allows to return to a previous backup in an specific instant of time.
 
-It is important to have a generous external disk for backups. It is strongly recommended to use a disk of, at least, twice the size of the data to store. SSD disks aren't recommended, because their speed gain is unnecessary for a backup, and are much more expensive than a mechanical disk. An external, USB3, mechanical disk is an excellent choice for storing your backups.
+It is important to have a generous external disk for backups. It is strongly recommended to use a disk of, at least, twice the size of the data to store. SSD disks aren't recommended, because their speed gain is unnecessary for a backup, and are much more expensive than a mechanical disk. An external, USB3, mechanical disk with plenty of free space is an excellent choice for storing your backups.
 
 ## BUILDING CRONOPETE
 

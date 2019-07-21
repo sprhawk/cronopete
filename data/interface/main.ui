@@ -6,7 +6,7 @@
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <child>
-      <object class="GtkMenuItem" id="unmount">
+      <object class="GtkMenuItem" id="unmount_backup_drive">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="tooltip_text" translatable="yes">Unmounts the disk where the backups are stored, allowing to disconnect it from the computer.</property>
@@ -55,7 +55,6 @@
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="popup">menu1</property>
-            <property name="align_widget">menu1</property>
             <property name="direction">none</property>
             <property name="use_popover">False</property>
             <child>
