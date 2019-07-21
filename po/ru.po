@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Cronopete 3.21.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-14 02:23+0200\n"
+"POT-Creation-Date: 2019-07-22 00:43+0200\n"
 "PO-Revision-Date: 2017-09-14 00:12+0200\n"
 "Last-Translator: Sergio Costas <rastersoft@gmail.com>\n"
 "Language-Team: Español; Castellano <rastersoft@gmail.com>\n"
@@ -78,31 +78,31 @@ msgstr "Резервирование\n"
 msgid "Cleaning incomplete backups"
 msgstr "Удаление старых резервных копий"
 
-#: src/backup_rsync.vala:364
+#: src/backup_rsync.vala:366
 #, c-format
 msgid "Backup done. Elapsed time: %d:%02d"
 msgstr ""
 
-#: src/backup_rsync.vala:376
+#: src/backup_rsync.vala:378
 #, fuzzy
 msgid "Failed to rename backup folder. Aborting backup"
 msgstr ""
 "Нет свободного места на диске для запуска резервирования. Операция "
 "прервана.\n"
 
-#: src/backup_rsync.vala:397
+#: src/backup_rsync.vala:399
 msgid "Backup aborted"
 msgstr "Резервирование прекращено"
 
-#: src/backup_rsync.vala:434 src/backup_rsync.vala:447
-#: src/backup_rsync.vala:459
+#: src/backup_rsync.vala:436 src/backup_rsync.vala:449
+#: src/backup_rsync.vala:461
 #, fuzzy, c-format
 msgid "Failed to delete aborted backups: %s"
 msgstr ""
 "Нет свободного места на диске для запуска резервирования. Операция "
 "прервана.\n"
 
-#: src/backup_rsync.vala:469
+#: src/backup_rsync.vala:471
 #, fuzzy, c-format
 msgid "Failed to delete folders: %s"
 msgstr ""
@@ -110,39 +110,39 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/backup_rsync.vala:483
+#: src/backup_rsync.vala:485
 #, fuzzy, c-format
 msgid "Backing up folder %s"
 msgstr "Резервирование папки %s\n"
 
-#: src/backup_rsync.vala:504
+#: src/backup_rsync.vala:506
 #, fuzzy, c-format
 msgid "Excluding folder %s"
 msgstr "Исключить папку %s.\n"
 
-#: src/backup_rsync.vala:515
+#: src/backup_rsync.vala:517
 #, fuzzy, c-format
 msgid "Failed to launch rsync for '%s'. Aborting backup"
 msgstr ""
 "Нет свободного места на диске для запуска резервирования. Операция "
 "прервана.\n"
 
-#: src/backup_rsync.vala:533
+#: src/backup_rsync.vala:535
 #, c-format
 msgid "There was a problem when backing up the folder '%s'"
 msgstr ""
 
-#: src/backup_rsync.vala:547
+#: src/backup_rsync.vala:549
 #, fuzzy, c-format
 msgid "Backing up %s"
 msgstr "Резервирование папки %s\n"
 
-#: src/backup_rsync.vala:591 src/backup_rsync.vala:592
+#: src/backup_rsync.vala:593 src/backup_rsync.vala:594
 #, fuzzy
 msgid "Syncing disk"
 msgstr "Синхронизация диска\n"
 
-#: src/backup_rsync.vala:598
+#: src/backup_rsync.vala:600
 #, fuzzy, c-format
 msgid "Failed to launch sync command: %s"
 msgstr ""
@@ -150,28 +150,28 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/backup_rsync.vala:637 src/cronopete.vala:288
+#: src/backup_rsync.vala:639 src/cronopete.vala:288
 #, fuzzy
 msgid "Cleaning old backups"
 msgstr "Удаление старых резервных копий"
 
-#: src/backup_rsync.vala:644
+#: src/backup_rsync.vala:651
+msgid ""
+"The destination disk is too small to hold at least a complete backup while "
+"doing another. You must change your destination disk with a bigger one. "
+"Aborting."
+msgstr ""
+
+#: src/backup_rsync.vala:658
 msgid "No old backups to delete"
 msgstr ""
 
-#: src/backup_rsync.vala:661
-#, fuzzy
-msgid "Asked for freeing disk space when there is free space. Aborting backup"
-msgstr ""
-"Нет свободного места на диске для запуска резервирования. Операция "
-"прервана.\n"
-
-#: src/backup_rsync.vala:673
+#: src/backup_rsync.vala:668
 #, fuzzy, c-format
 msgid "Deleting old backup %s"
 msgstr "Удаление старых резервных копий"
 
-#: src/backup_rsync.vala:681
+#: src/backup_rsync.vala:676
 #, c-format
 msgid "Failed to delete old backup %s: %s"
 msgstr ""
@@ -587,30 +587,30 @@ msgid "anaCRONOPETE"
 msgstr "anaCRONOPETE"
 
 #. Don't translate this. Is part of the name in the main window
-#: data/interface/main.ui:104
+#: data/interface/main.ui:103
 msgid "ana"
 msgstr "ana"
 
 #. Don't translate this. Is part of the name in the main window.
-#: data/interface/main.ui:118
+#: data/interface/main.ui:117
 msgid "cronopete"
 msgstr "cronopete"
 
-#: data/interface/main.ui:146
+#: data/interface/main.ui:144
 #, fuzzy
 msgid "Enable backups"
 msgstr "Последняя копия: %s"
 
-#: data/interface/main.ui:333
+#: data/interface/main.ui:344
 #, fuzzy
 msgid "Change backup destination..."
 msgstr "Сменить диск..."
 
-#: data/interface/main.ui:348 data/interface/options.ui:95
+#: data/interface/main.ui:359 data/interface/options.ui:95
 msgid "Folders to backup"
 msgstr "Папки для копий"
 
-#: data/interface/main.ui:373
+#: data/interface/main.ui:384
 #, fuzzy
 msgid ""
 "Cronopete keeps:\n"
@@ -625,19 +625,19 @@ msgstr ""
 " * Ежедневные копии за последний месяц\n"
 " * Еженедельные копии пока ваш диск не заполнится"
 
-#: data/interface/main.ui:392
+#: data/interface/main.ui:403
 msgid "Show Cronopete in menu bar"
 msgstr "Отобразить Cronopete в строке состояния (трее)"
 
-#: data/interface/main.ui:409
+#: data/interface/main.ui:420
 msgid "About"
 msgstr "Об Cronopete"
 
-#: data/interface/main.ui:442
+#: data/interface/main.ui:453
 msgid "Configuration"
 msgstr "Конфигурация"
 
-#: data/interface/main.ui:471
+#: data/interface/main.ui:483
 msgid "Log"
 msgstr "Журнал"
 
@@ -732,6 +732,13 @@ msgstr ""
 "\n"
 "Сейчас вы можете настроить ваши внешние диски для резервного копирования "
 "данных, или можете сделать это позже."
+
+#, fuzzy
+#~ msgid ""
+#~ "Asked for freeing disk space when there is free space. Aborting backup"
+#~ msgstr ""
+#~ "Нет свободного места на диске для запуска резервирования. Операция "
+#~ "прервана.\n"
 
 #~ msgid "Latest backup:"
 #~ msgstr "Последняя копия:"

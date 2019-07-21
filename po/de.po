@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Cronopete 0.92\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-14 02:23+0200\n"
+"POT-Creation-Date: 2019-07-22 00:43+0200\n"
 "PO-Revision-Date: 2018-22-05 17:19+0200\n"
 "Last-Translator: Steffen Taubenheim-Probst <dev@taubenheim.biz>\n"
 "Language-Team: Deutsch <dev@taubenheim.biz>\n"
@@ -74,85 +74,85 @@ msgstr "Sicherung starten"
 msgid "Cleaning incomplete backups"
 msgstr "nicht komplette Sicherungen werden bereinigt"
 
-#: src/backup_rsync.vala:364
+#: src/backup_rsync.vala:366
 #, c-format
 msgid "Backup done. Elapsed time: %d:%02d"
 msgstr "Backup fertig. Durchschittliche Zeit: %d:%02d"
 
-#: src/backup_rsync.vala:376
+#: src/backup_rsync.vala:378
 msgid "Failed to rename backup folder. Aborting backup"
 msgstr "Sicherungsordner konnte nich umbenannt werden. Sicherung abgebrochen"
 
-#: src/backup_rsync.vala:397
+#: src/backup_rsync.vala:399
 msgid "Backup aborted"
 msgstr "Sicherung abgebrochen"
 
-#: src/backup_rsync.vala:434 src/backup_rsync.vala:447
-#: src/backup_rsync.vala:459
+#: src/backup_rsync.vala:436 src/backup_rsync.vala:449
+#: src/backup_rsync.vala:461
 #, c-format
 msgid "Failed to delete aborted backups: %s"
 msgstr "abgebrochene Sicherungen konnten nicht gelöscht werden: %s"
 
-#: src/backup_rsync.vala:469
+#: src/backup_rsync.vala:471
 #, c-format
 msgid "Failed to delete folders: %s"
 msgstr "Ordner konnten nicht gelöscht werden: %s"
 
-#: src/backup_rsync.vala:483
+#: src/backup_rsync.vala:485
 #, c-format
 msgid "Backing up folder %s"
 msgstr "Ordner sichern %s"
 
-#: src/backup_rsync.vala:504
+#: src/backup_rsync.vala:506
 #, c-format
 msgid "Excluding folder %s"
 msgstr "Ordner die ausgeschlossen werden %s."
 
-#: src/backup_rsync.vala:515
+#: src/backup_rsync.vala:517
 #, c-format
 msgid "Failed to launch rsync for '%s'. Aborting backup"
 msgstr "rsync konnte nicht gestartet werden für '%s'. Backup abgebrochen."
 
-#: src/backup_rsync.vala:533
+#: src/backup_rsync.vala:535
 #, c-format
 msgid "There was a problem when backing up the folder '%s'"
 msgstr "Es gab ein Problem mit der Sicherung des Ordner '%s'"
 
-#: src/backup_rsync.vala:547
+#: src/backup_rsync.vala:549
 #, c-format
 msgid "Backing up %s"
 msgstr "Sichern '%s'"
 
-#: src/backup_rsync.vala:591 src/backup_rsync.vala:592
+#: src/backup_rsync.vala:593 src/backup_rsync.vala:594
 msgid "Syncing disk"
 msgstr "Synchronisiere Festplatte"
 
-#: src/backup_rsync.vala:598
+#: src/backup_rsync.vala:600
 #, fuzzy, c-format
 msgid "Failed to launch sync command: %s"
 msgstr "Starten des Sync Kommando fehlgeschlagen"
 
-#: src/backup_rsync.vala:637 src/cronopete.vala:288
+#: src/backup_rsync.vala:639 src/cronopete.vala:288
 msgid "Cleaning old backups"
 msgstr "alte Sicherung werden gelöscht"
 
-#: src/backup_rsync.vala:644
+#: src/backup_rsync.vala:651
+msgid ""
+"The destination disk is too small to hold at least a complete backup while "
+"doing another. You must change your destination disk with a bigger one. "
+"Aborting."
+msgstr ""
+
+#: src/backup_rsync.vala:658
 msgid "No old backups to delete"
 msgstr "Keine alten Sicherungen zum löschen"
 
-#: src/backup_rsync.vala:661
-#, fuzzy
-msgid "Asked for freeing disk space when there is free space. Aborting backup"
-msgstr ""
-"Es ist nicht genug freier Speicher vorhanden um die Sicherung zu starten.\n"
-"Sicherung wird abgebrochen.\n"
-
-#: src/backup_rsync.vala:673
+#: src/backup_rsync.vala:668
 #, c-format
 msgid "Deleting old backup %s"
 msgstr "Löschen alter Sicherungen %s"
 
-#: src/backup_rsync.vala:681
+#: src/backup_rsync.vala:676
 #, c-format
 msgid "Failed to delete old backup %s: %s"
 msgstr "Fehler bei löschen alter Sicherungen %s: %s"
@@ -569,30 +569,30 @@ msgid "anaCRONOPETE"
 msgstr "anaCRONOPETE"
 
 #. Don't translate this. Is part of the name in the main window
-#: data/interface/main.ui:104
+#: data/interface/main.ui:103
 msgid "ana"
 msgstr "ana"
 
 #. Don't translate this. Is part of the name in the main window.
-#: data/interface/main.ui:118
+#: data/interface/main.ui:117
 msgid "cronopete"
 msgstr "cronopete"
 
-#: data/interface/main.ui:146
+#: data/interface/main.ui:144
 #, fuzzy
 msgid "Enable backups"
 msgstr "Letztes Backup: %s"
 
-#: data/interface/main.ui:333
+#: data/interface/main.ui:344
 #, fuzzy
 msgid "Change backup destination..."
 msgstr "Wechsel die Festplatte..."
 
-#: data/interface/main.ui:348 data/interface/options.ui:95
+#: data/interface/main.ui:359 data/interface/options.ui:95
 msgid "Folders to backup"
 msgstr "Ordner die gesichert werden"
 
-#: data/interface/main.ui:373
+#: data/interface/main.ui:384
 msgid ""
 "Cronopete keeps:\n"
 "\n"
@@ -606,19 +606,19 @@ msgstr ""
 " * tägliche Sicherungen für den letzten Monat\n"
 " * wöchtenliche Sicherungen bis deine Festplatte voll ist"
 
-#: data/interface/main.ui:392
+#: data/interface/main.ui:403
 msgid "Show Cronopete in menu bar"
 msgstr "Zeige Cronopete in der Menu-Bar"
 
-#: data/interface/main.ui:409
+#: data/interface/main.ui:420
 msgid "About"
 msgstr "Über"
 
-#: data/interface/main.ui:442
+#: data/interface/main.ui:453
 msgid "Configuration"
 msgstr "Konfiguration"
 
-#: data/interface/main.ui:471
+#: data/interface/main.ui:483
 msgid "Log"
 msgstr "Log"
 
@@ -713,6 +713,14 @@ msgstr ""
 "\n"
 "Du kannst jetzt eine externe Festplatte für die Sicherungen konfigurieren "
 "und angeben welche Ordner gesichert werden sollen, oder du tust es später."
+
+#, fuzzy
+#~ msgid ""
+#~ "Asked for freeing disk space when there is free space. Aborting backup"
+#~ msgstr ""
+#~ "Es ist nicht genug freier Speicher vorhanden um die Sicherung zu "
+#~ "starten.\n"
+#~ "Sicherung wird abgebrochen.\n"
 
 #~ msgid "Not defined"
 #~ msgstr "Nicht definiert"

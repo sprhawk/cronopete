@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Cronopete 0.92\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-14 02:23+0200\n"
-"PO-Revision-Date: 2019-07-14 02:24+0200\n"
+"POT-Creation-Date: 2019-07-22 00:43+0200\n"
+"PO-Revision-Date: 2019-07-22 00:44+0200\n"
 "Last-Translator: Sergio Costas <rastersoft@gmail.com>\n"
 "Language-Team: Español; Castellano <rastersoft@gmail.com>\n"
 "Language: es\n"
@@ -75,84 +75,88 @@ msgstr "Comenzando la copia"
 msgid "Cleaning incomplete backups"
 msgstr "Borrando copias incompletas"
 
-#: src/backup_rsync.vala:364
+#: src/backup_rsync.vala:366
 #, c-format
 msgid "Backup done. Elapsed time: %d:%02d"
 msgstr "Copia terminada. Tiempo transcurrido: %d:%02d"
 
-#: src/backup_rsync.vala:376
+#: src/backup_rsync.vala:378
 msgid "Failed to rename backup folder. Aborting backup"
 msgstr "No se ha podido renombrar la carpeta de una copia. Cancelando"
 
-#: src/backup_rsync.vala:397
+#: src/backup_rsync.vala:399
 msgid "Backup aborted"
 msgstr "Copia cancelada"
 
-#: src/backup_rsync.vala:434 src/backup_rsync.vala:447
-#: src/backup_rsync.vala:459
+#: src/backup_rsync.vala:436 src/backup_rsync.vala:449
+#: src/backup_rsync.vala:461
 #, c-format
 msgid "Failed to delete aborted backups: %s"
 msgstr "No se han podido borrar las copias abortadas: %s"
 
-#: src/backup_rsync.vala:469
+#: src/backup_rsync.vala:471
 #, c-format
 msgid "Failed to delete folders: %s"
 msgstr "No se ha podido borrar las carpetas: %s"
 
-#: src/backup_rsync.vala:483
+#: src/backup_rsync.vala:485
 #, c-format
 msgid "Backing up folder %s"
 msgstr "Copiando la carpeta %s"
 
-#: src/backup_rsync.vala:504
+#: src/backup_rsync.vala:506
 #, c-format
 msgid "Excluding folder %s"
 msgstr "Excluyendo la carpeta %s"
 
-#: src/backup_rsync.vala:515
+#: src/backup_rsync.vala:517
 #, c-format
 msgid "Failed to launch rsync for '%s'. Aborting backup"
 msgstr "No se ha podido lanzar rsync para '%s'. Cancelando"
 
-#: src/backup_rsync.vala:533
+#: src/backup_rsync.vala:535
 #, c-format
 msgid "There was a problem when backing up the folder '%s'"
 msgstr "Hubo un problema al copiar la carpeta '%s'"
 
-#: src/backup_rsync.vala:547
+#: src/backup_rsync.vala:549
 #, c-format
 msgid "Backing up %s"
 msgstr "Copiando la carpeta %s"
 
-#: src/backup_rsync.vala:591 src/backup_rsync.vala:592
+#: src/backup_rsync.vala:593 src/backup_rsync.vala:594
 msgid "Syncing disk"
 msgstr "Sincronizando el disco"
 
-#: src/backup_rsync.vala:598
+#: src/backup_rsync.vala:600
 #, c-format
 msgid "Failed to launch sync command: %s"
 msgstr "No se ha podido lanzar el comando sync: %s"
 
-#: src/backup_rsync.vala:637 src/cronopete.vala:288
+#: src/backup_rsync.vala:639 src/cronopete.vala:288
 msgid "Cleaning old backups"
 msgstr "Borrando copias antiguas"
 
-#: src/backup_rsync.vala:644
+#: src/backup_rsync.vala:651
+msgid ""
+"The destination disk is too small to hold at least a complete backup while "
+"doing another. You must change your destination disk with a bigger one. "
+"Aborting."
+msgstr ""
+"El disco de destino es demasiado pequeño como para contener una copia "
+"completa mientras se hace otra. Es necesario cambiar el disco de destino por "
+"uno más grande. Abortando."
+
+#: src/backup_rsync.vala:658
 msgid "No old backups to delete"
 msgstr "No hay copias antiguas que borrar"
 
-#: src/backup_rsync.vala:661
-msgid "Asked for freeing disk space when there is free space. Aborting backup"
-msgstr ""
-"Se ha pedido liberar espacio del disco cuando aún queda espacio libre. "
-"Cancelando"
-
-#: src/backup_rsync.vala:673
+#: src/backup_rsync.vala:668
 #, c-format
 msgid "Deleting old backup %s"
 msgstr "Borrando copia antigua %s"
 
-#: src/backup_rsync.vala:681
+#: src/backup_rsync.vala:676
 #, c-format
 msgid "Failed to delete old backup %s: %s"
 msgstr "No se ha podido borrar la copia antigua %s: %s"
@@ -569,28 +573,28 @@ msgid "anaCRONOPETE"
 msgstr "anaCRONOPETE"
 
 #. Don't translate this. Is part of the name in the main window
-#: data/interface/main.ui:104
+#: data/interface/main.ui:103
 msgid "ana"
 msgstr "ana"
 
 #. Don't translate this. Is part of the name in the main window.
-#: data/interface/main.ui:118
+#: data/interface/main.ui:117
 msgid "cronopete"
 msgstr "cronopete"
 
-#: data/interface/main.ui:146
+#: data/interface/main.ui:144
 msgid "Enable backups"
 msgstr "Activar copias"
 
-#: data/interface/main.ui:333
+#: data/interface/main.ui:344
 msgid "Change backup destination..."
 msgstr "Cambiar el destino para copias..."
 
-#: data/interface/main.ui:348 data/interface/options.ui:95
+#: data/interface/main.ui:359 data/interface/options.ui:95
 msgid "Folders to backup"
 msgstr "Carpetas a copiar"
 
-#: data/interface/main.ui:373
+#: data/interface/main.ui:384
 msgid ""
 "Cronopete keeps:\n"
 "\n"
@@ -604,19 +608,19 @@ msgstr ""
 " * Una copia diaria para el último mes\n"
 " * Copias semanales hasta que se llene el disco"
 
-#: data/interface/main.ui:392
+#: data/interface/main.ui:403
 msgid "Show Cronopete in menu bar"
 msgstr "Mostrar Cronopete en la barra"
 
-#: data/interface/main.ui:409
+#: data/interface/main.ui:420
 msgid "About"
 msgstr "Acerca de"
 
-#: data/interface/main.ui:442
+#: data/interface/main.ui:453
 msgid "Configuration"
 msgstr "Configuración"
 
-#: data/interface/main.ui:471
+#: data/interface/main.ui:483
 msgid "Log"
 msgstr "Registro"
 
@@ -725,6 +729,12 @@ msgstr ""
 "\n"
 "Ahora puede configurar el disco externo a usar para las copias y qué "
 "carpetas copiar, o dejarlo para más tarde."
+
+#~ msgid ""
+#~ "Asked for freeing disk space when there is free space. Aborting backup"
+#~ msgstr ""
+#~ "Se ha pedido liberar espacio del disco cuando aún queda espacio libre. "
+#~ "Cancelando"
 
 #~ msgid "Not defined"
 #~ msgstr "No definido"
