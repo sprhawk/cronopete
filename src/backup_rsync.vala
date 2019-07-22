@@ -255,9 +255,9 @@ namespace cronopete {
 			ChildWatch.add(child_pid, (pid, status) => {
 				Process.close_pid(pid);
 				if (status == 0) {
-				    this.ended_restore(true);
+					this.ended_restore(true);
 				} else {
-				    this.ended_restore(false);
+					this.ended_restore(false);
 				}
 			});
 			return false;
@@ -527,12 +527,38 @@ namespace cronopete {
 					this.current_child_pid = -1;
 					try_backup             = false;
 					if ((!this.aborting) && (status != 0)) {
-					    print("Exit status in rsync: %d\n".printf(status));
-					    if (status == 0x0B00) {
-					        // free disk space and try again if there is free space now
-					        try_backup = true;
-						} else {
-					        this.send_warning(_("There was a problem when backing up the folder '%s'").printf(folder.folder), true);
+						status &= 0xFF00;
+						print("Exit status in rsync: %d\n".printf(status));
+						switch (status) {
+						case 0x0B00:
+							// Disk full.
+							// free disk space and try again if there is free space now
+							try_backup = true;
+							break;
+						case 0x1700:
+							// Partial transfer due to error
+							// In some cases can happen if the disk gets filled after copying the files,
+							// but before setting attributes.
+							// So let's check the disk free space, and if it is less than 10 Megabytes, delete an
+							// old backup and retry (just in case)
+							uint64 disk_total_space;
+							uint64 disk_free_space;
+							this.get_free_space(out disk_total_space, out disk_free_space);
+							if (disk_free_space < 10485760) {
+								try_backup = true;
+							} else {
+								// if not, then something happened. Let the user know
+								this.send_warning(_("There was a problem when backing up the folder '%s'").printf(folder.folder), true);
+							}
+							break;
+						case 0x1800:
+							// Some files "vanished"
+							// This happens when the user deletes a file while a backup is being done.
+							// Just ignore it.
+							break;
+						default:
+							this.send_warning(_("There was a problem when backing up the folder '%s'").printf(folder.folder), true);
+							break;
 						}
 					}
 					this.do_backup_folder.callback();
@@ -540,34 +566,34 @@ namespace cronopete {
 				IOChannel output = new IOChannel.unix_new(standard_output);
 				output.add_watch(IOCondition.IN | IOCondition.HUP, (channel, condition) => {
 					if (condition == IOCondition.HUP) {
-					    return false;
+						return false;
 					}
 					try {
-					    string line;
-					    channel.read_line(out line, null, null);
-					    var line2 = line.strip();
-					    this.send_current_action(_("Backing up %s").printf(Path.build_filename(folder.folder, line2)));
+						string line;
+						channel.read_line(out line, null, null);
+						var line2 = line.strip();
+						this.send_current_action(_("Backing up %s").printf(Path.build_filename(folder.folder, line2)));
 					} catch (IOChannelError e) {
-					    return false;
+						return false;
 					} catch (ConvertError e) {
-					    return false;
+						return false;
 					}
 					return true;
 				});
 				IOChannel output_error = new IOChannel.unix_new(standard_error);
 				output_error.add_watch(IOCondition.IN | IOCondition.HUP, (channel, condition) => {
 					if (condition == IOCondition.HUP) {
-					    return false;
+						return false;
 					}
 					try {
-					    string line;
-					    channel.read_line(out line, null, null);
-					    print("Sending warning %s\n".printf(line.strip()));
-					    this.send_warning(line.strip(), false);
+						string line;
+						channel.read_line(out line, null, null);
+						print("Sending warning %s\n".printf(line.strip()));
+						this.send_warning(line.strip(), false);
 					} catch (IOChannelError e) {
-					    return false;
+						return false;
 					} catch (ConvertError e) {
-					    return false;
+						return false;
 					}
 					return true;
 				});
