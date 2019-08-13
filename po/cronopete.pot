@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cronopete 4.11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-22 00:43+0200\n"
+"POT-Creation-Date: 2019-07-24 00:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -108,46 +108,46 @@ msgstr ""
 msgid "Failed to launch rsync for '%s'. Aborting backup"
 msgstr ""
 
-#: src/backup_rsync.vala:535
+#: src/backup_rsync.vala:551 src/backup_rsync.vala:560
 #, c-format
 msgid "There was a problem when backing up the folder '%s'"
 msgstr ""
 
-#: src/backup_rsync.vala:549
+#: src/backup_rsync.vala:575
 #, c-format
 msgid "Backing up %s"
 msgstr ""
 
-#: src/backup_rsync.vala:593 src/backup_rsync.vala:594
+#: src/backup_rsync.vala:619 src/backup_rsync.vala:620
 msgid "Syncing disk"
 msgstr ""
 
-#: src/backup_rsync.vala:600
+#: src/backup_rsync.vala:626
 #, c-format
 msgid "Failed to launch sync command: %s"
 msgstr ""
 
-#: src/backup_rsync.vala:639 src/cronopete.vala:288
+#: src/backup_rsync.vala:665 src/cronopete.vala:288
 msgid "Cleaning old backups"
 msgstr ""
 
-#: src/backup_rsync.vala:651
+#: src/backup_rsync.vala:677
 msgid ""
 "The destination disk is too small to hold at least a complete backup while "
 "doing another. You must change your destination disk with a bigger one. "
 "Aborting."
 msgstr ""
 
-#: src/backup_rsync.vala:658
+#: src/backup_rsync.vala:684
 msgid "No old backups to delete"
 msgstr ""
 
-#: src/backup_rsync.vala:668
+#: src/backup_rsync.vala:694
 #, c-format
 msgid "Deleting old backup %s"
 msgstr ""
 
-#: src/backup_rsync.vala:676
+#: src/backup_rsync.vala:702
 #, c-format
 msgid "Failed to delete old backup %s: %s"
 msgstr ""
