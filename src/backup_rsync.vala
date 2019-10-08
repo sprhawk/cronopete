@@ -48,7 +48,7 @@ namespace cronopete {
 		protected string icon_name;
 		protected string settings_id;
 
-		public backup_rsync() {
+		protected backup_rsync() {
 			this.backend_enabled   = false;
 			this.folder_path       = null;
 			this.base_drive_path   = null;

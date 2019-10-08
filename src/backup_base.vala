@@ -345,7 +345,7 @@ namespace cronopete {
 			return backups;
 		}
 
-		public backup_base() {
+		protected backup_base() {
 			this.cronopete_settings = new GLib.Settings("org.rastersoft.cronopete");
 		}
 	}
