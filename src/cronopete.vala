@@ -595,7 +595,7 @@ namespace cronopete {
 				callback_object = new cronopete_class();
 				Bus.own_name(BusType.SESSION, "com.rastersoft.cronopete", BusNameOwnerFlags.NONE, on_bus_aquired, () => {}, () => {
 					GLib.stderr.printf("Cronopete is already running.\n");
-					Posix.exit(1);
+					Posix.exit(0x30);
 				});
 				install_script();
 				Gtk.main();
