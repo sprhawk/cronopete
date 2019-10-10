@@ -2,7 +2,6 @@
 
 * Version 4.11.0 (2019/07/22)
       * Detect and notify if the destination disk is too small for backups
-
 * Version 4.10.0 (2019/07/14)
       * Don't backup .cache, .dbus, .gvfs or .var/app/*/cache folders
       * Allows to quit cronopete

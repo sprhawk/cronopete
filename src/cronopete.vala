@@ -579,36 +579,19 @@ namespace cronopete {
 	}
 
 	int main(string[] args) {
-		int fork_pid;
-		int status;
-
-		while (true) {
-			// Create a child and run cronopete there
-			// If the child dies, launch cronopete again, to ensure that the backup always work
-			fork_pid = Posix.fork();
-			if (fork_pid == 0) {
-				Notify.init("Cronopete");
-				Intl.bindtextdomain(Constants.GETTEXT_PACKAGE, GLib.Path.build_filename(Constants.DATADIR, "locale"));
-				Intl.textdomain("cronopete");
-				Intl.bind_textdomain_codeset("cronopete", "UTF-8");
-				Gtk.init(ref args);
-				callback_object = new cronopete_class();
-				Bus.own_name(BusType.SESSION, "com.rastersoft.cronopete", BusNameOwnerFlags.NONE, on_bus_aquired, () => {}, () => {
-					GLib.stderr.printf("Cronopete is already running.\n");
-					Posix.exit(0x30);
-				});
-				install_script();
-				Gtk.main();
-				return 0;
-			}
-			Posix.waitpid(fork_pid, out status, 0);
-			if (status == 0x3000) {
-				// This is the status for an abort
-				break;
-			}
-			Posix.sleep(1);
-		}
-		return -1;
+		Notify.init("Cronopete");
+		Intl.bindtextdomain(Constants.GETTEXT_PACKAGE, GLib.Path.build_filename(Constants.DATADIR, "locale"));
+		Intl.textdomain("cronopete");
+		Intl.bind_textdomain_codeset("cronopete", "UTF-8");
+		Gtk.init(ref args);
+		callback_object = new cronopete_class();
+		Bus.own_name(BusType.SESSION, "com.rastersoft.cronopete", BusNameOwnerFlags.NONE, on_bus_aquired, () => {}, () => {
+			GLib.stderr.printf("Cronopete is already running.\n");
+			Posix.exit(0);
+		});
+		install_script();
+		Gtk.main();
+		return 0;
 	}
 
 	[DBus(name = "com.rastersoft.cronopete")]

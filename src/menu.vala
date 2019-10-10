@@ -66,7 +66,7 @@ namespace  cronopete {
 				this.builder.add_from_file(Path.build_filename(Constants.PKGDATADIR, "main.ui"));
 			} catch (GLib.Error e) {
 				print("Can't create the configuration window. Aborting.\n");
-				Posix.exit(48);
+				Posix.exit(1);
 			}
 
 			this.main_w                = (Window) this.builder.get_object("window1");
@@ -174,7 +174,7 @@ namespace  cronopete {
 				this.builder.add_from_file(Path.build_filename(Constants.PKGDATADIR, "ask_quit.ui"));
 			} catch (GLib.Error e) {
 				print("Can't create the configuration window. Aborting.\n");
-				Posix.exit(48);
+				Posix.exit(1);
 			}
 			var w = (Gtk.Dialog)this.builder.get_object("ask_quit_window");
 			w.show_all();
@@ -182,7 +182,7 @@ namespace  cronopete {
 			w.hide();
 			w.destroy();
 			if (retval == Gtk.ResponseType.ACCEPT) {
-				Posix.exit(48);
+				Posix.exit(0);
 			}
 		}
 

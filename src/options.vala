@@ -43,7 +43,7 @@ public class c_options : GLib.Object {
 			this.builder.add_from_file(Path.build_filename(Constants.PKGDATADIR, "options.ui"));
 		} catch (GLib.Error e) {
 			print("Can't create the options window. Aborting");
-			Posix.exit(48);
+			Posix.exit(1);
 		}
 
 		this.main_w = (Dialog) this.builder.get_object("options");
@@ -179,7 +179,7 @@ public class c_options : GLib.Object {
 			tmp_builder.add_from_file(Path.build_filename(Constants.PKGDATADIR, "folder_selector.ui"));
 		} catch (GLib.Error e) {
 			print("Can't create the folder selector window. Aborting");
-			Posix.exit(48);
+			Posix.exit(1);
 		}
 		var selector = (FileChooserDialog) tmp_builder.get_object("folder_selector");
 		var b1 = new Gtk.Button.with_label(_("Cancel"));
@@ -216,7 +216,7 @@ public class c_options : GLib.Object {
 			tmp_builder.add_from_file(Path.build_filename(Constants.PKGDATADIR, "folder_selector.ui"));
 		} catch (GLib.Error e) {
 			print("Can't create the folder selector window. Aborting");
-			Posix.exit(48);
+			Posix.exit(1);
 		}
 		var selector = (FileChooserDialog) tmp_builder.get_object("folder_selector");
 		selector.set_transient_for(this.main_w);
