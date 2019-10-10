@@ -1,5 +1,5 @@
 Name: cronopete
-Version: 4.11.0
+Version: 4.12.0
 Release: 1
 License: Unknown/not set
 Summary: A backup utility for Linux.

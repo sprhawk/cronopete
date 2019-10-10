@@ -1,5 +1,9 @@
 # History of versions #
 
+* Version 4.12.0 (2019/10/11)
+      * Don't show warning if a file vanishes
+      * Removed FORK to have two processes.
+      * Removed timed retry when there is another cronopete process; just exits.
 * Version 4.11.0 (2019/07/22)
       * Detect and notify if the destination disk is too small for backups
 * Version 4.10.0 (2019/07/14)
