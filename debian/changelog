@@ -1,8 +1,9 @@
 cronopete (4.12.0-Debian1) sid; urgency=low
 
   * Don't show warning if a file vanishes
-  * Removed FORK to have two processes.
-  * Removed timed retry when there is another cronopete process; just exits.
+  * Removed FORK to have two processes
+  * Removed timed retry when there is another cronopete process; just exits
+  * Now allows to copy to the clipboard the log
 
  -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fry, 11 Oct 2019 23:55:00 +0200
 
