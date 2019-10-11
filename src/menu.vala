@@ -186,6 +186,15 @@ namespace  cronopete {
 			}
 		}
 
+
+		[CCode(instance_pos = -1)]
+		public void on_copy_log_clicked(Gtk.Button source) {
+			var clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD);
+			clipboard.set_text(this.messages.str, this.messages.str.length);
+			clipboard = Gtk.Clipboard.get(Gdk.SELECTION_PRIMARY);
+			clipboard.set_text(this.messages.str, this.messages.str.length);
+		}
+
 		public void backend_available_changed(bool is_available) {
 			if (this.main_w.visible) {
 				this.refresh_backup_data();
