@@ -65,7 +65,7 @@ interface Drive_if : GLib.Object {
 	public abstract string ConnectionBus { owned get; }
 }
 
-class udisk2_cronopete {
+class udisk2_cronopete : GLib.Object {
 	GLib.DBusConnection dbus_connection;
 	UDisk2_if udisk;
 
