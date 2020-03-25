@@ -8,6 +8,12 @@ By default, cronopete does a backup each hour, adding to the new backup only the
 
 It is important to have a generous external disk for backups. It is strongly recommended to use a disk of, at least, twice the size of the data to store. SSD disks aren't recommended, because their speed gain is unnecessary for a backup, and are much more expensive than a mechanical disk. An external, USB3, mechanical disk with plenty of free space is an excellent choice for storing your backups.
 
+## INTERNALS
+
+Internally, Cronopete relies on RSync to do the backups. It also uses hard links to store the files that haven't changed from the last backup. This allows to have the full file tree without wasting disk space. Also, to avoid using too much CPU time and ensure that Cronopete doesn't interfere with the day-to-day work, the priority of the RSync process is set to the lowest possible.
+
+To ensure that backups are always complete and atomic, it first does a copy in a temporary folder with an easy-to-detect name. If the backup fails or is stopped (like when the user shuts down the computer), it can be detected and deleted the next time. After a successful backup, a *sync* command is executed to ensure that the whole data has been stored physically in the hard disk. Only then the folder is renamed to its final name, and another *sync* command is executed.
+
 ## BUILDING CRONOPETE
 
 To build Cronopete, you need to install CMake or Meson/Ninja, Vala-0.30 or later, and Gtk 3.10 or later.
