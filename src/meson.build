@@ -17,6 +17,7 @@ if ( not NO_APPINDICATOR )
 cronopete_deps += [appindicator3_0_1_dep]
 endif
 cronopete_deps += [cairo_dep]
+cronopete_deps += [cairo_gobject_dep]
 cronopete_deps += [gdk_3_0_dep]
 cronopete_deps += [gdk_pixbuf_2_0_dep]
 cronopete_deps += [gee_0_8_dep]

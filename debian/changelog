@@ -2,10 +2,11 @@ cronopete (4.12.0-Debian1) sid; urgency=low
 
   * Don't show warning if a file vanishes
   * Removed FORK to have two processes
-  * Removed timed retry when there is another cronopete process; just exits
+  * Removed timed retry when there is another cronopete process; just
+exits
   * Now allows to copy to the clipboard the log
 
- -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fry, 11 Oct 2019 23:55:00 +0200
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fri, 11 Oct 2019 23:55:00 +0200
 
 cronopete (4.11.0-Debian1) sid; urgency=low
 
@@ -23,8 +24,10 @@ cronopete (4.10.0-Debian1) sid; urgency=low
 
 cronopete (4.9.0-Debian1) sid; urgency=low
 
-  * Fixed full disk detection: now, if the disk gets full, it will delete old backups
-  * Ensures that, at least, will backup the personal folder if leaved unconfigured
+  * Fixed full disk detection: now, if the disk gets full, it will delete
+old backups
+  * Ensures that, at least, will backup the personal folder if leaved
+unconfigured
   * Fixed some translations
   * Updated .desktop files texts
 
@@ -34,25 +37,27 @@ cronopete (4.8.0-Debian1) sid; urgency=low
 
   * Now shows an alert if there is a problem during backup
   * Now the warning and error messages are shown in color as expected
-  * Updated to Autovala 1.14 (doesn't require python for being compiled with meson)
+  * Updated to Autovala 1.14 (doesn't require python for being compiled
+with meson)
   * Speeded up the rotating arrow
 
  -- Sergio Costas Rodriguez <raster@rastersoft.com>  Sat, 20 Apr 2019 23:55:00 +0200
 
 cronopete (4.7.0-Debian1) sid; urgency=low
 
-  * Now doesn't keep stuck trying to delete an old backup which contains one or more files/folders without writting permissions
+  * Now doesn't keep stuck trying to delete an old backup which contains
+one or more files/folders without writting permissions
   * Also now doesn't fill the log with errors when that happens
   * Now detects when the destination folder is read-only and doesn't fail
   * Refactored code to make use of asynchronous functions
 
- -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fry, 15 Feb 2019 23:55:00 +0200
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fri, 15 Feb 2019 23:55:00 +0200
 
 cronopete (4.6.0-Debian1) sid; urgency=low
 
   * Now doesn't fail if there are blank spaces in the disk name
 
- -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fry, 07 Sep 2018 23:55:00 +0200
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fri, 07 Sep 2018 23:55:00 +0200
 
 cronopete (4.5.1-Debian1) sid; urgency=low
 
@@ -76,7 +81,8 @@ cronopete (4.4.0-Debian1) sid; urgency=low
 cronopete (4.3.0-Debian1) sid; urgency=low
 
   * Now allows to unmount the backup drive
-  * Now shows more information about the drive when formatting a disk to be used for backup
+  * Now shows more information about the drive when formatting a disk to
+be used for backup
   * Updated translations
 
  -- Sergio Costas Rodriguez <raster@rastersoft.com>  Thu, 24 May 2018 23:55:00 +0200
@@ -89,11 +95,12 @@ cronopete (4.2.0-Debian1) sid; urgency=low
   * Fixed french translation (thanks to Maieul)
   * Now doesn't show CDROMs or Squashfs file systems
 
- -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fry, 11 May 2018 23:55:00 +0200
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fri, 11 May 2018 23:55:00 +0200
 
 cronopete (4.1.1-Debian1) sid; urgency=low
 
-  * Allows to open an specific folder to restore files (allows to integrate with file managers)
+  * Allows to open an specific folder to restore files (allows to
+integrate with file managers)
   * Preliminar integration with Nautilus
 
  -- Sergio Costas Rodriguez <raster@rastersoft.com>  Tue, 08 May 2018 23:55:00 +0200
@@ -114,27 +121,38 @@ cronopete (4.0.0-Debian1) sid; urgency=low
 
   * Code refactorization
   * Now utilizes RSYNC instead of own code
-  * Allows to go to a date in the restore interface by clicking in the timeline
+  * Allows to go to a date in the restore interface by clicking in the
+timeline
   * Shows dates in the timeline when restoring files
-  * Now remembers whether the user preffers an icon view or an icon list in the restore window
-  * Allows to sort the files and folders in the restore window by clicking on the column name
-  * Shows the file type in the restore window and allows to sort by file type
+  * Now remembers whether the user preffers an icon view or an icon list
+in the restore window
+  * Allows to sort the files and folders in the restore window by clicking
+on the column name
+  * Shows the file type in the restore window and allows to sort by file
+type
   * Added extra security checks when deleting old backups
-  * Now ensures that half-deleted old backups won't interfere with the restoring window, and won't be used as base for a backup
+  * Now ensures that half-deleted old backups won't interfere with the
+restoring window, and won't be used as base for a backup
   * Uses the current Gtk fonts in the restore interface
-  * Ensures that the main "cronopete" folder is writable by anyone, to allow to use the same disk by several users in the same computer
-  * Ensures that the backup folder for each user is readable and writable ONLY by the owner, to ensure security and privacy
-  * Now deletes the old backups after doing the backup, not before, to ensure to make the first backup as soon as possible
-  * Architecture designed to allow the use of new backends in an easier way
+  * Ensures that the main "cronopete" folder is writable by anyone, to
+allow to use the same disk by several users in the same computer
+  * Ensures that the backup folder for each user is readable and writable
+ONLY by the owner, to ensure security and privacy
+  * Now deletes the old backups after doing the backup, not before, to
+ensure to make the first backup as soon as possible
+  * Architecture designed to allow the use of new backends in an easier
+way
   * Now shows the capacity in GB instead of Gib
   * Uses colors when showing warning and error messages in the log
-  * Experimental backend for backing up to a "folder" instead of an "external disk"
+  * Experimental backend for backing up to a "folder" instead of an
+"external disk"
 
  -- Sergio Costas Rodriguez <raster@rastersoft.com>  Thu, 19 Apr 2018 23:55:00 +0200
 
 cronopete (3.27.0-Debian1) sid; urgency=low
 
-  * Now ignores backups "from the future" to avoid troubles when creating new backups or listing them
+  * Now ignores backups "from the future" to avoid troubles when creating
+new backups or listing them
 
  -- Sergio Costas Rodriguez <raster@rastersoft.com>  Sun, 04 Feb 2018 23:55:00 +0200
 
@@ -165,17 +183,19 @@ cronopete (3.25.0-Debian1) sid; urgency=low
 
 cronopete (3.24.0-Debian1) sid; urgency=low
 
-  * Now the restored file is the original one if there is no file with that name in the destination folder
+  * Now the restored file is the original one if there is no file with
+that name in the destination folder
   * Fixed the bookmarks and the path buttons in the restore interface
-  * Now doesn't fail to restore files when the destination folder doesn't exist
+  * Now doesn't fail to restore files when the destination folder doesn't
+exist
 
- -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fry, 10 Feb 2017 23:55:00 +0200
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fri, 10 Feb 2017 23:55:00 +0200
 
 cronopete (3.23.0-Debian1) sid; urgency=low
 
   * Now supports external drives with blank spaces in their name
 
- -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fry, 10 Feb 2017 23:50:00 +0200
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fri, 10 Feb 2017 23:50:00 +0200
 
 cronopete (3.22.0-Debian1) sid; urgency=low
 
@@ -186,7 +206,8 @@ cronopete (3.22.0-Debian1) sid; urgency=low
 
 cronopete (3.21.0-Debian1) sid; urgency=low
 
-  * Now launches cronopete automagically when calling "restore" or "settings" icons from the launch menu (DBUS activation works again)
+  * Now launches cronopete automagically when calling "restore" or
+"settings" icons from the launch menu (DBUS activation works again)
 
  -- Sergio Costas Rodriguez <raster@rastersoft.com>  Sat, 05 Dec 2015 23:55:00 +0200
 
@@ -204,7 +225,8 @@ cronopete (3.20.1-Debian1) sid; urgency=low
 
 cronopete (3.20.0-Debian1) sid; urgency=low
 
-  * The multithreading race condition that made cronopete to crash randomly seems to be fixed
+  * The multithreading race condition that made cronopete to crash
+randomly seems to be fixed
   * Removed deprecated GTK functions and properties
 
  -- Sergio Costas Rodriguez <raster@rastersoft.com>  Thu, 10 Sep 2015 23:55:00 +0200
@@ -226,8 +248,10 @@ cronopete (3.18.5-Debian1) sid; urgency=low
 
 cronopete (3.18.4-Debian1) sid; urgency=low
 
-  * Now uses only the UUID to find disks, to guarantee that the path used is the right one, even if it changes after launching cronopete
-  * If the backup is enabled, cronopete will remount the disk if it is unmounted; if the backup is disabled, the disk can be removed
+  * Now uses only the UUID to find disks, to guarantee that the path used
+is the right one, even if it changes after launching cronopete
+  * If the backup is enabled, cronopete will remount the disk if it is
+unmounted; if the backup is disabled, the disk can be removed
   * Now shows the GTK2 and GTK3 bookmarks in the Restore files window
   * The window asking for formating a disk now has the right size
   * Code cleanup
@@ -239,20 +263,20 @@ cronopete (3.18.3-Debian1) sid; urgency=low
 
   * Migrated to UDisks2, to fix the problems when formating disks
 
- -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fry, 03 Apr 2015 23:55:00 +0200
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fri, 03 Apr 2015 23:55:00 +0200
 
 cronopete (3.18.2-Debian1) sid; urgency=low
 
   * Now doesn't fail if, at startup, the hard disk isn't mounted
   * Now the main window doesn't get expanded if the status text is too big
 
- -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fry, 03 Apr 2015 23:50:00 +0200
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fri, 03 Apr 2015 23:50:00 +0200
 
 cronopete (3.18.1-Debian1) sid; urgency=low
 
   * Fixed bugs when choosing a new disk
 
- -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fry, 03 Apr 2015 23:45:00 +0200
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fri, 03 Apr 2015 23:45:00 +0200
 
 cronopete (3.18.0-Debian1) sid; urgency=low
 
@@ -273,7 +297,7 @@ cronopete (3.16.0-Debian1) sid; urgency=low
   * Removed GTK2 support
   * Fixed the problems when mixing fullscreen and popup windows
 
- -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fry, 08 Aug 2014 23:55:00 +0200
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fri, 08 Aug 2014 23:55:00 +0200
 
 cronopete (3.15.3-Debian1) sid; urgency=low
 
@@ -286,10 +310,12 @@ cronopete (3.15.2-Debian1) sid; urgency=low
   * Fixed galician translation
   * Removed the access to GTK from several threads
   * The CANCEL button when choosing a folder to (or not) backup now works
-  * Now doesn't fail if pressing the ACCEPT button in the folder selection dialog without a folder selected
-  * Now removes the wellcome message also if the user shows the configuration dialog
+  * Now doesn't fail if pressing the ACCEPT button in the folder selection
+dialog without a folder selected
+  * Now removes the wellcome message also if the user shows the
+configuration dialog
 
- -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fry, 01 Nov 2013 23:55:00 +0200
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fri, 01 Nov 2013 23:55:00 +0200
 
 cronopete (3.15.1-Debian1) sid; urgency=low
 
@@ -299,9 +325,13 @@ cronopete (3.15.1-Debian1) sid; urgency=low
 
 cronopete (3.15.0-Debian1) sid; urgency=low
 
-  * Now doesn't hang when trying to set the partition type during disk formating
-  * Changed the schema path from <i>apps.cronopete</i> to <i>org.rastersoft.cronopete</i> to be compliant with the Gnome rules (requires reconfiguration!!!)
-  * Removed formating in ReiserFS; now only formats in Ext4, but still supports ReiserFS if formated manually by the user
+  * Now doesn't hang when trying to set the partition type during disk
+formating
+  * Changed the schema path from <i>apps.cronopete</i> to
+<i>org.rastersoft.cronopete</i> to be compliant with the Gnome rules
+(requires reconfiguration!!!)
+  * Removed formating in ReiserFS; now only formats in Ext4, but still
+supports ReiserFS if formated manually by the user
   * Allows to show the non-usb disks directly from the interface
   * Now automounts the drive during launch
   * Build system migrated to Autovala+CMake
@@ -357,25 +387,32 @@ cronopete (3.6.0-Debian1) sid; urgency=low
   * New restoring interface
   * Allows to use internal, non-removable drives (for testing)
   * Added new icons based in the -symbolic standard
-  * Fixed the bug that made the restore window to grow each time the user changed the folder
+  * Fixed the bug that made the restore window to grow each time the user
+changed the folder
   * Changed DBus bus from com.backup.cronopete to com.rastersoft.cronopete
 
- -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fry, 21 Dec 2012 23:55:00 +0200
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fri, 21 Dec 2012 23:55:00 +0200
 
 cronopete (3.4.6-Debian1) sid; urgency=low
 
   * The configuration icon in Elementary will keep in the icon window
-  * Removed sleep during startup because, with libappnotify, it's not needed
-  * Now doesn't recreate the menu in the system bar each time something changes, but takes advantage of the capabilities of libappindicator (when used)
+  * Removed sleep during startup because, with libappnotify, it's not
+needed
+  * Now doesn't recreate the menu in the system bar each time something
+changes, but takes advantage of the capabilities of libappindicator
+(when used)
 
  -- Sergio Costas Rodriguez <raster@rastersoft.com>  Sun, 28 Oct 2012 23:55:00 +0200
 
 cronopete (3.4.5-Debian1) sid; urgency=low
 
-  * Added D-Bus activation, to launch Cronopete when opening the configuration icon
-  * CMake files modified to ensure that the autostart file is copied in the right place even when using a non-standard folder
+  * Added D-Bus activation, to launch Cronopete when opening the
+configuration icon
+  * CMake files modified to ensure that the autostart file is copied in
+the right place even when using a non-standard folder
   * Included the Vala CMake files
-  * Added control files for PPA repositories with DEB packages for Ubuntu and Elementary OS
+  * Added control files for PPA repositories with DEB packages for Ubuntu
+and Elementary OS
 
  -- Sergio Costas Rodriguez <raster@rastersoft.com>  Wed, 17 Oct 2012 23:55:00 +0200
 
@@ -399,11 +436,14 @@ cronopete (3.2.0-Debian1) sid; urgency=low
   * Now new disks are formatted right, without returning a false error
   * Disks are also formatted when the access rights are incorrect
   * Added icons in windows and in window manager
-  * Now it uses asynchronous calls when restoring files, instead of a thread
+  * Now it uses asynchronous calls when restoring files, instead of a
+thread
   * Reduced FPS in clock animation to reduce CPU usage
-  * Added a "Restored ended successfully" message at the end of file restoration
+  * Added a "Restored ended successfully" message at the end of file
+restoration
   * Now also shows the date in the windows titlebar during file restoring
-  * Updated animation during restoring to do it more efficient and smooth when not having GPU acceleration
+  * Updated animation during restoring to do it more efficient and smooth
+when not having GPU acceleration
 
  -- Sergio Costas Rodriguez <raster@rastersoft.com>  Sun, 09 Sep 2012 23:55:00 +0200
 
@@ -420,18 +460,21 @@ cronopete (2.3.0-Debian1) sid; urgency=low
   * Added Dbus remote control
   * Added icon cache to speed up the restoring interface
 
- -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fry, 02 Dec 2011 23:55:00 +0200
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fri, 02 Dec 2011 23:55:00 +0200
 
 cronopete (2.2.0-Debian1) sid; urgency=low
 
-  * It made a window capture when changing the restore view to list or icons. Fixed.
-  * Fixed a core dump when unmounting the hard disk after launching the restore interface.
+  * It made a window capture when changing the restore view to list or
+icons. Fixed.
+  * Fixed a core dump when unmounting the hard disk after launching the
+restore interface.
 
- -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fry, 18 Nov 2011 23:55:00 +0200
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fri, 18 Nov 2011 23:55:00 +0200
 
 cronopete (2.1.0-Debian1) sid; urgency=low
 
-  * Little modification to ensure that the zoom effect works better in slow computers.
+  * Little modification to ensure that the zoom effect works better in
+slow computers.
 
  -- Sergio Costas Rodriguez <raster@rastersoft.com>  Sun, 13 Nov 2011 23:55:00 +0200
 
@@ -439,11 +482,12 @@ cronopete (2.0.0-Debian1) sid; urgency=low
 
   * Added an interface to restore files from the backups.
 
- -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fry, 11 Nov 2011 23:55:00 +0200
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fri, 11 Nov 2011 23:55:00 +0200
 
 cronopete (1.3.0-Debian1) sid; urgency=low
 
-  * Cronopete closes when trying to format a NTFS-formated external drive. Fixed.
+  * Cronopete closes when trying to format a NTFS-formated external drive.
+Fixed.
 
  -- Sergio Costas Rodriguez <raster@rastersoft.com>  Sun, 23 Oct 2011 23:55:00 +0200
 
@@ -451,13 +495,14 @@ cronopete (1.2.0-Debian1) sid; urgency=low
 
   * Now keeps the modified date and time of the folders in the backups
 
- -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fry, 07 Oct 2011 23:55:00 +0200
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fri, 07 Oct 2011 23:55:00 +0200
 
 cronopete (1.1.0-Debian1) sid; urgency=low
 
   * Allows to set the time interval between backups
   * Allows to choose the installation folder in the Makefile
-  * Fixed a bug that produced a clock skew of five minutes; now the backups are done precisely at time
+  * Fixed a bug that produced a clock skew of five minutes; now the
+backups are done precisely at time
   * Now the popup menu is shown under the main bar, not over it
   * Some little adjustments in the interface
 

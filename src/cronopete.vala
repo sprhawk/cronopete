@@ -26,8 +26,6 @@ using Posix;
 using AppIndicator;
 using Notify;
 
-// project version=4.12.0
-
 namespace cronopete {
 	cronopete_class callback_object;
 

@@ -1,4 +1,6 @@
-project('cronopete',['c','vala'])
+project('cronopete',
+  ['c','vala'],
+  version: '4.12.0')
 
 NO_APPINDICATOR = (get_option('NO_APPINDICATOR') != '')
 
@@ -11,6 +13,7 @@ if ( not NO_APPINDICATOR )
 appindicator3_0_1_dep = dependency('appindicator3-0.1')
 endif
 cairo_dep = dependency('cairo')
+cairo_gobject_dep = dependency('cairo-gobject')
 gdk_3_0_dep = dependency('gdk-3.0')
 gdk_pixbuf_2_0_dep = dependency('gdk-pixbuf-2.0')
 gee_0_8_dep = dependency('gee-0.8')

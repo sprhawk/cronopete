@@ -1,6 +1,7 @@
 ### AutoVala Project ###
 autovala_version: 30
 project_name: cronopete
+project_version: 4.12.0
 po_comment_tag: TRANSLATOR
 vala_version: 0.36
 
@@ -13,6 +14,7 @@ if (NOT NO_APPINDICATOR)
 vala_check_package: appindicator3-0.1
 end
 *vala_check_package: cairo
+*vala_check_package: cairo-gobject
 *vala_check_package: gdk-3.0
 *vala_check_package: gdk-pixbuf-2.0
 *vala_check_package: gee-0.8
