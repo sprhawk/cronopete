@@ -504,6 +504,12 @@ namespace cronopete {
 				command += exclude;
 				this.send_message(_("Excluding folder %s").printf(Path.build_filename(folder.folder, exclude)));
 			}
+			string exclude_from = Path.build_filename(folder.folder, ".cronopete_exclude_from");
+			if (File.new_for_path(exclude_from).query_exists()) {
+				print("Excluding from: %s\n".printf(exclude_from));
+				command += "--exclude-from";
+				command += exclude_from;
+			}
 			command += folder.folder;
 			command += out_folder;
 			string[] env        = Environ.get();
