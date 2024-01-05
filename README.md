@@ -14,7 +14,7 @@ Internally, Cronopete relies on RSync to do the backups. It also uses hard links
 
 To ensure that backups are always complete and atomic, it first does a copy in a temporary folder with an easy-to-detect name. If the backup fails or is stopped (like when the user shuts down the computer), it can be detected and deleted the next time. After a successful backup, a *sync* command is executed to ensure that the whole data has been stored physically in the hard disk. Only then the folder is renamed to its final name, and another *sync* command is executed.
 
-To simplify specification of custom backup exclusions, if there is a file `.cronopete_exclude_from` in the folder you are backing up, it will be added as an `--exclude-from` option to the `rsync` command.
+To simplify specification of custom backup exclusions, if there is a file `.cronopete_exclude_from` in root of the folder you are backing up, it will be added as an `--exclude-from` option to the `rsync` command.
 
 ## BUILDING CRONOPETE
 
